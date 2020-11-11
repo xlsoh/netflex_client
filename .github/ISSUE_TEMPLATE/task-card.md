@@ -1,7 +1,7 @@
 ---
 name: Task Card
-about: Task 카드 작성시 사용되는 템플릿
-title: "[Task] 작업 내용을 작성해 주세요"
+about: Task 카드 작성시 사용되는 템플릿입니다.
+title: "[Task] 작업 내용을 작성해 주세요."
 labels: ''
 assignees: ''
 
