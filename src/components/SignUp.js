@@ -1,6 +1,5 @@
 import React from "react";
 import { withRouter, Link, useHistory } from "react-router-dom";
-import Nav from "./Nav";
 import axios from "axios";
 import PropTypes from "prop-types";
 
@@ -21,7 +20,6 @@ class SignUp extends React.Component {
     const { email, password, nickname } = this.state;
     return (
       <div>
-        <Nav />
         <center>
           <h1>회원가입</h1>
           <form

@@ -7,6 +7,7 @@ import MovieList from "./components/MovieList";
 import Review from "./components/Review";
 import WriteReview from "./components/WriteReview";
 import MovieInfo from "./components/MovieInfo";
+import Nav from "./components/Nav";
 import axios from "axios";
 import PropTypes from "prop-types";
 
@@ -46,7 +47,7 @@ class App extends React.Component {
     console.log(isLogin, userinfo);
     return (
       <div>
-        Hello, netflex!
+        <Nav isLogin={isLogin} />
         <Switch>
           <Route
             path="/user/signin"

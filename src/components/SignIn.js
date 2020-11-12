@@ -1,6 +1,5 @@
 import React from "react";
 import { Link, Route, withRouter } from "react-router-dom";
-import Nav from "./Nav";
 import axios from "axios";
 import PropTypes from "prop-types";
 
@@ -24,7 +23,6 @@ class SignIn extends React.Component {
     const { handleIsLoginChange } = this.props;
     return (
       <div>
-        <Nav />
         <center>
           <h1>로그인</h1>
           <form
