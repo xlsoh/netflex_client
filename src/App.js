@@ -59,12 +59,7 @@ class App extends React.Component {
           <Route
             exact
             path="/user/signup"
-            render={() => (
-              <SignUp
-                isLogin={isLogin}
-                handleIsSignupChange={this.handleIsSignupChange.bind(this)}
-              />
-            )}
+            render={() => <SignUp isLogin={isLogin} />}
           />
           <Route
             exact
