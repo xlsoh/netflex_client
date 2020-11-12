@@ -21,7 +21,7 @@ class SignIn extends React.Component {
 
   render() {
     const { email, password } = this.state;
-    //  const { handleIsLoginChange } = this.props;
+    const { handleIsLoginChange } = this.props;
     return (
       <div>
         <Nav />
@@ -31,13 +31,13 @@ class SignIn extends React.Component {
             onSubmit={(e) => {
               e.preventDefault();
               return axios
-                .post("http://localhost:4000/signin", {
+                .post("http://localhost:4000/user/signin", {
                   email: email,
                   password: password,
                 })
                 .then(() => {
-                  //  handleIsLoginChange();
-                  //  this.props.history.push("/");
+                  handleIsLoginChange();
+                  this.props.history.push("/");
                 })
                 .catch((err) => {
                   alert("Login failed");
@@ -113,5 +113,8 @@ class SignIn extends React.Component {
     );
   }
 }
-
+SignIn.propTypes = {
+  handleIsLoginChange: PropTypes.func,
+  history: PropTypes.array,
+};
 export default withRouter(SignIn);
