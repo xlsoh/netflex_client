@@ -8,7 +8,9 @@ class MyPage extends React.Component {
     this.state = {};
   }
 
-  render() {}
+  render() {
+    return <div></div>;
+  }
 }
 
 export default MyPage;

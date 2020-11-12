@@ -7,7 +7,9 @@ class MovieReviewList extends React.Component {
     this.state = {};
   }
 
-  render() {}
+  render() {
+    return <div></div>;
+  }
 }
 
 export default MovieReviewList;

@@ -6,7 +6,9 @@ class Nav extends React.Component {
     this.state = {};
   }
 
-  render() {}
+  render() {
+    return <div></div>;
+  }
 }
 
 export default Nav;

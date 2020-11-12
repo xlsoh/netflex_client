@@ -9,7 +9,9 @@ class MovieInfo extends React.Component {
     this.state = {};
   }
 
-  render() {}
+  render() {
+    return <div></div>;
+  }
 }
 
 export default MovieInfo;

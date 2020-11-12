@@ -1,4 +1,5 @@
 import React from "react";
+import { Switch, Route, useHistory, Redirect } from "react-router-dom";
 import MyPage from "./components/MyPage";
 import SignIn from "./components/SignIn";
 import SignUp from "./components/SignUp";
@@ -34,7 +35,7 @@ class App extends React.Component {
       .post("")
       .then((res) => {
         this.setState({ isLogin: false, userinfo: {} });
-        this.props.history.push("/user/login");
+        //this.props.history.push("/user/login");
       })
       .catch((err) => console.log(err));
   }
@@ -44,6 +45,7 @@ class App extends React.Component {
     console.log(isLogin, userinfo);
     return (
       <div>
+        Hello, netflex!
         <Switch>
           <Route
             path="/user/login"
