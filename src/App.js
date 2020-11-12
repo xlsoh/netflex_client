@@ -48,7 +48,7 @@ class App extends React.Component {
         Hello, netflex!
         <Switch>
           <Route
-            path="/user/login"
+            path="/user/signin"
             render={() => (
               <SignIn
                 isLogin={isLogin}
@@ -110,7 +110,7 @@ class App extends React.Component {
               if (isLogin) {
                 return <Redirect to="/movie/popular" />;
               }
-              return <Redirect to="/user/login" />;
+              return <Redirect to="/user/signin" />;
             }}
           />
         </Switch>
