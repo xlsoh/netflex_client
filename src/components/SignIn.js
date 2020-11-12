@@ -21,7 +21,7 @@ class SignIn extends React.Component {
 
   render() {
     const { email, password } = this.state;
-    //  const { handleIsLoginChange } = this.props;
+    const { handleIsLoginChange } = this.props;
     return (
       <div>
         <Nav />
@@ -31,13 +31,13 @@ class SignIn extends React.Component {
             onSubmit={(e) => {
               e.preventDefault();
               return axios
-                .post("http://localhost:4000/signin", {
+                .post("http://localhost:4000/user/signin", {
                   email: email,
                   password: password,
                 })
                 .then(() => {
-                  //  handleIsLoginChange();
-                  //  this.props.history.push("/");
+                  handleIsLoginChange();
+                  this.props.history.push("/");
                 })
                 .catch((err) => {
                   alert("Login failed");
@@ -50,13 +50,13 @@ class SignIn extends React.Component {
               이메일
               <input
                 style={{
-                  width: "400px",
-                  height: "30px",
-                  margin: "5px",
+                  width: "500px",
+                  height: "50px",
+                  margin: "10px",
                   borderRadius: "5px",
                 }}
                 type="email"
-                placeholder="example@email.com"
+                placeholder="이메일 주소"
                 onChange={this.handleInputValue("email")}
               ></input>
             </div>
@@ -65,22 +65,22 @@ class SignIn extends React.Component {
               비밀번호
               <input
                 style={{
-                  width: "400px",
-                  height: "30px",
-                  margin: "5px",
+                  width: "500px",
+                  height: "50px",
+                  margin: "10px",
                   borderRadius: "5px",
                 }}
                 type="password"
-                placeholder="password"
+                placeholder="비밀번호"
                 onChange={this.handleInputValue("password")}
               ></input>
             </div>
             <div>
               <button
                 style={{
-                  width: "200px",
-                  height: "30px",
-                  margin: "5px",
+                  width: "300px",
+                  height: "50px",
+                  margin: "10px",
                   borderRadius: "5px",
                   backgroundColor: "gray",
                 }}
@@ -92,8 +92,8 @@ class SignIn extends React.Component {
             <div>
               <button
                 style={{
-                  width: "150px",
-                  height: "20px",
+                  width: "200px",
+                  height: "30px",
                   margin: "5px",
                   backgroundColor: "ivory",
                 }}
@@ -104,7 +104,7 @@ class SignIn extends React.Component {
             </div>
             <div>
               {" "}
-              회원이 아니신가요?
+              Netflex 회원이 아니신가요?
               <Link to="/signup">지금 가입하세요.</Link>
             </div>
           </form>
@@ -113,5 +113,8 @@ class SignIn extends React.Component {
     );
   }
 }
-
+SignIn.propTypes = {
+  handleIsLoginChange: PropTypes.func,
+  history: PropTypes.array,
+};
 export default withRouter(SignIn);

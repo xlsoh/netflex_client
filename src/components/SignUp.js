@@ -2,6 +2,7 @@ import React from "react";
 import { withRouter, Link, useHistory } from "react-router-dom";
 import Nav from "./Nav";
 import axios from "axios";
+import PropTypes from "prop-types";
 
 class SignUp extends React.Component {
   constructor(props) {
@@ -33,7 +34,7 @@ class SignUp extends React.Component {
                   nickname: nickname,
                 })
                 .then((res) => {
-                  // this.props.history.push("/");
+                  this.props.history.push("/");
                 })
                 .catch((err) => console.log(err));
             }}
@@ -44,12 +45,12 @@ class SignUp extends React.Component {
               <input
                 style={{
                   width: "400px",
-                  height: "30px",
-                  margin: "5px",
+                  height: "50px",
+                  margin: "10px",
                   borderRadius: "5px",
                 }}
                 type="email"
-                placeholder="이메일을 입력 해주세요"
+                placeholder="이메일 주소"
                 onChange={this.handleInputValue("email")}
               ></input>
             </div>
@@ -59,22 +60,22 @@ class SignUp extends React.Component {
               <input
                 style={{
                   width: "400px",
-                  height: "30px",
-                  margin: "5px",
+                  height: "50px",
+                  margin: "10px",
                   borderRadius: "5px",
                 }}
                 onChange={this.handleInputValue("password")}
                 type="password"
-                placeholder="비밀번호를 입력 해주세요"
+                placeholder="비밀번호"
               ></input>
             </div>
             <div>
               닉네임
               <input
                 style={{
-                  width: "195px",
-                  height: "30px",
-                  margin: "5px",
+                  width: "400px",
+                  height: "50px",
+                  margin: "10px",
                   borderRadius: "5px",
                 }}
                 onChange={this.handleInputValue("nickname")}
@@ -87,14 +88,14 @@ class SignUp extends React.Component {
             <button
               style={{
                 width: "200px",
-                height: "30px",
+                height: "40px",
                 margin: "5px",
                 borderRadius: "5px",
                 backgroundColor: "gray",
               }}
               type="submit"
             >
-              회원가입
+              시작하기
             </button>
           </form>
         </center>
@@ -102,5 +103,7 @@ class SignUp extends React.Component {
     );
   }
 }
-
+SignUp.propTypes = {
+  history: PropTypes.array,
+};
 export default withRouter(SignUp);
