@@ -102,6 +102,6 @@ class SignUp extends React.Component {
   }
 }
 SignUp.propTypes = {
-  history: PropTypes.array,
+  history: PropTypes.object,
 };
 export default withRouter(SignUp);

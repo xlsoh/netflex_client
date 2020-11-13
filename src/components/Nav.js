@@ -1,5 +1,12 @@
 import React from "react";
-import { Link, Switch, Route, useHistory, Redirect } from "react-router-dom";
+import {
+  Link,
+  Switch,
+  Route,
+  useHistory,
+  Redirect,
+  withRouter,
+} from "react-router-dom";
 import PropTypes from "prop-types";
 
 class Nav extends React.Component {
@@ -174,7 +181,7 @@ class Nav extends React.Component {
         />
         <Route
           exact
-          path="/movie/{movie_id}/reviews"
+          path="/movie/movie_id/review"
           render={() => {
             return (
               <div>
@@ -253,7 +260,7 @@ class Nav extends React.Component {
   }
 }
 Nav.propTypes = {
-  history: PropTypes.array,
+  history: PropTypes.object,
   handleIsLogoutChange: PropTypes.func,
 };
-export default Nav;
+export default withRouter(Nav);

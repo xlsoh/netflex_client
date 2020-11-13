@@ -1,5 +1,11 @@
 import React from "react";
-import { Switch, Route, useHistory, Redirect } from "react-router-dom";
+import {
+  Switch,
+  Route,
+  useHistory,
+  Redirect,
+  withRouter,
+} from "react-router-dom";
 import MyPage from "./components/MyPage";
 import SignIn from "./components/SignIn";
 import SignUp from "./components/SignUp";
@@ -101,8 +107,15 @@ class App extends React.Component {
           />
           <Route
             exact
-            path="/movie/{movie_id}/reviews"
-            render={() => <Review isLogin={isLogin} userinfo={userinfo} />}
+            path="/movie/movie_id/review"
+            render={() => (
+              <Review
+                isLogin={isLogin}
+                userinfo={userinfo}
+                movie={movie}
+                review={review}
+              />
+            )}
           />
           <Route
             exact
@@ -131,7 +144,7 @@ class App extends React.Component {
   }
 }
 App.propTypes = {
-  history: PropTypes.array,
+  history: PropTypes.object,
 };
 
-export default App;
+export default withRouter(App);

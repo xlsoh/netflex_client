@@ -183,9 +183,9 @@ class WriteReview extends React.Component {
   }
 }
 WriteReview.propTypes = {
-  history: PropTypes.array,
+  history: PropTypes.object,
   userinfo: PropTypes.object,
-  movie: PropTypes.string,
+  movie: PropTypes.object,
   review: PropTypes.object,
 };
 export default withRouter(WriteReview);
