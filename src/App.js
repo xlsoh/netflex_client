@@ -7,7 +7,9 @@ import MovieList from "./components/MovieList";
 import Review from "./components/Review";
 import WriteReview from "./components/WriteReview";
 import MovieInfo from "./components/MovieInfo";
+import Nav from "./components/Nav";
 import axios from "axios";
+import PropTypes from "prop-types";
 
 class App extends React.Component {
   constructor(props) {
@@ -21,7 +23,7 @@ class App extends React.Component {
   handleIsLoginChange() {
     // 인증을  성공했을때. 사용자 정보 호출, 성공하면 로그인 상태를 바꿉니다.
     axios
-      .get("")
+      .get("http://localhost:4000/user/signin")
       .then((res) => {
         console.log(res.data);
         this.setState({ isLogin: true, userinfo: res.data });
@@ -35,7 +37,7 @@ class App extends React.Component {
       .post("")
       .then((res) => {
         this.setState({ isLogin: false, userinfo: {} });
-        //this.props.history.push("/user/login");
+        this.props.history.push("/user/login");
       })
       .catch((err) => console.log(err));
   }
@@ -45,6 +47,7 @@ class App extends React.Component {
     console.log(isLogin, userinfo);
     return (
       <div>
+        <Nav isLogin={isLogin} />
         <Switch>
           <Route
             path="/user/signin"
@@ -58,12 +61,7 @@ class App extends React.Component {
           <Route
             exact
             path="/user/signup"
-            render={() => (
-              <SignUp
-                isLogin={isLogin}
-                handleIsSignupChange={this.handleIsSignupChange.bind(this)}
-              />
-            )}
+            render={() => <SignUp isLogin={isLogin} />}
           />
           <Route
             exact
@@ -109,7 +107,7 @@ class App extends React.Component {
               if (isLogin) {
                 return <Redirect to="/movie/popular" />;
               }
-              return <Redirect to="/user/login" />;
+              return <Redirect to="/user/signin" />;
             }}
           />
         </Switch>
@@ -117,5 +115,8 @@ class App extends React.Component {
     );
   }
 }
+App.propTypes = {
+  history: PropTypes.array,
+};
 
 export default App;
