@@ -45,10 +45,9 @@ class App extends React.Component {
     console.log(isLogin, userinfo);
     return (
       <div>
-        Hello, netflex!
         <Switch>
           <Route
-            path="/user/login"
+            path="/user/signin"
             render={() => (
               <SignIn
                 isLogin={isLogin}
