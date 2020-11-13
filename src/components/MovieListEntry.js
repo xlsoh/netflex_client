@@ -18,7 +18,7 @@ function MovieListEntry(props) {
 }
 
 MovieListEntry.propTypes = {
-  movieId:PropTypes.string,
+  movieId:PropTypes.number,
   image:PropTypes.string,
   movieName:PropTypes.string,
 }

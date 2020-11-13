@@ -9,6 +9,7 @@ function MovieList () {
   const [Movies, setMovies] = useState()
   
   
+  
 
   useEffect(()=>{
    const endpoint = `${apiUrl}movie/popular?api_key=${apiKey}&language=ko-KR&page=1`
@@ -17,15 +18,13 @@ function MovieList () {
    )
 
   }, [])
-
-  const storage = [];
-  for(let i=0; i<10; i++){
-    storage.push(Movies[i])
-  }
+  
+   
    
   return (
     <>
-    {/* <div>{console.log(Movies)}</div> */}
+    
+    <div>{console.log(Movies)}</div>
     <Nav/>
     <h2>인기 순위</h2>
     <hr />
@@ -33,8 +32,9 @@ function MovieList () {
     {/* {MovieListEntry 모음} */}
 
     <Grid container spacing={0} >
+    
 
-      {Movies && storage.map((movie, index) => (
+      {Movies && Movies.map((movie, index) => (
         <React.Fragment key={index}>
           <MovieListEntry
            image={movie.poster_path ? `${imageBaseUrl}w500${movie.poster_path}`: null }
