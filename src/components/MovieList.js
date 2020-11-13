@@ -1,22 +1,23 @@
 import React, { useEffect, useState } from "react";
 import MovieListEntry from "./MovieListEntry";
-import Nav from "./Nav";
-import {apiUrl, apiKey, imageBaseUrl} from "./config"
-import axios from "axios"
-import Grid from '@material-ui/core/Grid';
+import { apiUrl, apiKey, imageBaseUrl } from "./config";
+import axios from "axios";
+import Grid from "@material-ui/core/Grid";
 
-function MovieList () {
-  const [Movies, setMovies] = useState()
-  
-  
+function MovieList() {
+  const [Movies, setMovies] = useState();
 
-  useEffect(()=>{
-   const endpoint = `${apiUrl}movie/popular?api_key=${apiKey}&language=ko-KR&page=1`
-   axios.get(endpoint).then(res => {setMovies(res.data.results)
-   }
-   )
+  useEffect(() => {
+    const endpoint = `${apiUrl}movie/popular?api_key=${apiKey}&language=ko-KR&page=1`;
+    axios.get(endpoint, {}).then((res) => {
+      setMovies(res.data.results);
+    });
+  }, []);
 
-  }, [])
+  // const storage = [];
+  // for (let i = 0; i < 10; i++) {
+  //   storage.push(Movies[i]);
+  // }
 
 
    
@@ -43,12 +44,7 @@ function MovieList () {
       ))}
    </Grid>
     </>
-  )
- }
-  
-
-  
- 
-        
+  );
+}
 
 export default MovieList;
