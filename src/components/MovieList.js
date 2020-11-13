@@ -18,10 +18,7 @@ function MovieList () {
 
   }, [])
 
-  const storage = [];
-  for(let i=0; i<10; i++){
-    storage.push(Movies[i])
-  }
+
    
   return (
     <>
@@ -34,7 +31,7 @@ function MovieList () {
 
     <Grid container spacing={0} >
 
-      {Movies && storage.map((movie, index) => (
+      {Movies && Movies.map((movie, index) => (
         <React.Fragment key={index}>
           <MovieListEntry
            image={movie.poster_path ? `${imageBaseUrl}w500${movie.poster_path}`: null }

@@ -1,15 +1,19 @@
-import React from "react";
+
+import React,{useEffect, useState} from "react";
 import MovieReviewListEntry from "./MovieReviewListEntry";
 
-class MovieReviewList extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
+function MovieReviewList() {
+  const [Reviews, setReviews] = useState()
+ 
+  useEffect(()=>{
+    const endpoint = "http://localhost:5000/"
+  })
 
-  render() {
-    return <div></div>;
-  }
+  return (
+    <div></div>
+  )
+   
+  
 }
 
 export default MovieReviewList;
