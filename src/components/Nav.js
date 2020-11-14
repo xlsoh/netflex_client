@@ -20,7 +20,7 @@ class Nav extends React.Component {
     return (
       <Switch>
         <Route
-          path="/user/signin"
+          path={`/user/signin`}
           render={() => {
             return (
               <div>
@@ -43,7 +43,7 @@ class Nav extends React.Component {
           }}
         />
         <Route
-          path="/user/signup"
+          path={`/user/signup`}
           render={() => {
             return (
               <div>
@@ -66,7 +66,7 @@ class Nav extends React.Component {
           }}
         />
         <Route
-          path="/user/mypage"
+          path={`/user/mypage`}
           render={() => {
             return (
               <div>
@@ -84,7 +84,7 @@ class Nav extends React.Component {
                     Netflex
                   </button>
                 </Link>
-                <Link to="/user/signout">
+                <Link to="/user/signout" /*서버와 연결시 Link 제거해주세요*/>
                   <button
                     style={{
                       width: "150px",
@@ -105,7 +105,7 @@ class Nav extends React.Component {
         />
         <Route
           exact
-          path="/movie/popular"
+          path={`/movie/popular`}
           render={() => {
             return (
               <div>
@@ -143,7 +143,7 @@ class Nav extends React.Component {
         />
         <Route
           exact
-          path="/movie/{movie_id}"
+          path={`/movie/movieId`}
           render={() => {
             return (
               <div>
@@ -181,7 +181,7 @@ class Nav extends React.Component {
         />
         <Route
           exact
-          path="/movie/movie_id/review"
+          path={`/movie/movieId/review`}
           render={() => {
             return (
               <div>
@@ -219,7 +219,7 @@ class Nav extends React.Component {
         />
         <Route
           exact
-          path="/movie/movie_id/write_review"
+          path={`/movie/movieId/writeReview`}
           render={() => {
             return (
               <div>

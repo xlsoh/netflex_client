@@ -1,34 +1,38 @@
-
 import React from "react";
+import { withRouter, Link } from "react-router-dom";
 import MyReviewListEntry from "./MyReviewListEntry";
 import PropTypes from "prop-types";
 
-class MyReviewList extends React.Component{
-  constructor(props){
-    super(props)
+class MyReviewList extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
   }
 
-
-  // 리뷰를 뽑아서 뿌려줌
-render(){
-  const {reviews} = this.props
-  return(
-   <div>
-     {reviews && reviews.map((review,index)=>(
-       <React.Fragment key={index}>
-         <MyReviewListEntry
-         id={review.id}
-         title={review.title}
-         />
-       </React.Fragment>
-     ))}
-   </div>
-    )
-}
+  render() {
+    //myReview는 mypage에서 GET("/mypage/reviews")로 서버에서 받은 내가 쓴 리뷰리스트
+    //myReview:[{reviewId: 1, title:""},{reviewId: 2, title:""}]
+    const { myReview, hadleReviewChange } = this.props;
+    return (
+      <div>
+        {myReview &&
+          myReview.map((review, index) => (
+            <React.Fragment key={index}>
+              <MyReviewListEntry
+                id={review.id}
+                title={review.title}
+                hadleReviewChange={hadleReviewChange}
+              />
+            </React.Fragment>
+          ))}
+      </div>
+    );
+  }
 }
 MyReviewList.propTypes = {
-  reviews: PropTypes.object,
+  myReview: PropTypes.object,
   userinfo: PropTypes.object,
-  isLogin: PropTypes.bool
+  isLogin: PropTypes.bool,
+  hadleReviewChange: PropTypes.func,
 };
-export default MyReviewList;
+export default withRouter(MyReviewList);
