@@ -1,5 +1,11 @@
 import React from "react";
-import { Switch, Route, useHistory, Redirect } from "react-router-dom";
+import {
+  Switch,
+  Route,
+  useHistory,
+  Redirect,
+  withRouter,
+} from "react-router-dom";
 import MyPage from "./components/MyPage";
 import SignIn from "./components/SignIn";
 import SignUp from "./components/SignUp";
@@ -17,13 +23,15 @@ class App extends React.Component {
     this.state = {
       isLogin: false,
       userinfo: {},
+      review: {},
+      movie: {},
     };
   }
 
   handleIsLoginChange() {
-    // 인증을  성공했을때. 사용자 정보 호출, 성공하면 로그인 상태를 바꿉니다.
+    // 인증을 성공했을때 사용자 정보 호출, 성공하면 로그인 상태를 바꿉니다.
     axios
-      .get("http://localhost:4000/user/signin")
+      .get("http://localhost:5000/user/signin")
       .then((res) => {
         console.log(res.data);
         this.setState({ isLogin: true, userinfo: res.data });
@@ -34,20 +42,33 @@ class App extends React.Component {
   handleIsLogoutChange() {
     //로그아웃 상태로 바꿉니다.
     axios
-      .post("")
+      .post("http://localhost:5000/user/signout")
       .then((res) => {
         this.setState({ isLogin: false, userinfo: {} });
-        this.props.history.push("/user/login");
+        this.props.history.push("/");
+      })
+      .catch((err) => console.log(err));
+  }
+
+  hadleReviewChange() {
+    //state의 review 바꿉니다.
+    axios
+      .get("http://localhost:5000/reviewinfo")
+      .then((res) => {
+        this.setState({ review: res.data });
       })
       .catch((err) => console.log(err));
   }
 
   render() {
-    const { isLogin, userinfo } = this.state;
+    const { isLogin, userinfo, movie, review } = this.state;
     console.log(isLogin, userinfo);
     return (
       <div>
-        <Nav isLogin={isLogin} />
+        <Nav
+          isLogin={isLogin}
+          handleIsLogoutChange={this.handleIsLogoutChange.bind(this)}
+        />
         <Switch>
           <Route
             path="/user/signin"
@@ -86,18 +107,25 @@ class App extends React.Component {
           />
           <Route
             exact
-            path="/movie/{movie_id}/reviews"
-            render={() => <Review isLogin={isLogin} userinfo={userinfo} />}
+            path="/movie/movie_id/review"
+            render={() => (
+              <Review
+                isLogin={isLogin}
+                userinfo={userinfo}
+                movie={movie}
+                review={review}
+              />
+            )}
           />
           <Route
             exact
-            path="/movie/{movie_id}/write_review"
+            path="/movie/movie_id/write_review"
             render={() => (
               <WriteReview
                 isLogin={isLogin}
                 userinfo={userinfo}
-                handleInputValue={this.handleInputValue.bind(this)}
-                handleSubmitChange={this.handleSubmitChange.bind(this)}
+                movie={movie}
+                review={review}
               />
             )}
           />
@@ -116,7 +144,7 @@ class App extends React.Component {
   }
 }
 App.propTypes = {
-  history: PropTypes.array,
+  history: PropTypes.object,
 };
 
-export default App;
+export default withRouter(App);

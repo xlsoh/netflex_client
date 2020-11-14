@@ -113,6 +113,6 @@ class SignIn extends React.Component {
 }
 SignIn.propTypes = {
   handleIsLoginChange: PropTypes.func,
-  history: PropTypes.array,
+  history: PropTypes.object,
 };
 export default withRouter(SignIn);

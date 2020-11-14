@@ -1,5 +1,12 @@
 import React from "react";
-import { Link, Switch, Route, useHistory, Redirect } from "react-router-dom";
+import {
+  Link,
+  Switch,
+  Route,
+  useHistory,
+  Redirect,
+  withRouter,
+} from "react-router-dom";
 import PropTypes from "prop-types";
 
 class Nav extends React.Component {
@@ -9,6 +16,7 @@ class Nav extends React.Component {
   }
 
   render() {
+    const { handleIsLogoutChange } = this.props;
     return (
       <Switch>
         <Route
@@ -86,6 +94,7 @@ class Nav extends React.Component {
                       backgroundColor: "ivory",
                     }}
                     type="submit"
+                    onClick={handleIsLogoutChange}
                   >
                     로그아웃
                   </button>
@@ -172,7 +181,7 @@ class Nav extends React.Component {
         />
         <Route
           exact
-          path="/movie/{movie_id}/reviews"
+          path="/movie/movie_id/review"
           render={() => {
             return (
               <div>
@@ -210,7 +219,7 @@ class Nav extends React.Component {
         />
         <Route
           exact
-          path="/movie/{movie_id}/write_review"
+          path="/movie/movie_id/write_review"
           render={() => {
             return (
               <div>
@@ -251,6 +260,7 @@ class Nav extends React.Component {
   }
 }
 Nav.propTypes = {
-  history: PropTypes.array,
+  history: PropTypes.object,
+  handleIsLogoutChange: PropTypes.func,
 };
-export default Nav;
+export default withRouter(Nav);
