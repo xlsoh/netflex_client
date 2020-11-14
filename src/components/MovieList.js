@@ -20,18 +20,32 @@ function MovieList () {
   }, []);
 
 
+<<<<<<< HEAD
 
    
   return (
     <>
     {/* <div>{console.log(Movies)}</div> */}
     <Nav/>
+=======
+  
+   
+   
+  return (
+    <>
+    
+    <div>{console.log(Movies)}</div>
+>>>>>>> bf0310f5e252bc112e4d62cd5317bf3ed20c75e5
     <h2>인기 순위</h2>
     <hr />
 
     {/* {MovieListEntry 모음} */}
 
     <Grid container spacing={0} >
+<<<<<<< HEAD
+=======
+    
+>>>>>>> bf0310f5e252bc112e4d62cd5317bf3ed20c75e5
 
       {Movies && Movies.map((movie, index) => (
         <React.Fragment key={index}>
