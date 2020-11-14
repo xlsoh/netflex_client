@@ -13,7 +13,7 @@ constructor(props){
 
 handleDelClick(){
   axios.post("http://localhost:5000/user/mypage")
-  //해당 게시글 삭제 
+  //해당 게시글 삭제 하는 컨트롤러 필요
 }
 handleEditClick(){
   this.props.history.push('/movie/movie_id/review')

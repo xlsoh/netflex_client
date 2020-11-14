@@ -12,6 +12,7 @@ class MyPage extends React.Component{
     } 
     this.handleReviewData = this.handleReviewData.bind(this)
   }
+  // 리뷰 데이터를 서버로부터 받아옴
   handleReviewData = () => {
     const {userinfo} = this.props;
     axios.get("http://localhost:5000/user/mypage/reviews",{

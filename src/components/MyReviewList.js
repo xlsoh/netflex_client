@@ -7,6 +7,9 @@ class MyReviewList extends React.Component{
   constructor(props){
     super(props)
   }
+
+
+  // 리뷰를 뽑아서 뿌려줌
 render(){
   const {reviews} = this.props
   return(
