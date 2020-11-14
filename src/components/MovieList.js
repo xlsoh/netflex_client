@@ -3,6 +3,8 @@ import MovieListEntry from "./MovieListEntry";
 import { apiUrl, apiKey, imageBaseUrl } from "./config";
 import axios from "axios";
 import Grid from "@material-ui/core/Grid";
+import Nav from "./Nav"
+
 
 function MovieList () {
   const [Movies, setMovies] = useState()
@@ -25,7 +27,6 @@ function MovieList () {
     <>
     
     <div>{console.log(Movies)}</div>
-    <Nav/>
     <h2>인기 순위</h2>
     <hr />
 
