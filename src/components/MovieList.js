@@ -6,8 +6,11 @@ import Grid from "@material-ui/core/Grid";
 import Nav from "./Nav"
 
 
-function MovieList() {
-  const [Movies, setMovies] = useState();
+function MovieList () {
+  const [Movies, setMovies] = useState()
+  
+  
+  
 
   useEffect(() => {
     const endpoint = `${apiUrl}movie/popular?api_key=${apiKey}&language=ko-KR&page=1`;
@@ -16,10 +19,6 @@ function MovieList() {
     });
   }, []);
 
-  // const storage = [];
-  // for (let i = 0; i < 10; i++) {
-  //   storage.push(Movies[i]);
-  // }
 
 
    
