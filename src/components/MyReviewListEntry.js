@@ -12,10 +12,10 @@ class MyReviewListEntry extends React.Component {
   }
 
   handleDelClick = () => {
-    const { id } = this.props;
+    const { reviewId } = this.props;
     axios
       .post("http://localhost:5000/movie/deletereview", {
-        reviewId: id,
+        reviewId: reviewId,
       })
       .then((res) => {
         this.props.history.push("/user/mypage");
@@ -23,23 +23,21 @@ class MyReviewListEntry extends React.Component {
       .catch((err) => console.log(err));
   };
   handleEditClick = () => {
-    const { id, hadleReviewChange } = this.props;
+    const { reviewId, hadleReviewChange } = this.props;
     axios
-      .get("http://localhost:5000//movie/reviewinfo", {
-        params: { reviewId: id },
-      })
+      .get(`http://localhost:5000//movie/reviewinfo/${reviewId}`)
       .then((res) => {
         hadleReviewChange();
-        this.props.history.push("/movie/movie_id/review");
+        this.props.history.push(`/movie/movieId/review/reviewId`);
       })
       .catch((err) => console.log(err));
   };
 
   render() {
-    const { id, title, hadleReviewChange } = this.props;
+    const { reviewId, title, hadleReviewChange } = this.props;
     return (
       <div>
-        <Link to="/movie/movie_id/review">{`${title}`}</Link>
+        <Link to={`/movie/movieId/review/reviewId`}>{`${title}`}</Link>
         <button onClick={this.handleEditClick}>수정</button>
         <button onClick={this.handleDelClick}>삭제</button>
       </div>
@@ -48,7 +46,7 @@ class MyReviewListEntry extends React.Component {
 }
 MyReviewListEntry.propTypes = {
   history: PropTypes.object,
-  id: PropTypes.number,
+  reviewId: PropTypes.number,
   title: string,
   hadleReviewChange: PropTypes.func,
 };

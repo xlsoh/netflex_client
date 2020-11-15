@@ -181,7 +181,7 @@ class Nav extends React.Component {
         />
         <Route
           exact
-          path={`/movie/movieId/review`}
+          path={`/movie/movieId/review/reviewId`}
           render={() => {
             return (
               <div>

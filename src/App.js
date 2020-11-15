@@ -24,17 +24,15 @@ class App extends React.Component {
       isLogin: false,
       userInfo: {},
       review: {},
-      movieId: null,
+      movie: {},
     };
   }
 
   handleIsLoginChange = () => {
     // 인증을 성공했을때 사용자 정보 호출, 성공하면 로그인 상태를 바꿉니다.
     axios
-      .get(`http://localhost:5000/user/signin`)
       .then((res) => {
-        console.log(res);
-        this.setState({ isLogin: true, userInfo: res.data });
+        this.setState({ isLogin: true, userInfo: res });
       })
       .catch((err) => console.log(err));
   };
@@ -59,19 +57,31 @@ class App extends React.Component {
       .catch((err) => console.log(err));
   };
 
-  hadleMovieIdChange = () => {
-    //state의 movieId 바꿉니다.
+  hadleReviewChangeByNew = (reviewId) => {
+    //state의 review 바꿉니다.
     axios
-      .get(`http://localhost:5000/movie/movidId`)
+      .get(`http://localhost:5000/movie/reviewinfo/${reviewId}`)
       .then((res) => {
-        this.setState({ movieId: res });
+        this.setState({ review: res });
       })
       .catch((err) => console.log(err));
   };
 
+  // hadleMovieIdChange = () => {
+  //   //state의 movie 바꿉니다.
+  //   axios
+  //     .get(`http://localhost:5000/movie/${movie.movieId}`)
+  //     .then((res) => {
+  //       this.setState({ movie: res });
+  //     })
+  //     .catch((err) => console.log(err));
+  // };
+
   render() {
-    const { isLogin, userInfo, review, movieId } = this.state;
-    console.log(isLogin, userInfo, movieId);
+    const { isLogin, userInfo, review, movie } = this.state;
+    console.log(
+      `isLogin:${isLogin}, userInfo:${userInfo}, review:${review}, movie:${movie}`
+    );
     return (
       <div>
         <Nav
@@ -118,7 +128,7 @@ class App extends React.Component {
           />
           <Route
             exact
-            path={`/movie/movieId/review`}
+            path={`/movie/movieId/review/reviewId`}
             render={() => (
               <Review isLogin={isLogin} userInfo={userInfo} review={review} />
             )}
@@ -131,7 +141,8 @@ class App extends React.Component {
                 isLogin={isLogin}
                 userInfo={userInfo}
                 review={review}
-                movieId={movieId}
+                movie={movie}
+                hadleReviewChangeByNew={this.hadleReviewChangeByNew.bind(this)}
               />
             )}
           />

@@ -19,7 +19,7 @@ class MyReviewList extends React.Component {
           myReview.map((review, index) => (
             <React.Fragment key={index}>
               <MyReviewListEntry
-                id={review.id}
+                reviewId={review.reviewId}
                 title={review.title}
                 hadleReviewChange={hadleReviewChange}
               />
@@ -30,7 +30,7 @@ class MyReviewList extends React.Component {
   }
 }
 MyReviewList.propTypes = {
-  myReview: PropTypes.object,
+  myReview: PropTypes.array,
   userinfo: PropTypes.object,
   isLogin: PropTypes.bool,
   hadleReviewChange: PropTypes.func,

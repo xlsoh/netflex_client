@@ -28,12 +28,18 @@ class WriteReview extends React.Component {
 
   render() {
     const { title, text } = this.state;
-    const { isLogin, userinfo, review, movieId } = this.props;
+    const {
+      isLogin,
+      userinfo,
+      review,
+      movie,
+      hadleReviewChangeByNew,
+    } = this.props;
     if (isLogin) {
       if (!review) {
         return (
           <div>
-            <h1>리뷰 작성</h1>
+            <h1>영화 {`${movie.movieName}`} 리뷰 작성</h1>
             <form
               onSubmit={(e) => {
                 e.preventDefault();
@@ -42,10 +48,12 @@ class WriteReview extends React.Component {
                     title: title,
                     text: text,
                     userId: userinfo.userId,
-                    movieId: movieId,
+                    movieId: movie.movieId,
+                    movieName: movie.movieName,
                   })
-                  .then(() => {
-                    this.props.history.push(`/movie/movie_id/reviews`);
+                  .then((res) => {
+                    hadleReviewChangeByNew(res.id);
+                    this.props.history.push(`/movie/movieId/review/reviewId`);
                   })
                   .catch((err) => {
                     alert("Failed to submit your review");
@@ -105,20 +113,22 @@ class WriteReview extends React.Component {
       } else {
         return (
           <div>
-            <a>리뷰 작성</a>
+            <h1>영화 {`${review.movieName}`} 리뷰 작성</h1>
             <form
               onSubmit={(e) => {
                 e.preventDefault();
                 return axios
-                  .post(`http://localhost:5000/movie/movie_id/write_review`, {
+                  .post(`http://localhost:5000/movie/write_review`, {
                     id: review.id,
                     title: title,
                     text: text,
                     userId: userinfo.userId,
-                    movieId: movieId,
+                    movieId: movie.movieId,
+                    movieName: movie.movieName,
                   })
                   .then(() => {
-                    this.props.history.push(`/movie/movie_id/reviews`);
+                    hadleReviewChangeByNew(review.id);
+                    this.props.history.push(`/movie/movieId/review/reviewId`);
                   })
                   .catch((err) => {
                     alert("WriteReview failed");
@@ -191,6 +201,7 @@ WriteReview.propTypes = {
   isLogin: PropTypes.bool,
   userinfo: PropTypes.object,
   review: PropTypes.object,
-  movieId: PropTypes.number,
+  movie: PropTypes.object,
+  hadleReviewChangeByNew: PropTypes.func,
 };
 export default withRouter(WriteReview);

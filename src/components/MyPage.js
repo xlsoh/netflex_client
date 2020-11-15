@@ -16,17 +16,27 @@ class MyPage extends React.Component {
   handleReviewData = () => {
     const { userInfo } = this.props;
     axios
-      .get("http://localhost:5000/mypage/reviews", {
-        params: { userId: userInfo.id },
-      })
-      .then((res) => this.setState({ myReview: res }));
+      .get(`http://localhost:5000/movie/reviews/${userInfo.id}`)
+      .then((res) => this.setState({ myReview: res.results }));
   };
-
+  //res 형식
+  //   {
+  //     "results": [
+  //         {
+  //             "reviewId": PK,
+  //             "title": "title"
+  //         },
+  //         {
+  //             "reviewId": PK,
+  //             "title": "title"
+  //         },
+  //     ]
+  // }
   render() {
     this.handleReviewData();
     const { myReview } = this.state;
     const { isLogin, userInfo, hadleReviewChange } = this.props;
-    if (!isLogin) {
+    if (isLogin) {
       return (
         <div className="myInfoZone">
           <div>

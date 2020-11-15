@@ -34,8 +34,8 @@ class SignIn extends React.Component {
                     email: email,
                     password: password,
                   })
-                  .then(() => {
-                    handleIsLoginChange();
+                  .then((res) => {
+                    handleIsLoginChange(res);
                     this.props.history.push("/");
                   })
                   .catch((err) => {
