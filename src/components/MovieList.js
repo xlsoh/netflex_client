@@ -4,13 +4,31 @@ import { apiUrl, apiKey, imageBaseUrl } from "./config";
 import axios from "axios";
 import Grid from "@material-ui/core/Grid";
 import Nav from "./Nav"
+import MovieInfo from "./MovieInfo"
 
 
 function MovieList () {
-  const [Movies, setMovies] = useState()
   
-  
-  
+  const [Movies, setMovies] = useState();
+  const [ModalData, setModalData] = useState({});
+  const [modal,setModal] = useState(false);
+
+  const showModal = (movie) => {
+    setModalData(movie);
+    setModal(true);
+  }
+  const closeModal = () => {
+    setModal(false);
+  }
+
+  const modalCont = <MovieInfo containerName={"modalContainer" + (modal? "show":"hide")}
+  movieName={ModalData.original_title}
+  overview={ModalData.overview}
+  show={modal}
+  img={ModalData.poster_path} 
+  release={ModalData.release_date}
+  onClick={()=>closeModal()}
+  />
 
   useEffect(() => {
     const endpoint = `${apiUrl}movie/popular?api_key=${apiKey}&language=ko-KR&page=1`;
@@ -19,44 +37,35 @@ function MovieList () {
     });
   }, []);
 
-
-<<<<<<< HEAD
-
-   
-  return (
-    <>
-    {/* <div>{console.log(Movies)}</div> */}
-    <Nav/>
-=======
+  // console.log(Movies)
   
-   
-   
   return (
     <>
-    
-    <div>{console.log(Movies)}</div>
->>>>>>> bf0310f5e252bc112e4d62cd5317bf3ed20c75e5
-    <h2>인기 순위</h2>
-    <hr />
-
-    {/* {MovieListEntry 모음} */}
 
     <Grid container spacing={0} >
-<<<<<<< HEAD
-=======
     
->>>>>>> bf0310f5e252bc112e4d62cd5317bf3ed20c75e5
-
+    <div className="movie" >
+      {modalCont}
       {Movies && Movies.map((movie, index) => (
-        <React.Fragment key={index}>
+        <React.Fragment key={index} >
+          <div onClick={()=> showModal(movie)}>
           <MovieListEntry
            image={movie.poster_path ? `${imageBaseUrl}w500${movie.poster_path}`: null }
            movieId={movie.id}
-           movieName={movie.original_title} 
-
+           movieName={movie.original_title}
           />
+          </div>
+        {/* <MovieInfo containerName={"modalContainer" + (modal? "show":"hide")}
+       movieName={movie.original_title}
+       overview={movie.overview}
+       show={modal}
+       img={movie.poster_path} 
+       onClick={()=>closeModal()}
+       /> */}
         </React.Fragment >
       ))}
+      </div>
+      
    </Grid>
     </>
   );
