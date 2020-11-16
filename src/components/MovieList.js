@@ -29,6 +29,8 @@ function MovieList () {
   img={ModalData.poster_path} 
   release={ModalData.release_date}
   onClick={()=>closeModal()}
+  adult={ModalData.adult}
+
   />
 
 
@@ -38,7 +40,6 @@ function MovieList () {
       setMovies(res.data.results);
     });
   }, []);
-
 
   // console.log(Movies)
   

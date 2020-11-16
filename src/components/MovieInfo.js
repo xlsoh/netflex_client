@@ -7,7 +7,7 @@ import { apiUrl, apiKey, imageBaseUrl } from "./config";
 import PropTypes from 'prop-types'
 
 
-function MovieInfo({containerName, movieId, movieName,overview,show,img,onClick,release}){
+function MovieInfo({adult,containerName, movieId, movieName,overview,show,img,onClick,release}){
    
   const handleWriteReview = () =>{
     this.props.history.push("movie/writereview")
@@ -21,7 +21,8 @@ function MovieInfo({containerName, movieId, movieName,overview,show,img,onClick,
         <div className="bg"></div>
         <div className="modal-content">
           <h1>{movieName}</h1>
-          <h2>{release}</h2>
+          <div>{release}</div>
+          <div>{adult ? `청소년 관람불가` : `청소년 관람가능`}</div>
           <p>{overview}</p>
 
         </div>
@@ -44,6 +45,7 @@ MovieInfo.propTypes = {
   img:PropTypes.string,
   onClick:PropTypes.func,
   release:PropTypes.string,
+  adult:PropTypes.bool
 
 }
 
