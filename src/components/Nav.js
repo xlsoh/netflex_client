@@ -17,7 +17,7 @@ class Nav extends React.Component {
 
   render() {
     const { isLogin, handleIsLogoutChange } = this.props;
-    if (isLogin) {
+    if (!isLogin) {
       return (
         <Switch>
           <Route
