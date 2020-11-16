@@ -28,6 +28,8 @@ function MovieList () {
   img={ModalData.poster_path} 
   release={ModalData.release_date}
   onClick={()=>closeModal()}
+  adult={ModalData.adult}
+
   />
 
   useEffect(() => {
@@ -37,7 +39,7 @@ function MovieList () {
     });
   }, []);
 
-  // console.log(Movies)
+  console.log(Movies)
   
   return (
     <>
