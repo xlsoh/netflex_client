@@ -1,21 +1,21 @@
-import React from "react";
+import React from 'react';
 import {
   Switch,
   Route,
   useHistory,
   Redirect,
   withRouter,
-} from "react-router-dom";
-import MyPage from "./components/MyPage";
-import SignIn from "./components/SignIn";
-import SignUp from "./components/SignUp";
-import MovieList from "./components/MovieList";
-import Review from "./components/Review";
-import WriteReview from "./components/WriteReview";
-import MovieInfo from "./components/MovieInfo";
-import Nav from "./components/Nav";
-import axios from "axios";
-import PropTypes from "prop-types";
+} from 'react-router-dom';
+import MyPage from './components/MyPage';
+import SignIn from './components/SignIn';
+import SignUp from './components/SignUp';
+import MovieList from './components/MovieList';
+import Review from './components/Review';
+import WriteReview from './components/WriteReview';
+import MovieInfo from './components/MovieInfo';
+import Nav from './components/Nav';
+import axios from 'axios';
+import PropTypes from 'prop-types';
 
 class App extends React.Component {
   constructor(props) {
@@ -25,25 +25,26 @@ class App extends React.Component {
       userInfo: {},
       review: {},
       movie: {},
+      accessToken: '',
     };
   }
 
-  handleIsLoginChange = () => {
+  handleIsLoginChange = (res, accessToken) => {
     // 인증을 성공했을때 사용자 정보 호출, 성공하면 로그인 상태를 바꿉니다.
-    axios
-      .then((res) => {
-        this.setState({ isLogin: true, userInfo: res });
-      })
-      .catch((err) => console.log(err));
+    this.setState({ isLogin: true, userInfo: res, accessToken });
   };
 
   handleIsLogoutChange = () => {
     //로그아웃 상태로 바꿉니다.
     axios
-      .post(`http://localhost:5000/user/signout`)
+      .post(`http://localhost:5000/user/signout`, {
+        accessToken: this.state.accessToken,
+      })
       .then((res) => {
-        this.setState({ isLogin: false, userInfo: {} });
-        this.props.history.push("/");
+        this.setState({ isLogin: false, userInfo: {}, accessToken: '' }, () => {
+          console.log(this.state);
+        });
+        this.props.history.push('/');
       })
       .catch((err) => console.log(err));
   };
@@ -146,12 +147,12 @@ class App extends React.Component {
             )}
           />
           <Route
-            path="/"
+            path='/'
             render={() => {
               if (isLogin) {
-                return <Redirect to="/movie/popular" />;
+                return <Redirect to='/movie/popular' />;
               }
-              return <Redirect to="/user/signin" />;
+              return <Redirect to='/user/signin' />;
             }}
           />
         </Switch>
