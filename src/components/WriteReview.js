@@ -3,7 +3,7 @@ import { Switch, Link, Route, withRouter } from "react-router-dom";
 import axios from "axios";
 import PropTypes from "prop-types";
 
-axios.defaults.withCredentials = true;
+axios.defaults.withCredentials = false;
 
 class WriteReview extends React.Component {
   constructor(props) {
@@ -17,14 +17,6 @@ class WriteReview extends React.Component {
   handleInputValue = (key) => (e) => {
     this.setState({ [key]: e.target.value });
   };
-  handlePreviewReviewTitle = () => {
-    const { review } = this.props;
-    document.getElementById("title").value = `${review.title}`;
-  };
-  handlePreviewReviewText = () => {
-    const { review } = this.props;
-    document.getElementById("text").value = `${review.text}`;
-  };
 
   render() {
     const { title, text } = this.state;
@@ -36,7 +28,7 @@ class WriteReview extends React.Component {
       hadleReviewChangeByNew,
     } = this.props;
     if (isLogin) {
-      if (!review) {
+      if (!review.id) {
         return (
           <div>
             <h1>영화 {`${movie.movieName}`} 리뷰 작성</h1>
@@ -153,6 +145,7 @@ class WriteReview extends React.Component {
                     borderRadius: "5px",
                   }}
                   type="title"
+                  value={`${review.title}`}
                   onChange={this.handleInputValue("title")}
                 ></input>
               </div>
@@ -168,6 +161,7 @@ class WriteReview extends React.Component {
                     borderRadius: "5px",
                   }}
                   type="text"
+                  value={`${review.text}`}
                   onChange={this.handleInputValue("text")}
                 ></textarea>
               </div>

@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  Switch,
-  Route,
-  useHistory,
-  Redirect,
-  withRouter,
-} from "react-router-dom";
+import { Switch, Route, Redirect, withRouter } from "react-router-dom";
 import MyPage from "./components/MyPage";
 import SignIn from "./components/SignIn";
 import SignUp from "./components/SignUp";
@@ -28,9 +22,10 @@ class App extends React.Component {
     };
   }
 
-  handleIsLoginChange = () => {
+  handleIsLoginChange = (res) => {
     // 인증을 성공했을때 사용자 정보 호출, 성공하면 로그인 상태를 바꿉니다.
     axios
+      //.get(`http://localhost:5000/user/userId`)
       .then((res) => {
         this.setState({ isLogin: true, userInfo: res });
       })
@@ -48,9 +43,21 @@ class App extends React.Component {
       .catch((err) => console.log(err));
   };
 
-  hadleReviewChange = () => {
+  handleWriteReview(data) {
+    this.setState((state) => {
+      return { movie: data };
+    });
+    this.setState((state) => {
+      return { review: {} };
+    });
+    this.props.history.push(`/movie/movieId/writeReview`);
+    console.log(data);
+  }
+
+  hadleReviewChange = (res) => {
     //state의 review 바꿉니다.
     axios
+      .get(`http://localhost:5000/movie/reviewinfo/reviewId`)
       .then((res) => {
         this.setState({ review: res });
       })
@@ -118,7 +125,13 @@ class App extends React.Component {
           <Route
             exact
             path={`/movie/popular`}
-            render={() => <MovieList isLogin={isLogin} userInfo={userInfo} />}
+            render={() => (
+              <MovieList
+                isLogin={isLogin}
+                userInfo={userInfo}
+                handleWriteReview={this.handleWriteReview.bind(this)}
+              />
+            )}
           />
           <Route
             exact
@@ -148,7 +161,7 @@ class App extends React.Component {
           <Route
             path="/"
             render={() => {
-              if (isLogin) {
+              if (!isLogin) {
                 return <Redirect to="/movie/popular" />;
               }
               return <Redirect to="/user/signin" />;

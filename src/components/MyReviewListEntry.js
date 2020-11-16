@@ -25,16 +25,15 @@ class MyReviewListEntry extends React.Component {
   handleEditClick = () => {
     const { reviewId, hadleReviewChange } = this.props;
     axios
-      .get(`http://localhost:5000//movie/reviewinfo/${reviewId}`)
+      .get(`http://localhost:5000/movie/reviewinfo/${reviewId}`)
       .then((res) => {
         hadleReviewChange();
         this.props.history.push(`/movie/movieId/review/reviewId`);
       })
       .catch((err) => console.log(err));
   };
-
   render() {
-    const { reviewId, title, hadleReviewChange } = this.props;
+    const { title } = this.props;
     return (
       <div>
         <Link to={`/movie/movieId/review/reviewId`}>{`${title}`}</Link>

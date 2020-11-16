@@ -1,5 +1,5 @@
 import React from "react";
-import { withRouter, Link, useHistory } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import axios from "axios";
 import PropTypes from "prop-types";
 
@@ -83,7 +83,7 @@ class SignUp extends React.Component {
                 ></input>
               </div>
               <div>
-                <Link to="/login">이미 아이디가 있으신가요?</Link>
+                <Link to="/">이미 아이디가 있으신가요?</Link>
               </div>
               <button
                 style={{
