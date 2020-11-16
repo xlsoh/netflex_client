@@ -86,7 +86,6 @@ class App extends React.Component {
       <div>
         <Nav
           isLogin={isLogin}
-          userInfo={userInfo}
           handleIsLogoutChange={this.handleIsLogoutChange.bind(this)}
         />
         <Switch>

@@ -1,6 +1,9 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
+import axios from "axios";
+
+axios.defaults.withCredentials = true;
 
 class Review extends React.Component {
   constructor(props) {
@@ -12,7 +15,7 @@ class Review extends React.Component {
   }
 
   render() {
-    const { isLogin, review } = this.props;
+    const { isLogin, userInfo, review } = this.props;
     if (isLogin) {
       return (
         <div>
@@ -41,6 +44,34 @@ class Review extends React.Component {
             <span>{`${review.nickName}`}</span>
             <span>작성날짜</span>
             <span>{`${review.created_at}`}</span>
+            <span>조회수</span>
+            <span>{`${review.views}`}</span>
+            <span>좋아요수</span>
+            <span>{`${review.totalLikes}`}</span>
+            <span>
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  axios
+                    .post(`http://localhost:5000/movie/reviewinfo/reviewId`, {
+                      userId: userInfo.id,
+                    })
+                    .catch((err) => console.log(err));
+                }}
+              >
+                <button
+                  style={{
+                    width: "100px",
+                    height: "20px",
+                    margin: "5px",
+                    backgroundColor: "ivorygray",
+                  }}
+                  type="submit"
+                >
+                  좋아요
+                </button>
+              </form>
+            </span>
           </div>
           <div>
             {" "}
@@ -62,6 +93,7 @@ class Review extends React.Component {
 Review.propTypes = {
   history: PropTypes.object,
   isLogin: PropTypes.bool,
+  userInfo: PropTypes.object,
   review: PropTypes.object,
 };
 export default withRouter(Review);
