@@ -1,42 +1,54 @@
 import React from "react";
-import { withRouter } from 'react-router-dom';
-import axios from "axios"
+import { withRouter, Link } from "react-router-dom";
+import axios from "axios";
 import PropTypes, { string } from "prop-types";
 
-class MyReviewListEntry extends React.Component{
-constructor(props){
-  super(props);
-  this.state = {};
-  this.handleDelClick = this.handleDelClick.bind(this);
-  this.handleEditClick = this.handleEditClick.bind(this)
-}
+class MyReviewListEntry extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+    this.handleDelClick = this.handleDelClick.bind(this);
+    this.handleEditClick = this.handleEditClick.bind(this);
+  }
 
-handleDelClick(){
-  axios.post("http://localhost:5000/user/mypage")
-  //해당 게시글 삭제 하는 컨트롤러 필요
-}
-handleEditClick(){
-  this.props.history.push('/movie/movie_id/review')
-  //해당 정보를 가지고 가는 것이 필요
-}
+  handleDelClick = () => {
+    const { reviewId } = this.props;
+    axios
+      .post("http://localhost:5000/movie/deletereview", {
+        reviewId: reviewId,
+      })
+      .then((res) => {
+        this.props.history.push("/user/mypage");
+      })
+      .catch((err) => console.log(err));
+  };
+  handleEditClick = () => {
+    const { reviewId, hadleReviewChange } = this.props;
+    axios
+      .get(`http://localhost:5000//movie/reviewinfo/${reviewId}`)
+      .then((res) => {
+        hadleReviewChange();
+        this.props.history.push(`/movie/movieId/review/reviewId`);
+      })
+      .catch((err) => console.log(err));
+  };
 
-render(){
-  const {id, title} = this.props
-  return(
-    <div>
-    <div className="title">{title}</div>
-     <button onClick={this.handleDelClick}>삭제</button>
-     <button onClick={this.handleEditClick}>수정</button>
-
-    </div>
-  ) 
-}
+  render() {
+    const { reviewId, title, hadleReviewChange } = this.props;
+    return (
+      <div>
+        <Link to={`/movie/movieId/review/reviewId`}>{`${title}`}</Link>
+        <button onClick={this.handleEditClick}>수정</button>
+        <button onClick={this.handleDelClick}>삭제</button>
+      </div>
+    );
+  }
 }
 MyReviewListEntry.propTypes = {
   history: PropTypes.object,
-  id: PropTypes.number,
-  title: string
+  reviewId: PropTypes.number,
+  title: string,
+  hadleReviewChange: PropTypes.func,
 };
-
 
 export default withRouter(MyReviewListEntry);

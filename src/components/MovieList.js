@@ -3,6 +3,7 @@ import MovieListEntry from "./MovieListEntry";
 import { apiUrl, apiKey, imageBaseUrl } from "./config";
 import axios from "axios";
 import Grid from "@material-ui/core/Grid";
+
 import Nav from "./Nav"
 import MovieInfo from "./MovieInfo"
 
@@ -30,12 +31,14 @@ function MovieList () {
   onClick={()=>closeModal()}
   />
 
+
   useEffect(() => {
     const endpoint = `${apiUrl}movie/popular?api_key=${apiKey}&language=ko-KR&page=1`;
     axios.get(endpoint, {}).then((res) => {
       setMovies(res.data.results);
     });
   }, []);
+
 
   // console.log(Movies)
   
@@ -67,6 +70,7 @@ function MovieList () {
       </div>
       
    </Grid>
+
     </>
   );
 }
