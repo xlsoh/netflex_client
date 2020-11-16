@@ -2,7 +2,6 @@ import React from "react";
 import { withRouter, Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import axios from "axios";
-import MyReviewListEntry from "./MyReviewListEntry";
 
 class MovieReviewListEntry extends React.Component {
   constructor(props) {
@@ -13,7 +12,6 @@ class MovieReviewListEntry extends React.Component {
     const { reviewId, title } = this.props;
     axios.post(`http://localhost:5000/movie/reviewinfo/${reviewId}`);
   };
-  //userID를 어떻게 받을지?
 
   render() {
     const { reviewId, title } = this.props;

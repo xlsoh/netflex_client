@@ -1,7 +1,7 @@
 import React from "react";
 import { withRouter, Link } from "react-router-dom";
 import axios from "axios";
-import PropTypes, { string } from "prop-types";
+import PropTypes from "prop-types";
 
 class MyReviewListEntry extends React.Component {
   constructor(props) {
@@ -14,11 +14,11 @@ class MyReviewListEntry extends React.Component {
   handleDelClick = () => {
     const { reviewId } = this.props;
     axios
-      .post("http://localhost:5000/movie/deletereview", {
+      .post(`http://localhost:5000/movie/deletereview`, {
         reviewId: reviewId,
       })
       .then((res) => {
-        this.props.history.push("/user/mypage");
+        this.props.history.push(`/user/mypage`);
       })
       .catch((err) => console.log(err));
   };
@@ -27,7 +27,7 @@ class MyReviewListEntry extends React.Component {
     axios
       .get(`http://localhost:5000/movie/reviewinfo/${reviewId}`)
       .then((res) => {
-        hadleReviewChange();
+        hadleReviewChange(res.reviewId);
         this.props.history.push(`/movie/movieId/review/reviewId`);
       })
       .catch((err) => console.log(err));
@@ -46,7 +46,7 @@ class MyReviewListEntry extends React.Component {
 MyReviewListEntry.propTypes = {
   history: PropTypes.object,
   reviewId: PropTypes.number,
-  title: string,
+  title: PropTypes.string,
   hadleReviewChange: PropTypes.func,
 };
 

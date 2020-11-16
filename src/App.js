@@ -6,7 +6,6 @@ import SignUp from "./components/SignUp";
 import MovieList from "./components/MovieList";
 import Review from "./components/Review";
 import WriteReview from "./components/WriteReview";
-import MovieInfo from "./components/MovieInfo";
 import Nav from "./components/Nav";
 import axios from "axios";
 import PropTypes from "prop-types";
@@ -23,49 +22,26 @@ class App extends React.Component {
   }
 
   handleIsLoginChange = (res) => {
-    // 인증을 성공했을때 사용자 정보 호출, 성공하면 로그인 상태를 바꿉니다.
-    axios
-      //.get(`http://localhost:5000/user/userId`)
-      .then((res) => {
-        this.setState({ isLogin: true, userInfo: res });
-      })
-      .catch((err) => console.log(err));
+    this.setState({ isLogin: true, userInfo: res });
   };
 
   handleIsLogoutChange = () => {
-    //로그아웃 상태로 바꿉니다.
     axios
       .post(`http://localhost:5000/user/signout`)
       .then((res) => {
         this.setState({ isLogin: false, userInfo: {} });
-        this.props.history.push("/");
+        this.props.history.push(`/`);
       })
       .catch((err) => console.log(err));
   };
 
-  handleWriteReview(data) {
-    this.setState((state) => {
-      return { movie: data };
-    });
-    this.setState((state) => {
-      return { review: {} };
-    });
+  handleWriteReview = (data) => {
+    this.setState({ movie: data });
+    this.setState({ review: {} });
     this.props.history.push(`/movie/movieId/writeReview`);
-    console.log(data);
-  }
-
-  hadleReviewChange = (res) => {
-    //state의 review 바꿉니다.
-    axios
-      .get(`http://localhost:5000/movie/reviewinfo/reviewId`)
-      .then((res) => {
-        this.setState({ review: res });
-      })
-      .catch((err) => console.log(err));
   };
 
-  hadleReviewChangeByNew = (reviewId) => {
-    //state의 review 바꿉니다.
+  hadleReviewChange = (reviewId) => {
     axios
       .get(`http://localhost:5000/movie/reviewinfo/${reviewId}`)
       .then((res) => {
@@ -74,21 +50,16 @@ class App extends React.Component {
       .catch((err) => console.log(err));
   };
 
-  // hadleMovieIdChange = () => {
-  //   //state의 movie 바꿉니다.
-  //   axios
-  //     .get(`http://localhost:5000/movie/${movie.movieId}`)
-  //     .then((res) => {
-  //       this.setState({ movie: res });
-  //     })
-  //     .catch((err) => console.log(err));
-  // };
-
   render() {
     const { isLogin, userInfo, review, movie } = this.state;
-    console.log(
-      `isLogin:${isLogin}, userInfo:${userInfo}, review:${review}, movie:${movie}`
-    );
+    console.log("--isLogin--");
+    console.log(isLogin);
+    console.log("--userInfo--");
+    console.log(userInfo);
+    console.log("--review--");
+    console.log(review);
+    console.log("--movie--");
+    console.log(movie);
     return (
       <div>
         <Nav
@@ -135,11 +106,6 @@ class App extends React.Component {
           />
           <Route
             exact
-            path={`/movie/movieId`}
-            render={() => <MovieInfo isLogin={isLogin} userInfo={userInfo} />}
-          />
-          <Route
-            exact
             path={`/movie/movieId/review/reviewId`}
             render={() => (
               <Review isLogin={isLogin} userInfo={userInfo} review={review} />
@@ -154,17 +120,17 @@ class App extends React.Component {
                 userInfo={userInfo}
                 review={review}
                 movie={movie}
-                hadleReviewChangeByNew={this.hadleReviewChangeByNew.bind(this)}
+                hadleReviewChange={this.hadleReviewChange.bind(this)}
               />
             )}
           />
           <Route
-            path="/"
+            path={`/`}
             render={() => {
-              if (!isLogin) {
-                return <Redirect to="/movie/popular" />;
+              if (isLogin) {
+                return <Redirect to={`/movie/popular`} />;
               }
-              return <Redirect to="/user/signin" />;
+              return <Redirect to={`/user/signin`} />;
             }}
           />
         </Switch>

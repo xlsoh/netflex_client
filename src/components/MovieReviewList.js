@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { withRouter } from "react-router-dom";
 import MovieReviewListEntry from "./MovieReviewListEntry";
 import PropTypes from "prop-types";
