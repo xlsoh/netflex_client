@@ -7,8 +7,8 @@ class WriteReview extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: "",
-      text: "",
+      title: this.props.review.title,
+      text: this.props.review.text,
     };
     this.handleInputValue = this.handleInputValue.bind(this);
   }
@@ -18,6 +18,8 @@ class WriteReview extends React.Component {
 
   render() {
     const { title, text } = this.state;
+    console.log(title);
+    console.log(text);
     const {
       isLogin,
       userInfo,
@@ -25,6 +27,7 @@ class WriteReview extends React.Component {
       movie,
       hadleNewReviewChange,
     } = this.props;
+    console.log(review);
     if (isLogin) {
       if (!review.reviewId) {
         return (
@@ -107,17 +110,18 @@ class WriteReview extends React.Component {
             <form
               onSubmit={(e) => {
                 e.preventDefault();
+                console.log(review.reviewId);
                 return axios
                   .post(`http://54.180.63.153:5000/movie/writereview`, {
-                    id: review.reviewId,
+                    reviewId: review.reviewId,
                     title: title,
                     text: text,
                     userId: userInfo.id,
                     movieId: movie.movieId,
                     movieName: movie.movieName,
                   })
-                  .then((res) => {
-                    hadleNewReviewChange(res.data.reviewId);
+                  .then(() => {
+                    hadleNewReviewChange(review.reviewId);
                   })
                   .catch((err) => {
                     alert("WriteReview failed");
@@ -142,7 +146,7 @@ class WriteReview extends React.Component {
                     borderRadius: "5px",
                   }}
                   type="title"
-                  value={`${review.title}`}
+                  value={`${this.state.title}`}
                   onChange={this.handleInputValue("title")}
                 ></input>
               </div>
@@ -158,7 +162,7 @@ class WriteReview extends React.Component {
                     borderRadius: "5px",
                   }}
                   type="text"
-                  value={`${review.text}`}
+                  value={`${this.state.text}`}
                   onChange={this.handleInputValue("text")}
                 ></textarea>
               </div>
