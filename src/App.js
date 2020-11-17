@@ -138,6 +138,9 @@ class App extends React.Component {
                 isLogin={isLogin}
                 userInfo={userInfo}
                 handleWriteReview={this.handleWriteReview.bind(this)}
+                hadleReviewChangeByTitle={this.hadleReviewChangeByTitle.bind(
+                  this
+                )}
               />
             )}
           />
