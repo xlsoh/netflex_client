@@ -1,4 +1,4 @@
-export const userServer = "http://localhost:3001";
+export const userServer = "http://54.180.63.153:5000";
 
 export const apiUrl = "https://api.themoviedb.org/3/";
 

@@ -1,18 +1,11 @@
 import React from "react";
-import {
-  Switch,
-  Route,
-  useHistory,
-  Redirect,
-  withRouter,
-} from "react-router-dom";
+import { Switch, Route, Redirect, withRouter } from "react-router-dom";
 import MyPage from "./components/MyPage";
 import SignIn from "./components/SignIn";
 import SignUp from "./components/SignUp";
 import MovieList from "./components/MovieList";
 import Review from "./components/Review";
 import WriteReview from "./components/WriteReview";
-import MovieInfo from "./components/MovieInfo";
 import Nav from "./components/Nav";
 import axios from "axios";
 import PropTypes from "prop-types";
@@ -23,121 +16,144 @@ class App extends React.Component {
     super(props);
     this.state = {
       isLogin: false,
-      userinfo: {},
+      userInfo: {},
       review: {},
       movie: {},
+      accessToken: "",
     };
   }
 
-  handleIsLoginChange() {
-    // 인증을 성공했을때 사용자 정보 호출, 성공하면 로그인 상태를 바꿉니다.
+  handleIsLoginChange = (res, accessToken) => {
+    this.setState({ isLogin: true, userInfo: res, accessToken });
+  };
+
+  handleIsLogoutChange = () => {
     axios
-      .get("http://localhost:5000/user/signin")
+      .post(`http://54.180.63.153:5000/user/signout`, {
+        accessToken: this.state.accessToken,
+      })
       .then((res) => {
-        console.log(res.data);
-        this.setState({ isLogin: true, userinfo: res.data });
+        this.setState({ isLogin: false, userInfo: {}, accessToken: "" }, () => {
+          console.log(this.state);
+        });
+        this.props.history.push(`/`);
       })
       .catch((err) => console.log(err));
-  }
+  };
 
-  handleIsLogoutChange() {
-    //로그아웃 상태로 바꿉니다.
-    axios
-      .post("http://localhost:5000/user/signout")
-      .then((res) => {
-        this.setState({ isLogin: false, userinfo: {} });
-        this.props.history.push("/");
-      })
-      .catch((err) => console.log(err));
-  }
+  handleWriteReview = (data) => {
+    this.setState({ movie: data });
+    this.setState({ review: {} });
+    this.props.history.push(`/movie/${data.movieId}/writeReview`);
+  };
 
-  hadleReviewChange() {
-    //state의 review 바꿉니다.
+  hadleReviewChange = (reviewId) => {
     axios
-      .get("http://localhost:5000/reviewinfo")
+      .get(`http://54.180.63.153:5000/movie/reviewinfo/${reviewId}`)
       .then((res) => {
         this.setState({ review: res.data });
       })
       .catch((err) => console.log(err));
-  }
+  };
+
+  hadleNewReviewChange = (reviewId) => {
+    axios
+      .get(`http://54.180.63.153:5000/movie/reviewinfo/${reviewId}`)
+      .then((res) => {
+        this.setState({ review: res.data });
+        this.props.history.push(
+          `/movie/${this.state.movie.movieId}/review/${res.data.reviewId}`
+        );
+      })
+      .catch((err) => console.log(err));
+  };
 
   render() {
-    const { isLogin, userinfo, movie, review } = this.state;
-    console.log(isLogin, userinfo);
+    const { isLogin, userInfo, review, movie } = this.state;
+    console.log("--isLogin--");
+    console.log(isLogin);
+    console.log("--userInfo--");
+    console.log(userInfo);
+    console.log("--review--");
+    console.log(review);
+    console.log("--movie--");
+    console.log(movie);
     return (
       <div>
         <Nav
           isLogin={isLogin}
+          review={review}
+          movie={movie}
           handleIsLogoutChange={this.handleIsLogoutChange.bind(this)}
         />
         <MovieList/>
         <Switch>
           <Route
-            path="/user/signin"
+            path={`/user/signin`}
             render={() => (
               <SignIn
                 isLogin={isLogin}
+                userInfo={userInfo}
                 handleIsLoginChange={this.handleIsLoginChange.bind(this)}
               />
             )}
           />
           <Route
             exact
-            path="/user/signup"
-            render={() => <SignUp isLogin={isLogin} />}
+            path={`/user/signup`}
+            render={() => <SignUp isLogin={isLogin} userInfo={userInfo} />}
           />
           <Route
             exact
-            path="/user/mypage"
+            path={`/user/mypage`}
             render={() => (
               <MyPage
                 isLogin={isLogin}
-                userinfo={userinfo}
-                handleIsLogoutChange={this.handleIsLogoutChange.bind(this)}
-              />
-            )}
-          />
-          <Route
-            exact
-            path="/movie/popular"
-            render={() => <MovieList isLogin={isLogin} userinfo={userinfo} />}
-          />
-          <Route
-            exact
-            path="/movie/{movie_id}"
-            render={() => <MovieInfo isLogin={isLogin} userinfo={userinfo} />}
-          />
-          <Route
-            exact
-            path="/movie/movie_id/review"
-            render={() => (
-              <Review
-                isLogin={isLogin}
-                userinfo={userinfo}
-                movie={movie}
+                userInfo={userInfo}
                 review={review}
+                movie={movie}
+                hadleReviewChange={this.hadleReviewChange.bind(this)}
               />
             )}
           />
           <Route
             exact
-            path="/movie/movie_id/write_review"
+            path={`/movie/popular`}
+            render={() => (
+              <MovieList
+                isLogin={isLogin}
+                userInfo={userInfo}
+                handleWriteReview={this.handleWriteReview.bind(this)}
+              />
+            )}
+          />
+          <Route
+            exact
+            path={`/movie/reviewinfo/${review.reviewId}`}
+            render={() => (
+              <Review isLogin={isLogin} userInfo={userInfo} review={review} />
+            )}
+          />
+          <Route
+            exact
+            path={`/movie/${movie.movieId}/writeReview`}
             render={() => (
               <WriteReview
                 isLogin={isLogin}
-                userinfo={userinfo}
-                movie={movie}
+                userInfo={userInfo}
                 review={review}
+                movie={movie}
+                hadleNewReviewChange={this.hadleNewReviewChange.bind(this)}
               />
             )}
           />
           <Route
-            path="/"
+            path={`/`}
             render={() => {
               if (isLogin) {
-                return <Redirect to="/movie/popular" />;
+                return <Redirect to={`/movie/popular`} />;
               }
-              return <Redirect to="/user/signin" />;
+              return <Redirect to={`/user/signin`} />;
             }}
           />
          

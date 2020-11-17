@@ -1,17 +1,55 @@
 import React from "react";
-import MovieInfoDetail from "./MovieInfoDetail";
+import { withRouter } from "react-router-dom";
 import MovieReviewList from "./MovieReviewList";
-import Nav from "./Nav";
+import { imageBaseUrl } from "./config";
+import PropTypes from "prop-types";
 
-class MovieInfo extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-
-  render() {
-    return <div></div>;
-  }
+function MovieInfo({
+  adult,
+  containerName,
+  movieId,
+  movieName,
+  overview,
+  show,
+  img,
+  onClick,
+  release,
+  handleWriteReview,
+  userInfo,
+}) {
+  const movie = { movieId: movieId, movieName: movieName };
+  console.log(userInfo);
+  return show ? (
+    <div className={containerName} onClick={onClick}>
+      <div className="modal">
+        <img src={`${imageBaseUrl}w500${img}`} alt="bg" />
+        <div className="bg"></div>
+        <div className="modal-content">
+          <h1>{movieName}</h1>
+          <div>{release}</div>
+          <div>{adult ? `청소년 관람불가` : `청소년 관람가능`}</div>
+          <p>{overview}</p>
+        </div>
+      </div>
+      <MovieReviewList movieId={movieId} userInfo={userInfo} />
+      <button onClick={() => handleWriteReview(movie)}>내 리뷰 쓰기</button>
+    </div>
+  ) : null;
 }
+MovieInfo.propTypes = {
+  containerName: PropTypes.string,
+  movieId: PropTypes.number,
+  image: PropTypes.string,
+  movieName: PropTypes.string,
+  overview: PropTypes.string,
+  show: PropTypes.bool,
+  img: PropTypes.string,
+  onClick: PropTypes.func,
+  release: PropTypes.string,
+  adult: PropTypes.bool,
+  props: PropTypes.object,
+  handleWriteReview: PropTypes.func,
+  userInfo: PropTypes.object,
+};
 
-export default MovieInfo;
+export default withRouter(MovieInfo);

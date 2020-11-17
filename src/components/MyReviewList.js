@@ -1,34 +1,41 @@
-
 import React from "react";
+import { withRouter } from "react-router-dom";
 import MyReviewListEntry from "./MyReviewListEntry";
 import PropTypes from "prop-types";
 
-class MyReviewList extends React.Component{
-  constructor(props){
-    super(props)
+class MyReviewList extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
   }
 
-
-  // 리뷰를 뽑아서 뿌려줌
-render(){
-  const {reviews} = this.props
-  return(
-   <div>
-     {reviews && reviews.map((review,index)=>(
-       <React.Fragment key={index}>
-         <MyReviewListEntry
-         id={review.id}
-         title={review.title}
-         />
-       </React.Fragment>
-     ))}
-   </div>
-    )
-}
+  render() {
+    const { myReview, movie, hadleReviewChange } = this.props;
+    console.log(myReview);
+    return (
+      <div>
+        {myReview &&
+          myReview.map((review, index) => {
+            return (
+              <React.Fragment key={index}>
+                <MyReviewListEntry
+                  reviewId={review.reviewId}
+                  title={review.title}
+                  movie={movie}
+                  hadleReviewChange={hadleReviewChange}
+                />
+              </React.Fragment>
+            );
+          })}
+      </div>
+    );
+  }
 }
 MyReviewList.propTypes = {
-  reviews: PropTypes.object,
+  myReview: PropTypes.array,
   userinfo: PropTypes.object,
-  isLogin: PropTypes.bool
+  isLogin: PropTypes.bool,
+  movie: PropTypes.object,
+  hadleReviewChange: PropTypes.func,
 };
-export default MyReviewList;
+export default withRouter(MyReviewList);
