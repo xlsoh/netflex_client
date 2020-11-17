@@ -9,7 +9,7 @@ import WriteReview from "./components/WriteReview";
 import Nav from "./components/Nav";
 import axios from "axios";
 import PropTypes from "prop-types";
-////
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -45,14 +45,25 @@ class App extends React.Component {
     this.setState({ review: {} });
     this.props.history.push(`/movie/${data.movieId}/writeReview`);
   };
-
-  hadleReviewChange = (reviewId) => {
-    axios
-      .get(`http://54.180.63.153:5000/movie/reviewinfo/${reviewId}`)
-      .then((res) => {
-        this.setState({ review: res.data });
-      })
-      .catch((err) => console.log(err));
+  handleCleanReview = () => {
+    this.setState({ review: {} });
+    this.setState({ movie: {} });
+  };
+  hadleReviewChangeByTitle = (review) => {
+    this.setState({ review: review });
+    this.setState({
+      movie: { movieId: review.movieId, movieName: review.movieName },
+    });
+    this.props.history.push(
+      `/movie/${review.movieId}/review/${review.reviewId}`
+    );
+  };
+  hadleReviewChangeByEdit = (review) => {
+    this.setState({ review: review });
+    this.setState({
+      movie: { movieId: review.movieId, movieName: review.movieName },
+    });
+    this.props.history.push(`/movie/${review.movieId}/writeReview`);
   };
 
   hadleNewReviewChange = (reviewId) => {
@@ -109,7 +120,13 @@ class App extends React.Component {
                 isLogin={isLogin}
                 userInfo={userInfo}
                 review={review}
-                hadleReviewChange={this.hadleReviewChange.bind(this)}
+                hadleReviewChangeByTitle={this.hadleReviewChangeByTitle.bind(
+                  this
+                )}
+                hadleReviewChangeByEdit={this.hadleReviewChangeByEdit.bind(
+                  this
+                )}
+                handleCleanReview={this.handleCleanReview.bind(this)}
               />
             )}
           />

@@ -12,13 +12,11 @@ class MyReviewListEntry extends React.Component {
   }
 
   handleTitleClick = () => {
-    const { review } = this.props;
+    const { review, hadleReviewChangeByTitle } = this.props;
     axios
       .get(`http://54.180.63.153:5000/movie/reviewinfo/${review.reviewId}`)
       .then((res) => {
-        this.props.history.push(
-          `/movie/${review.movieId}/review/${res.data.reviewId}`
-        );
+        hadleReviewChangeByTitle(res.data);
       })
       .catch((err) => console.log(err));
   };
@@ -35,23 +33,19 @@ class MyReviewListEntry extends React.Component {
       .catch((err) => console.log(err));
   };
   handleEditClick = () => {
-    const { review, hadleReviewChange } = this.props;
+    const { review, hadleReviewChangeByEdit } = this.props;
     axios
       .get(`http://54.180.63.153:5000/movie/reviewinfo/${review.reviewId}`)
       .then((res) => {
-        hadleReviewChange(res.data.reviewId);
-        this.props.history.push(`/movie/${review.movieId}/writeReview`);
+        hadleReviewChangeByEdit(res.data);
       })
       .catch((err) => console.log(err));
   };
   render() {
     const { title, review } = this.props;
-    console.log(title, review);
     return (
       <div>
-        <Link to={`/movie/${review.movieId}/review/${review.reviewId}`}>
-          {title}
-        </Link>
+        <a onClick={this.handleTitleClick}>{title}</a>
         <button onClick={this.handleEditClick}>수정</button>
         <button onClick={this.handleDelClick}>삭제</button>
       </div>
@@ -62,7 +56,8 @@ MyReviewListEntry.propTypes = {
   history: PropTypes.object,
   review: PropTypes.object,
   title: PropTypes.string,
-  hadleReviewChange: PropTypes.func,
+  hadleReviewChangeByEdit: PropTypes.func,
+  hadleReviewChangeByTitle: PropTypes.func,
 };
 
 export default withRouter(MyReviewListEntry);

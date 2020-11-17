@@ -10,8 +10,11 @@ class MyReviewList extends React.Component {
   }
 
   render() {
-    const { myReview, hadleReviewChange } = this.props;
-    console.log(myReview);
+    const {
+      myReview,
+      hadleReviewChangeByTitle,
+      hadleReviewChangeByEdit,
+    } = this.props;
     return (
       <div>
         {myReview &&
@@ -21,7 +24,8 @@ class MyReviewList extends React.Component {
                 <MyReviewListEntry
                   review={review}
                   title={review.title}
-                  hadleReviewChange={hadleReviewChange}
+                  hadleReviewChangeByEdit={hadleReviewChangeByEdit}
+                  hadleReviewChangeByTitle={hadleReviewChangeByTitle}
                 />
               </React.Fragment>
             );
@@ -34,6 +38,7 @@ MyReviewList.propTypes = {
   myReview: PropTypes.array,
   userinfo: PropTypes.object,
   isLogin: PropTypes.bool,
-  hadleReviewChange: PropTypes.func,
+  hadleReviewChangeByEdit: PropTypes.func,
+  hadleReviewChangeByTitle: PropTypes.func,
 };
 export default withRouter(MyReviewList);
