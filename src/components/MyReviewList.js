@@ -10,8 +10,11 @@ class MyReviewList extends React.Component {
   }
 
   render() {
-    const { myReview, movie, hadleReviewChange } = this.props;
-    console.log(myReview);
+    const {
+      myReview,
+      hadleReviewChangeByTitle,
+      hadleReviewChangeByEdit,
+    } = this.props;
     return (
       <div>
         {myReview &&
@@ -19,10 +22,10 @@ class MyReviewList extends React.Component {
             return (
               <React.Fragment key={index}>
                 <MyReviewListEntry
-                  reviewId={review.reviewId}
+                  review={review}
                   title={review.title}
-                  movie={movie}
-                  hadleReviewChange={hadleReviewChange}
+                  hadleReviewChangeByEdit={hadleReviewChangeByEdit}
+                  hadleReviewChangeByTitle={hadleReviewChangeByTitle}
                 />
               </React.Fragment>
             );
@@ -35,7 +38,7 @@ MyReviewList.propTypes = {
   myReview: PropTypes.array,
   userinfo: PropTypes.object,
   isLogin: PropTypes.bool,
-  movie: PropTypes.object,
-  hadleReviewChange: PropTypes.func,
+  hadleReviewChangeByEdit: PropTypes.func,
+  hadleReviewChangeByTitle: PropTypes.func,
 };
 export default withRouter(MyReviewList);

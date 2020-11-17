@@ -18,7 +18,6 @@ function MovieInfo({
   userInfo,
 }) {
   const movie = { movieId: movieId, movieName: movieName };
-  console.log(userInfo);
   return show ? (
     <div className={containerName} onClick={onClick}>
       <div className="modal">
