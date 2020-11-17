@@ -50,7 +50,19 @@ class App extends React.Component {
     axios
       .get(`http://54.180.63.153:5000/movie/reviewinfo/${reviewId}`)
       .then((res) => {
-        this.setState({ review: res });
+        this.setState({ review: res.data });
+      })
+      .catch((err) => console.log(err));
+  };
+
+  hadleNewReviewChange = (reviewId) => {
+    axios
+      .get(`http://54.180.63.153:5000/movie/reviewinfo/${reviewId}`)
+      .then((res) => {
+        this.setState({ review: res.data });
+        this.props.history.push(
+          `/movie/${this.state.movie.movieId}/review/${res.data.reviewId}`
+        );
       })
       .catch((err) => console.log(err));
   };
@@ -96,6 +108,7 @@ class App extends React.Component {
               <MyPage
                 isLogin={isLogin}
                 userInfo={userInfo}
+                review={review}
                 movie={movie}
                 hadleReviewChange={this.hadleReviewChange.bind(this)}
               />
@@ -128,7 +141,7 @@ class App extends React.Component {
                 userInfo={userInfo}
                 review={review}
                 movie={movie}
-                hadleReviewChange={this.hadleReviewChange.bind(this)}
+                hadleNewReviewChange={this.hadleNewReviewChange.bind(this)}
               />
             )}
           />

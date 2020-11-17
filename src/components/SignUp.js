@@ -9,7 +9,7 @@ class SignUp extends React.Component {
     this.state = {
       email: "",
       password: "",
-      nickname: "",
+      nickName: "",
     };
     this.handleInputValue = this.handleInputValue.bind(this);
   }
@@ -17,7 +17,7 @@ class SignUp extends React.Component {
     this.setState({ [key]: e.target.value });
   };
   render() {
-    const { email, password, nickname } = this.state;
+    const { email, password, nickName } = this.state;
     const { isLogin, userInfo } = this.props;
     if (!isLogin) {
       return (
@@ -28,10 +28,10 @@ class SignUp extends React.Component {
               onSubmit={(e) => {
                 e.preventDefault();
                 axios
-                  .post(`http://54.180.63.153:5000/signup`, {
+                  .post(`http://54.180.63.153:5000/user/signup`, {
                     email: email,
                     password: password,
-                    nickname: nickname,
+                    nickName: nickName,
                   })
                   .then(() => {
                     this.props.history.push(`/`);
@@ -78,7 +78,7 @@ class SignUp extends React.Component {
                     margin: "10px",
                     borderRadius: "5px",
                   }}
-                  onChange={this.handleInputValue("nickname")}
+                  onChange={this.handleInputValue("nickName")}
                   placeholder="닉네임"
                 ></input>
               </div>

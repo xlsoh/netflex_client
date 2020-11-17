@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Fragment } from "react";
 import { Link, withRouter } from "react-router-dom";
 import MovieListEntry from "./MovieListEntry";
 import { apiUrl, apiKey, imageBaseUrl } from "./config";
@@ -47,29 +47,31 @@ function MovieList({ isLogin, userInfo, handleWriteReview }) {
 
   if (isLogin) {
     return (
-      <>
-        <Grid container spacing={0}>
-          <div className="movie">
-            {modalCont}
-            {Movies &&
-              Movies.map((movie, index) => (
-                <React.Fragment key={index}>
-                  <div onClick={() => showModal(movie)}>
-                    <MovieListEntry
-                      image={
-                        movie.poster_path
-                          ? `${imageBaseUrl}w500${movie.poster_path}`
-                          : null
-                      }
-                      movieId={movie.id}
-                      movieName={movie.original_title}
-                    />
-                  </div>
-                </React.Fragment>
-              ))}
-          </div>
-        </Grid>
-      </>
+      <Fragment>
+        <>
+          <Grid container spacing={0}>
+            <div className="movie">
+              {modalCont}
+              {Movies &&
+                Movies.map((movie, index) => (
+                  <React.Fragment key={index}>
+                    <div onClick={() => showModal(movie)}>
+                      <MovieListEntry
+                        image={
+                          movie.poster_path
+                            ? `${imageBaseUrl}w500${movie.poster_path}`
+                            : null
+                        }
+                        movieId={movie.id}
+                        movieName={movie.original_title}
+                      />
+                    </div>
+                  </React.Fragment>
+                ))}
+            </div>
+          </Grid>
+        </>
+      </Fragment>
     );
   } else {
     return (

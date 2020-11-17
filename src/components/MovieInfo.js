@@ -17,7 +17,8 @@ function MovieInfo({
   handleWriteReview,
   userInfo,
 }) {
-  const movie = { moiveId: movieId, movieName: movieName };
+  const movie = { movieId: movieId, movieName: movieName };
+  console.log(userInfo);
   return show ? (
     <div className={containerName} onClick={onClick}>
       <div className="modal">

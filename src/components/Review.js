@@ -41,7 +41,7 @@ class Review extends React.Component {
             <span>작성자</span>
             <span>{`${review.nickName}`}</span>
             <span>작성날짜</span>
-            <span>{`${review.created_at}`}</span>
+            <span>{`${review.createdAt}`}</span>
             <span>조회수</span>
             <span>{`${review.views}`}</span>
             <span>좋아요수</span>

@@ -8,25 +8,38 @@ class MovieReviewListEntry extends React.Component {
     super(props);
     this.likeClick = this.likeClick.bind(this);
   }
+
+  handleTitleClick = () => {
+    const { movieId, reviewId } = this.props;
+    axios
+      .get(`http://54.180.63.153:5000/movie/reviewinfo/${reviewId}`)
+      .then((res) => {
+        this.props.history.push(`/movie/${movieId}/review/${reviewId}`);
+      })
+      .catch((err) => console.log(err));
+  };
   likeClick = () => {
     const { reviewId, userInfo } = this.props;
-    axios.post(`http://54.180.63.153:5000/movie/reviewinfo/${reviewId}`),
-      {
-        userId: userInfo.id,
-      };
+    console.log(typeof userInfo.id);
+    axios.post(`http://54.180.63.153:5000/movie/reviewinfo/${reviewId}`, {
+      userId: userInfo.id,
+    });
   };
 
   render() {
-    const { reviewId, movieId, title } = this.props;
+    const { userInfo, reviewId, movieId, title } = this.props;
+    console.log(userInfo);
     return (
-      <div>
-        <Link to={`/movie/${movieId}/review/${reviewId}`}>{`${title}`}</Link>
+      <li key={movieId}>
+        <Link to={`/movie/${movieId}/review/${reviewId}`}>{title}</Link>
+        {/* <a onClick={this.handleTitleClick}>{title}</a> */}
         <button onClick={this.likeClick}>좋아요</button>
-      </div>
+      </li>
     );
   }
 }
 MovieReviewListEntry.propTypes = {
+  history: PropTypes.object,
   reviewId: PropTypes.number,
   title: PropTypes.string,
   userInfo: PropTypes.object,

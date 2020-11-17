@@ -8,22 +8,26 @@ class MovieReviewList extends React.Component {
   constructor(props) {
     super(props);
     this.state = { reviews: [] };
-    this.handleReviewData = this.handleReviewData.bind(this);
+  }
+  componentDidMount() {
+    const { movieId } = this.props;
+    axios.get(`http://54.180.63.153:5000/movie/${movieId}`).then(
+      (res) => this.setState({ reviews: res.data.results }),
+      () => {
+        console.log(this.state.reviews);
+      }
+    );
   }
 
-  handleReviewData = () => {
-    const { movieId } = this.props;
-    axios
-      .get(`http://54.180.63.153:5000/movie/${movieId}`)
-      .then((res) => this.setState({ review: res }));
-  };
-
   render() {
-    this.handleReviewData();
     const { reviews } = this.state;
     const { userInfo, movieId } = this.props;
-    return (
-      <div className="movieReview">
+    console.log(userInfo);
+    console.log(movieId);
+    return !reviews ? (
+      <div></div>
+    ) : (
+      <ul className="movieReview">
         {reviews &&
           reviews.map((review, index) => (
             <React.Fragment key={index}>
@@ -35,7 +39,7 @@ class MovieReviewList extends React.Component {
               />
             </React.Fragment>
           ))}
-      </div>
+      </ul>
     );
   }
 }

@@ -10,55 +10,9 @@ class Nav extends React.Component {
 
   render() {
     const { isLogin, review, movie, handleIsLogoutChange } = this.props;
-    if (!isLogin) {
+    if (isLogin) {
       return (
         <Switch>
-          <Route
-            path={`/user/signin`}
-            render={() => {
-              return (
-                <div>
-                  <Link to={`/user/signin`}>
-                    <button
-                      style={{
-                        width: "150px",
-                        height: "50px",
-                        margin: "5px",
-                        borderRadius: "5px",
-                        backgroundColor: "ivory",
-                      }}
-                      type="submit"
-                    >
-                      Netflex
-                    </button>
-                  </Link>
-                </div>
-              );
-            }}
-          />
-          <Route
-            path={`/user/signup`}
-            render={() => {
-              return (
-                <div>
-                  <Link to={`/user/signin`}>
-                    <button
-                      style={{
-                        width: "150px",
-                        height: "50px",
-                        margin: "5px",
-                        borderRadius: "5px",
-                        backgroundColor: "ivory",
-                      }}
-                      type="submit"
-                    >
-                      Netflex
-                    </button>
-                  </Link>
-                </div>
-              );
-            }}
-          />
           <Route
             path={`/user/mypage`}
             render={() => {
@@ -250,7 +204,56 @@ class Nav extends React.Component {
         </Switch>
       );
     } else {
-      return <div></div>;
+      return (
+        <Switch>
+          <Route
+            path={`/user/signin`}
+            render={() => {
+              return (
+                <div>
+                  <Link to={`/user/signin`}>
+                    <button
+                      style={{
+                        width: "150px",
+                        height: "50px",
+                        margin: "5px",
+                        borderRadius: "5px",
+                        backgroundColor: "ivory",
+                      }}
+                      type="submit"
+                    >
+                      Netflex
+                    </button>
+                  </Link>
+                </div>
+              );
+            }}
+          />
+          <Route
+            path={`/user/signup`}
+            render={() => {
+              return (
+                <div>
+                  <Link to={`/user/signin`}>
+                    <button
+                      style={{
+                        width: "150px",
+                        height: "50px",
+                        margin: "5px",
+                        borderRadius: "5px",
+                        backgroundColor: "ivory",
+                      }}
+                      type="submit"
+                    >
+                      Netflex
+                    </button>
+                  </Link>
+                </div>
+              );
+            }}
+          />
+        </Switch>
+      );
     }
   }
 }

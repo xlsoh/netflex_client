@@ -18,7 +18,13 @@ class WriteReview extends React.Component {
 
   render() {
     const { title, text } = this.state;
-    const { isLogin, userInfo, review, movie, hadleReviewChange } = this.props;
+    const {
+      isLogin,
+      userInfo,
+      review,
+      movie,
+      hadleNewReviewChange,
+    } = this.props;
     if (isLogin) {
       if (!review.id) {
         return (
@@ -36,10 +42,8 @@ class WriteReview extends React.Component {
                     movieName: movie.movieName,
                   })
                   .then((res) => {
-                    hadleReviewChange(res.reviewId);
-                    this.props.history.push(
-                      `/movie/${movie.movieId}/review/${res.reviewId}`
-                    );
+                    console.log(res);
+                    hadleNewReviewChange(res.data.reviewId);
                   })
                   .catch((err) => {
                     alert("Failed to submit your review");
@@ -113,10 +117,7 @@ class WriteReview extends React.Component {
                     movieName: movie.movieName,
                   })
                   .then((res) => {
-                    hadleReviewChange(res.reviewId);
-                    this.props.history.push(
-                      `/movie/${movie.movieId}/review/${res.reviewId}`
-                    );
+                    hadleNewReviewChange(res.data.reviewId);
                   })
                   .catch((err) => {
                     alert("WriteReview failed");
@@ -192,6 +193,6 @@ WriteReview.propTypes = {
   userInfo: PropTypes.object,
   review: PropTypes.object,
   movie: PropTypes.object,
-  hadleReviewChange: PropTypes.func,
+  hadleNewReviewChange: PropTypes.func,
 };
 export default withRouter(WriteReview);

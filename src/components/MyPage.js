@@ -16,7 +16,7 @@ class MyPage extends React.Component {
     const { userInfo } = this.props;
     axios
       .get(`http://54.180.63.153:5000/movie/reviews/${userInfo.id}`)
-      .then((res) => this.setState({ myReview: res.results }));
+      .then((res) => this.setState({ myReview: res.data.results }));
   }
 
   render() {
@@ -35,7 +35,7 @@ class MyPage extends React.Component {
             <div>
               {" "}
               <span>닉네임</span>
-              <span>{`${userInfo.nickName}`}</span>
+              <span>{`${userInfo.nickName}`}</span>s
             </div>
           </div>
           <hr color="black" size="10px"></hr>
