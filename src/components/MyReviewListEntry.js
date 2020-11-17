@@ -28,7 +28,7 @@ class MyReviewListEntry extends React.Component {
         reviewId: review.reviewId,
       })
       .then(() => {
-        this.props.history.push(`/user/mypage`);
+        this.props.history.go(0);
       })
       .catch((err) => console.log(err));
   };
@@ -42,7 +42,7 @@ class MyReviewListEntry extends React.Component {
       .catch((err) => console.log(err));
   };
   render() {
-    const { title, review } = this.props;
+    const { title } = this.props;
     return (
       <div>
         <a onClick={this.handleTitleClick}>{title}</a>
