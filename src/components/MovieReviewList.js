@@ -14,21 +14,24 @@ class MovieReviewList extends React.Component {
   handleReviewData = () => {
     const { movieId } = this.props;
     axios
-      .get(`http://localhost:5000/movie/${movieId}`)
+      .get(`http://54.180.63.153:5000/movie/${movieId}`)
       .then((res) => this.setState({ review: res }));
   };
 
   render() {
     this.handleReviewData();
     const { reviews } = this.state;
+    const { userInfo, movieId } = this.props;
     return (
       <div className="movieReview">
         {reviews &&
           reviews.map((review, index) => (
             <React.Fragment key={index}>
               <MovieReviewListEntry
-                reviewId={reviews.reviewId}
-                title={reviews.title}
+                reviewId={review.reviewId}
+                title={review.title}
+                movieId={movieId}
+                userInfo={userInfo}
               />
             </React.Fragment>
           ))}
@@ -39,5 +42,6 @@ class MovieReviewList extends React.Component {
 
 MovieReviewList.propTypes = {
   movieId: PropTypes.number,
+  userInfo: PropTypes.object,
 };
 export default withRouter(MovieReviewList);

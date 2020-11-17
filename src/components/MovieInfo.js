@@ -15,6 +15,7 @@ function MovieInfo({
   onClick,
   release,
   handleWriteReview,
+  userInfo,
 }) {
   const movie = { moiveId: movieId, movieName: movieName };
   return show ? (
@@ -29,7 +30,7 @@ function MovieInfo({
           <p>{overview}</p>
         </div>
       </div>
-      <MovieReviewList movieId={movieId} />
+      <MovieReviewList movieId={movieId} userInfo={userInfo} />
       <button onClick={() => handleWriteReview(movie)}>내 리뷰 쓰기</button>
     </div>
   ) : null;
@@ -47,6 +48,7 @@ MovieInfo.propTypes = {
   adult: PropTypes.bool,
   props: PropTypes.object,
   handleWriteReview: PropTypes.func,
+  userInfo: PropTypes.object,
 };
 
 export default withRouter(MovieInfo);

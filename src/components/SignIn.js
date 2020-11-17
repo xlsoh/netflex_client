@@ -1,15 +1,15 @@
-import React from 'react';
-import { Link,withRouter } from 'react-router-dom';
-import axios from 'axios';
-import PropTypes from 'prop-types';
-import GoogleBtn from './GoogleBtn';
+import React from "react";
+import { Link, withRouter } from "react-router-dom";
+import axios from "axios";
+import PropTypes from "prop-types";
+import GoogleBtn from "./GoogleBtn";
 
 class SignIn extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: '',
-      password: '',
+      email: "",
+      password: "",
     };
     this.handleInputValue = this.handleInputValue.bind(this);
   }
@@ -29,7 +29,7 @@ class SignIn extends React.Component {
               onSubmit={(e) => {
                 e.preventDefault();
                 return axios
-                  .post(`http://localhost:5000/user/signin`, {
+                  .post(`http://54.180.63.153:5000/user/signin`, {
                     email: email,
                     password: password,
                   })
@@ -38,51 +38,51 @@ class SignIn extends React.Component {
                     this.props.history.push(`/`);
                   })
                   .catch((err) => {
-                    alert('Login failed');
+                    alert("Login failed");
                     console.log(err);
                   });
               }}
             >
               <div>
-                {' '}
+                {" "}
                 이메일
                 <input
                   style={{
-                    width: '500px',
-                    height: '50px',
-                    margin: '10px',
-                    borderRadius: '5px',
+                    width: "500px",
+                    height: "50px",
+                    margin: "10px",
+                    borderRadius: "5px",
                   }}
-                  type='email'
-                  placeholder='이메일 주소'
-                  onChange={this.handleInputValue('email')}
+                  type="email"
+                  placeholder="이메일 주소"
+                  onChange={this.handleInputValue("email")}
                 ></input>
               </div>
               <div>
-                {' '}
+                {" "}
                 비밀번호
                 <input
                   style={{
-                    width: '500px',
-                    height: '50px',
-                    margin: '10px',
-                    borderRadius: '5px',
+                    width: "500px",
+                    height: "50px",
+                    margin: "10px",
+                    borderRadius: "5px",
                   }}
-                  type='password'
-                  placeholder='비밀번호'
-                  onChange={this.handleInputValue('password')}
+                  type="password"
+                  placeholder="비밀번호"
+                  onChange={this.handleInputValue("password")}
                 ></input>
               </div>
               <div>
                 <button
                   style={{
-                    width: '300px',
-                    height: '50px',
-                    margin: '10px',
-                    borderRadius: '5px',
-                    backgroundColor: 'gray',
+                    width: "300px",
+                    height: "50px",
+                    margin: "10px",
+                    borderRadius: "5px",
+                    backgroundColor: "gray",
                   }}
-                  type='submit'
+                  type="submit"
                 >
                   로그인
                 </button>
@@ -95,7 +95,7 @@ class SignIn extends React.Component {
               />
             </div>
             <div>
-              {' '}
+              {" "}
               Netflex 회원이 아니신가요?
               <Link to={`/user/signup`}>지금 가입하세요.</Link>
             </div>

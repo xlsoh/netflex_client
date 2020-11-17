@@ -7,7 +7,7 @@ import Grid from "@material-ui/core/Grid";
 import PropTypes from "prop-types";
 import MovieInfo from "./MovieInfo";
 
-function MovieList({ isLogin, handleWriteReview }) {
+function MovieList({ isLogin, userInfo, handleWriteReview }) {
   const [Movies, setMovies] = useState();
   const [ModalData, setModalData] = useState({});
   const [modal, setModal] = useState(false);
@@ -32,6 +32,7 @@ function MovieList({ isLogin, handleWriteReview }) {
       onClick={() => closeModal()}
       adult={ModalData.adult}
       handleWriteReview={handleWriteReview}
+      userInfo={userInfo}
     />
   );
 
@@ -71,14 +72,17 @@ function MovieList({ isLogin, handleWriteReview }) {
       </>
     );
   } else {
-    <div>
-      <h2>로그인 후 이용해주세요.</h2>
-      <Link to="/user/signin">로그인 하시겠습니까?</Link>
-    </div>;
+    return (
+      <div>
+        <h2>로그인 후 이용해주세요.</h2>
+        <Link to="/user/signin">로그인 하시겠습니까?</Link>
+      </div>
+    );
   }
 }
 MovieList.propTypes = {
   isLogin: PropTypes.bool,
+  userInfo: PropTypes.object,
   handleWriteReview: PropTypes.func,
 };
 export default withRouter(MovieList);

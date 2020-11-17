@@ -9,15 +9,18 @@ class MovieReviewListEntry extends React.Component {
     this.likeClick = this.likeClick.bind(this);
   }
   likeClick = () => {
-    const { reviewId, title } = this.props;
-    axios.post(`http://localhost:5000/movie/reviewinfo/${reviewId}`);
+    const { reviewId, userInfo } = this.props;
+    axios.post(`http://54.180.63.153:5000/movie/reviewinfo/${reviewId}`),
+      {
+        userId: userInfo.id,
+      };
   };
 
   render() {
-    const { reviewId, title } = this.props;
+    const { reviewId, movieId, title } = this.props;
     return (
       <div>
-        <Link to={`/movie/movieId/review/reviewId`}>{`${title}`}</Link>
+        <Link to={`/movie/${movieId}/review/${reviewId}`}>{`${title}`}</Link>
         <button onClick={this.likeClick}>좋아요</button>
       </div>
     );
@@ -26,6 +29,8 @@ class MovieReviewListEntry extends React.Component {
 MovieReviewListEntry.propTypes = {
   reviewId: PropTypes.number,
   title: PropTypes.string,
+  userInfo: PropTypes.object,
+  movieId: PropTypes.number,
 };
 
 export default withRouter(MovieReviewListEntry);
