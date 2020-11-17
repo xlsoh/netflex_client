@@ -3,7 +3,7 @@ import { Link, Route, withRouter } from "react-router-dom";
 import axios from "axios";
 import PropTypes from "prop-types";
 
-axios.defaults.withCredentials = true;
+axios.defaults.withCredentials = false;
 
 class SignIn extends React.Component {
   constructor(props) {

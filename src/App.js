@@ -17,6 +17,7 @@ import Nav from "./components/Nav";
 import axios from "axios";
 import PropTypes from "prop-types";
 
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -69,6 +70,7 @@ class App extends React.Component {
           isLogin={isLogin}
           handleIsLogoutChange={this.handleIsLogoutChange.bind(this)}
         />
+        <MovieList/>
         <Switch>
           <Route
             path="/user/signin"
@@ -138,6 +140,7 @@ class App extends React.Component {
               return <Redirect to="/user/signin" />;
             }}
           />
+         
         </Switch>
       </div>
     );
