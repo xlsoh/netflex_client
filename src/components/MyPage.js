@@ -1,8 +1,8 @@
-import React from 'react';
-import { withRouter, Link } from 'react-router-dom';
-import MyReviewList from './MyReviewList';
-import axios from 'axios';
-import PropTypes from 'prop-types';
+import React from "react";
+import { withRouter, Link } from "react-router-dom";
+import MyReviewList from "./MyReviewList";
+import axios from "axios";
+import PropTypes from "prop-types";
 
 class MyPage extends React.Component {
   constructor(props) {
@@ -15,16 +15,16 @@ class MyPage extends React.Component {
   componentDidMount() {
     const { userInfo } = this.props;
     axios
-      .get(`http://localhost:5000/movie/reviews/${userInfo.userId}`)
+      .get(`http://54.180.63.153:5000/movie/reviews/${userInfo.id}`)
       .then((res) => this.setState({ myReview: res.results }));
-  };
+  }
 
   render() {
     const { myReview } = this.state;
-    const { isLogin, userInfo, hadleReviewChange } = this.props;
+    const { isLogin, userInfo, movie, hadleReviewChange } = this.props;
     if (isLogin) {
       return (
-        <div className='myInfoZone'>
+        <div className="myInfoZone">
           <div>
             <h1>내 정보</h1>
             <div>
@@ -38,11 +38,12 @@ class MyPage extends React.Component {
               <span>{`${userInfo.nickName}`}</span>
             </div>
           </div>
-          <hr color='black' size='10px'></hr>
-          <div className='myReviewZone'>
+          <hr color="black" size="10px"></hr>
+          <div className="myReviewZone">
             <h2>내가 쓴 리뷰</h2>
             <MyReviewList
               myReview={myReview}
+              movie={movie}
               hadleReviewChange={hadleReviewChange}
             />
           </div>
@@ -62,6 +63,7 @@ MyPage.propTypes = {
   history: PropTypes.object,
   userInfo: PropTypes.object,
   isLogin: PropTypes.bool,
+  movie: PropTypes.object,
   hadleReviewChange: PropTypes.func,
 };
 export default withRouter(MyPage);

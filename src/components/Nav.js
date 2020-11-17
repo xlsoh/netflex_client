@@ -9,7 +9,7 @@ class Nav extends React.Component {
   }
 
   render() {
-    const { isLogin, handleIsLogoutChange } = this.props;
+    const { isLogin, review, movie, handleIsLogoutChange } = this.props;
     if (!isLogin) {
       return (
         <Switch>
@@ -135,7 +135,7 @@ class Nav extends React.Component {
           />
           <Route
             exact
-            path={`/movie/movieId`}
+            path={`/movie/${movie.movieId}`}
             render={() => {
               return (
                 <div>
@@ -173,7 +173,7 @@ class Nav extends React.Component {
           />
           <Route
             exact
-            path={`/movie/movieId/review/reviewId`}
+            path={`/movie/${movie.movieId}/review/${review.reviewId}`}
             render={() => {
               return (
                 <div>
@@ -211,7 +211,7 @@ class Nav extends React.Component {
           />
           <Route
             exact
-            path={`/movie/movieId/writeReview`}
+            path={`/movie/${movie.movieId}/writeReview`}
             render={() => {
               return (
                 <div>
@@ -257,6 +257,8 @@ class Nav extends React.Component {
 Nav.propTypes = {
   history: PropTypes.object,
   isLogin: PropTypes.bool,
+  review: PropTypes.object,
+  movie: PropTypes.object,
   handleIsLogoutChange: PropTypes.func,
 };
 export default withRouter(Nav);

@@ -18,26 +18,24 @@ class App extends React.Component {
       userInfo: {},
       review: {},
       movie: {},
-      accessToken: '',
+      accessToken: "",
     };
   }
 
-
   handleIsLoginChange = (res, accessToken) => {
-    // 인증을 성공했을때 사용자 정보 호출, 성공하면 로그인 상태를 바꿉니다.
     this.setState({ isLogin: true, userInfo: res, accessToken });
   };
 
   handleIsLogoutChange = () => {
     axios
-      .post(`http://localhost:5000/user/signout`, {
+      .post(`http://54.180.63.153:5000/user/signout`, {
         accessToken: this.state.accessToken,
       })
       .then((res) => {
-        this.setState({ isLogin: false, userInfo: {}, accessToken: '' }, () => {
+        this.setState({ isLogin: false, userInfo: {}, accessToken: "" }, () => {
           console.log(this.state);
         });
-        this.props.history.push('/');
+        this.props.history.push(`/`);
       })
       .catch((err) => console.log(err));
   };
@@ -45,12 +43,12 @@ class App extends React.Component {
   handleWriteReview = (data) => {
     this.setState({ movie: data });
     this.setState({ review: {} });
-    this.props.history.push(`/movie/movieId/writeReview`);
+    this.props.history.push(`/movie/${data.movieId}/writeReview`);
   };
 
   hadleReviewChange = (reviewId) => {
     axios
-      .get(`http://localhost:5000/movie/reviewinfo/${reviewId}`)
+      .get(`http://54.180.63.153:5000/movie/reviewinfo/${reviewId}`)
       .then((res) => {
         this.setState({ review: res });
       })
@@ -71,6 +69,8 @@ class App extends React.Component {
       <div>
         <Nav
           isLogin={isLogin}
+          review={review}
+          movie={movie}
           handleIsLogoutChange={this.handleIsLogoutChange.bind(this)}
         />
         <Switch>
@@ -96,6 +96,7 @@ class App extends React.Component {
               <MyPage
                 isLogin={isLogin}
                 userInfo={userInfo}
+                movie={movie}
                 hadleReviewChange={this.hadleReviewChange.bind(this)}
               />
             )}
@@ -113,14 +114,14 @@ class App extends React.Component {
           />
           <Route
             exact
-            path={`/movie/movieId/review/reviewId`}
+            path={`/movie/${movie.movieId}/review/${review.reviewId}`}
             render={() => (
               <Review isLogin={isLogin} userInfo={userInfo} review={review} />
             )}
           />
           <Route
             exact
-            path={`/movie/movieId/writeReview`}
+            path={`/movie/${movie.movieId}/writeReview`}
             render={() => (
               <WriteReview
                 isLogin={isLogin}

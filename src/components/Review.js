@@ -52,7 +52,7 @@ class Review extends React.Component {
                   e.preventDefault();
                   axios
                     .post(
-                      `http://localhost:5000/movie/reviewinfo/${review.reviewId}`,
+                      `http://54.180.63.153:5000/movie/reviewinfo/${review.reviewId}`,
                       {
                         userId: userInfo.id,
                       }

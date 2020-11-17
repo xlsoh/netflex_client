@@ -28,7 +28,7 @@ class WriteReview extends React.Component {
               onSubmit={(e) => {
                 e.preventDefault();
                 return axios
-                  .post(`http://localhost:5000/movie/writereview`, {
+                  .post(`http://54.180.63.153:5000/movie/writereview`, {
                     title: title,
                     text: text,
                     userId: userInfo.id,
@@ -37,7 +37,9 @@ class WriteReview extends React.Component {
                   })
                   .then((res) => {
                     hadleReviewChange(res.reviewId);
-                    this.props.history.push(`/movie/movieId/review/reviewId`);
+                    this.props.history.push(
+                      `/movie/${movie.movieId}/review/${res.reviewId}`
+                    );
                   })
                   .catch((err) => {
                     alert("Failed to submit your review");
@@ -102,7 +104,7 @@ class WriteReview extends React.Component {
               onSubmit={(e) => {
                 e.preventDefault();
                 return axios
-                  .post(`http://localhost:5000/movie/writereview`, {
+                  .post(`http://54.180.63.153:5000/movie/writereview`, {
                     id: review.reviewId,
                     title: title,
                     text: text,
@@ -112,7 +114,9 @@ class WriteReview extends React.Component {
                   })
                   .then((res) => {
                     hadleReviewChange(res.reviewId);
-                    this.props.history.push(`/movie/movieId/review/reviewId`);
+                    this.props.history.push(
+                      `/movie/${movie.movieId}/review/${res.reviewId}`
+                    );
                   })
                   .catch((err) => {
                     alert("WriteReview failed");

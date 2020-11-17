@@ -1,13 +1,11 @@
-import React from 'react';
-import { GoogleLogin } from 'react-google-login';
-import { withRouter } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import axios from 'axios';
-
-axios.defaults.withCredentials = true;
+import React from "react";
+import { GoogleLogin } from "react-google-login";
+import { withRouter } from "react-router-dom";
+import PropTypes from "prop-types";
+import axios from "axios";
 
 const CLIENT_ID =
-  '248265094060-p88m5kivgu0vkevoss3aihhbidegqp2q.apps.googleusercontent.com';
+  "248265094060-p88m5kivgu0vkevoss3aihhbidegqp2q.apps.googleusercontent.com";
 
 class GoogleBtn extends React.Component {
   constructor(props) {
@@ -22,14 +20,14 @@ class GoogleBtn extends React.Component {
     console.log(email, name);
     if (response) {
       return axios
-        .post(`http://localhost:5000/user/signup`, {
+        .post(`http://54.180.63.153:5000/user/signup`, {
           email,
           nickName: name,
-          password: '',
+          password: "",
         })
         .then((res) => {
           this.props.handleIsLoginChange(res.data, accessToken);
-          this.props.history.push('/movie/popular');
+          this.props.history.push(`/movie/popular`);
         })
         .catch((err) => {
           console.log(err);
@@ -38,7 +36,7 @@ class GoogleBtn extends React.Component {
   }
 
   handleLoginFailure(response) {
-    alert('Failed to log in');
+    alert("Failed to log in");
   }
 
   render() {
@@ -50,10 +48,10 @@ class GoogleBtn extends React.Component {
         ) : (
           <GoogleLogin
             clientId={CLIENT_ID}
-            buttonText='Login'
+            buttonText="Login"
             onSuccess={this.login}
             onFailure={this.handleLoginFailure}
-            cookiePolicy={'single_host_origin'}
+            cookiePolicy={"single_host_origin"}
           />
         )}
       </div>
