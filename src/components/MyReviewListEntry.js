@@ -12,22 +12,22 @@ class MyReviewListEntry extends React.Component {
   }
 
   handleTitleClick = () => {
-    const { movie, reviewId } = this.props;
+    const { review } = this.props;
     axios
-      .get(`http://54.180.63.153:5000/movie/reviewinfo/${reviewId}`)
+      .get(`http://54.180.63.153:5000/movie/reviewinfo/${review.reviewId}`)
       .then((res) => {
         this.props.history.push(
-          `/movie/${movie.movieId}/review/${res.data.reviewId}`
+          `/movie/${review.movieId}/review/${res.data.reviewId}`
         );
       })
       .catch((err) => console.log(err));
   };
 
   handleDelClick = () => {
-    const { reviewId } = this.props;
+    const { review } = this.props;
     axios
       .post(`http://54.180.63.153:5000/movie/deletereview`, {
-        reviewId: reviewId,
+        reviewId: review.reviewId,
       })
       .then(() => {
         this.props.history.push(`/user/mypage`);
@@ -35,21 +35,23 @@ class MyReviewListEntry extends React.Component {
       .catch((err) => console.log(err));
   };
   handleEditClick = () => {
-    const { reviewId, movie, hadleReviewChange } = this.props;
+    const { review, hadleReviewChange } = this.props;
     axios
-      .get(`http://54.180.63.153:5000/movie/reviewinfo/${reviewId}`)
+      .get(`http://54.180.63.153:5000/movie/reviewinfo/${review.reviewId}`)
       .then((res) => {
         hadleReviewChange(res.data.reviewId);
-        this.props.history.push(`/movie/${movie.movieId}/writeReview`);
+        this.props.history.push(`/movie/${review.movieId}/writeReview`);
       })
       .catch((err) => console.log(err));
   };
   render() {
-    const { title, movie, reviewId } = this.props;
-    console.log(title, reviewId, movie);
+    const { title, review } = this.props;
+    console.log(title, review);
     return (
       <div>
-        <Link to={`/movie/${movie.movieId}/review/${reviewId}`}>{title}</Link>
+        <Link to={`/movie/${review.movieId}/review/${review.reviewId}`}>
+          {title}
+        </Link>
         <button onClick={this.handleEditClick}>수정</button>
         <button onClick={this.handleDelClick}>삭제</button>
       </div>
@@ -58,9 +60,8 @@ class MyReviewListEntry extends React.Component {
 }
 MyReviewListEntry.propTypes = {
   history: PropTypes.object,
-  reviewId: PropTypes.number,
+  review: PropTypes.object,
   title: PropTypes.string,
-  movie: PropTypes.object,
   hadleReviewChange: PropTypes.func,
 };
 

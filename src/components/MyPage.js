@@ -21,7 +21,7 @@ class MyPage extends React.Component {
 
   render() {
     const { myReview } = this.state;
-    const { isLogin, userInfo, movie, hadleReviewChange } = this.props;
+    const { isLogin, userInfo, hadleReviewChange } = this.props;
     if (isLogin) {
       return (
         <div className="myInfoZone">
@@ -43,7 +43,6 @@ class MyPage extends React.Component {
             <h2>내가 쓴 리뷰</h2>
             <MyReviewList
               myReview={myReview}
-              movie={movie}
               hadleReviewChange={hadleReviewChange}
             />
           </div>
@@ -63,7 +62,6 @@ MyPage.propTypes = {
   history: PropTypes.object,
   userInfo: PropTypes.object,
   isLogin: PropTypes.bool,
-  movie: PropTypes.object,
   hadleReviewChange: PropTypes.func,
 };
 export default withRouter(MyPage);

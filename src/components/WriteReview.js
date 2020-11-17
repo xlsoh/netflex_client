@@ -26,7 +26,7 @@ class WriteReview extends React.Component {
       hadleNewReviewChange,
     } = this.props;
     if (isLogin) {
-      if (!review.id) {
+      if (!review.reviewId) {
         return (
           <div>
             <h1>영화 {`${movie.movieName}`} 리뷰 작성</h1>
