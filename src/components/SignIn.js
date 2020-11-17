@@ -3,8 +3,6 @@ import { Link, withRouter } from "react-router-dom";
 import axios from "axios";
 import PropTypes from "prop-types";
 
-axios.defaults.withCredentials = false;
-
 class SignIn extends React.Component {
   constructor(props) {
     super(props);
@@ -36,7 +34,7 @@ class SignIn extends React.Component {
                   })
                   .then((res) => {
                     handleIsLoginChange(res);
-                    this.props.history.push("/");
+                    this.props.history.push(`/`);
                   })
                   .catch((err) => {
                     alert("Login failed");
@@ -89,23 +87,11 @@ class SignIn extends React.Component {
                 </button>
               </div>
             </form>
-            <div>
-              <button
-                style={{
-                  width: "200px",
-                  height: "30px",
-                  margin: "5px",
-                  backgroundColor: "ivory",
-                }}
-                /* type="submit" 필요하다면 주석을제거해주세요*/
-              >
-                Sign in with Google
-              </button>
-            </div>
+            <div></div>
             <div>
               {" "}
               Netflex 회원이 아니신가요?
-              <Link to="/user/signup">지금 가입하세요.</Link>
+              <Link to={`/user/signup`}>지금 가입하세요.</Link>
             </div>
           </center>
         </div>
@@ -113,9 +99,9 @@ class SignIn extends React.Component {
     } else {
       return (
         <div>
-          <h1>{`${userInfo /*.nickName 주석을제거해주세요*/}`}님!</h1>
+          <h1>{`${userInfo.nickName}`}님!</h1>
           <h2>로그아웃 후 이용해주세요.</h2>
-          <Link to="/user/mypage">로그아웃 하시겠습니까?</Link>
+          <Link to={`/user/mypage`}>로그아웃 하시겠습니까?</Link>
         </div>
       );
     }

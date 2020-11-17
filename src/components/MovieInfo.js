@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { withRouter } from "react-router-dom";
 import MovieReviewList from "./MovieReviewList";
 import { imageBaseUrl } from "./config";

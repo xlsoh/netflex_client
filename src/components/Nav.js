@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  Link,
-  Switch,
-  Route,
-  useHistory,
-  Redirect,
-  withRouter,
-} from "react-router-dom";
+import { Link, Switch, Route, withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 
 class Nav extends React.Component {
@@ -25,7 +18,7 @@ class Nav extends React.Component {
             render={() => {
               return (
                 <div>
-                  <Link to="/user/signin">
+                  <Link to={`/user/signin`}>
                     <button
                       style={{
                         width: "150px",
@@ -48,7 +41,7 @@ class Nav extends React.Component {
             render={() => {
               return (
                 <div>
-                  <Link to="/user/signin">
+                  <Link to={`/user/signin`}>
                     <button
                       style={{
                         width: "150px",
@@ -71,7 +64,7 @@ class Nav extends React.Component {
             render={() => {
               return (
                 <div>
-                  <Link to="/movie/popular">
+                  <Link to={`/movie/popular`}>
                     <button
                       style={{
                         width: "150px",
@@ -85,21 +78,19 @@ class Nav extends React.Component {
                       Netflex
                     </button>
                   </Link>
-                  <Link to="/user/signout" /*서버와 연결시 Link 제거해주세요*/>
-                    <button
-                      style={{
-                        width: "150px",
-                        height: "50px",
-                        margin: "5px",
-                        borderRadius: "5px",
-                        backgroundColor: "ivory",
-                      }}
-                      type="submit"
-                      onClick={handleIsLogoutChange}
-                    >
-                      로그아웃
-                    </button>
-                  </Link>
+                  <button
+                    style={{
+                      width: "150px",
+                      height: "50px",
+                      margin: "5px",
+                      borderRadius: "5px",
+                      backgroundColor: "ivory",
+                    }}
+                    type="submit"
+                    onClick={handleIsLogoutChange}
+                  >
+                    로그아웃
+                  </button>
                 </div>
               );
             }}
@@ -110,7 +101,7 @@ class Nav extends React.Component {
             render={() => {
               return (
                 <div>
-                  <Link to="/movie/popular">
+                  <Link to={`/movie/popular`}>
                     <button
                       style={{
                         width: "150px",
@@ -124,7 +115,7 @@ class Nav extends React.Component {
                       Netflex
                     </button>
                   </Link>
-                  <Link to="/user/mypage">
+                  <Link to={`/user/mypage`}>
                     <button
                       style={{
                         width: "150px",
@@ -148,7 +139,7 @@ class Nav extends React.Component {
             render={() => {
               return (
                 <div>
-                  <Link to="/movie/popular">
+                  <Link to={`/movie/popular`}>
                     <button
                       style={{
                         width: "150px",
@@ -162,7 +153,7 @@ class Nav extends React.Component {
                       Netflex
                     </button>
                   </Link>
-                  <Link to="/user/mypage">
+                  <Link to={`/user/mypage`}>
                     <button
                       style={{
                         width: "150px",
@@ -186,7 +177,7 @@ class Nav extends React.Component {
             render={() => {
               return (
                 <div>
-                  <Link to="/movie/popular">
+                  <Link to={`/movie/popular`}>
                     <button
                       style={{
                         width: "150px",
@@ -200,7 +191,7 @@ class Nav extends React.Component {
                       Netflex
                     </button>
                   </Link>
-                  <Link to="/user/mypage">
+                  <Link to={`/user/mypage`}>
                     <button
                       style={{
                         width: "150px",
@@ -224,7 +215,7 @@ class Nav extends React.Component {
             render={() => {
               return (
                 <div>
-                  <Link to="/movie/popular">
+                  <Link to={`/movie/popular`}>
                     <button
                       style={{
                         width: "150px",
@@ -238,7 +229,7 @@ class Nav extends React.Component {
                       Netflex
                     </button>
                   </Link>
-                  <Link to="/user/mypage">
+                  <Link to={`/user/mypage`}>
                     <button
                       style={{
                         width: "150px",

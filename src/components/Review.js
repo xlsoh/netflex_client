@@ -3,8 +3,6 @@ import { Link, withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import axios from "axios";
 
-axios.defaults.withCredentials = false;
-
 class Review extends React.Component {
   constructor(props) {
     super(props);
@@ -53,9 +51,12 @@ class Review extends React.Component {
                 onSubmit={(e) => {
                   e.preventDefault();
                   axios
-                    .post(`http://localhost:5000/movie/reviewinfo/reviewId`, {
-                      userId: userInfo.id,
-                    })
+                    .post(
+                      `http://localhost:5000/movie/reviewinfo/${review.reviewId}`,
+                      {
+                        userId: userInfo.id,
+                      }
+                    )
                     .catch((err) => console.log(err));
                 }}
               >
@@ -84,7 +85,7 @@ class Review extends React.Component {
       return (
         <div>
           <h2>로그인 후 이용해주세요.</h2>
-          <Link to="/user/signin">로그인 하시겠습니까?</Link>
+          <Link to={`/user/signin`}>로그인 하시겠습니까?</Link>
         </div>
       );
     }

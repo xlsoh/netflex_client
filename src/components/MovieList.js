@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { withRouter } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import MovieListEntry from "./MovieListEntry";
 import { apiUrl, apiKey, imageBaseUrl } from "./config";
 import axios from "axios";
@@ -7,7 +7,7 @@ import Grid from "@material-ui/core/Grid";
 import PropTypes from "prop-types";
 import MovieInfo from "./MovieInfo";
 
-function MovieList(props) {
+function MovieList({ isLogin, handleWriteReview }) {
   const [Movies, setMovies] = useState();
   const [ModalData, setModalData] = useState({});
   const [modal, setModal] = useState(false);
@@ -20,7 +20,6 @@ function MovieList(props) {
     setModal(false);
   };
 
-  const { handleWriteReview } = props;
   const modalCont = (
     <MovieInfo
       movieId={ModalData.id}
@@ -45,40 +44,41 @@ function MovieList(props) {
 
   // console.log(Movies);
 
-  return (
-    <>
-      <Grid container spacing={0}>
-        <div className="movie">
-          {modalCont}
-          {Movies &&
-            Movies.map((movie, index) => (
-              <React.Fragment key={index}>
-                <div onClick={() => showModal(movie)}>
-                  <MovieListEntry
-                    image={
-                      movie.poster_path
-                        ? `${imageBaseUrl}w500${movie.poster_path}`
-                        : null
-                    }
-                    movieId={movie.id}
-                    movieName={movie.original_title}
-                  />
-                </div>
-                {/* <MovieInfo containerName={"modalContainer" + (modal? "show":"hide")}
-       movieName={movie.original_title}
-       overview={movie.overview}
-       show={modal}
-       img={movie.poster_path} 
-       onClick={()=>closeModal()}
-       /> */}
-              </React.Fragment>
-            ))}
-        </div>
-      </Grid>
-    </>
-  );
+  if (isLogin) {
+    return (
+      <>
+        <Grid container spacing={0}>
+          <div className="movie">
+            {modalCont}
+            {Movies &&
+              Movies.map((movie, index) => (
+                <React.Fragment key={index}>
+                  <div onClick={() => showModal(movie)}>
+                    <MovieListEntry
+                      image={
+                        movie.poster_path
+                          ? `${imageBaseUrl}w500${movie.poster_path}`
+                          : null
+                      }
+                      movieId={movie.id}
+                      movieName={movie.original_title}
+                    />
+                  </div>
+                </React.Fragment>
+              ))}
+          </div>
+        </Grid>
+      </>
+    );
+  } else {
+    <div>
+      <h2>로그인 후 이용해주세요.</h2>
+      <Link to="/user/signin">로그인 하시겠습니까?</Link>
+    </div>;
+  }
 }
 MovieList.propTypes = {
+  isLogin: PropTypes.bool,
   handleWriteReview: PropTypes.func,
 };
 export default withRouter(MovieList);
