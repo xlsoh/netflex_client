@@ -1,14 +1,15 @@
-import React from "react";
-import { Link, withRouter } from "react-router-dom";
-import axios from "axios";
-import PropTypes from "prop-types";
+import React from 'react';
+import { Link,withRouter } from 'react-router-dom';
+import axios from 'axios';
+import PropTypes from 'prop-types';
+import GoogleBtn from './GoogleBtn';
 
 class SignIn extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: "",
-      password: "",
+      email: '',
+      password: '',
     };
     this.handleInputValue = this.handleInputValue.bind(this);
   }
@@ -33,63 +34,68 @@ class SignIn extends React.Component {
                     password: password,
                   })
                   .then((res) => {
-                    handleIsLoginChange(res);
+                    handleIsLoginChange(res.data);
                     this.props.history.push(`/`);
                   })
                   .catch((err) => {
-                    alert("Login failed");
+                    alert('Login failed');
                     console.log(err);
                   });
               }}
             >
               <div>
-                {" "}
+                {' '}
                 이메일
                 <input
                   style={{
-                    width: "500px",
-                    height: "50px",
-                    margin: "10px",
-                    borderRadius: "5px",
+                    width: '500px',
+                    height: '50px',
+                    margin: '10px',
+                    borderRadius: '5px',
                   }}
-                  type="email"
-                  placeholder="이메일 주소"
-                  onChange={this.handleInputValue("email")}
+                  type='email'
+                  placeholder='이메일 주소'
+                  onChange={this.handleInputValue('email')}
                 ></input>
               </div>
               <div>
-                {" "}
+                {' '}
                 비밀번호
                 <input
                   style={{
-                    width: "500px",
-                    height: "50px",
-                    margin: "10px",
-                    borderRadius: "5px",
+                    width: '500px',
+                    height: '50px',
+                    margin: '10px',
+                    borderRadius: '5px',
                   }}
-                  type="password"
-                  placeholder="비밀번호"
-                  onChange={this.handleInputValue("password")}
+                  type='password'
+                  placeholder='비밀번호'
+                  onChange={this.handleInputValue('password')}
                 ></input>
               </div>
               <div>
                 <button
                   style={{
-                    width: "300px",
-                    height: "50px",
-                    margin: "10px",
-                    borderRadius: "5px",
-                    backgroundColor: "gray",
+                    width: '300px',
+                    height: '50px',
+                    margin: '10px',
+                    borderRadius: '5px',
+                    backgroundColor: 'gray',
                   }}
-                  type="submit"
+                  type='submit'
                 >
                   로그인
                 </button>
               </div>
             </form>
-            <div></div>
             <div>
-              {" "}
+              <GoogleBtn
+                isLogin={isLogin}
+                handleIsLoginChange={handleIsLoginChange}
+              />
+            </div>
+            <div>
+              {' '}
               Netflex 회원이 아니신가요?
               <Link to={`/user/signup`}>지금 가입하세요.</Link>
             </div>
@@ -112,5 +118,6 @@ SignIn.propTypes = {
   history: PropTypes.object,
   userInfo: PropTypes.object,
   isLogin: PropTypes.bool,
+  accessToken: PropTypes.string,
 };
 export default withRouter(SignIn);

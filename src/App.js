@@ -18,19 +18,26 @@ class App extends React.Component {
       userInfo: {},
       review: {},
       movie: {},
+      accessToken: '',
     };
   }
 
-  handleIsLoginChange = (res) => {
-    this.setState({ isLogin: true, userInfo: res });
+
+  handleIsLoginChange = (res, accessToken) => {
+    // 인증을 성공했을때 사용자 정보 호출, 성공하면 로그인 상태를 바꿉니다.
+    this.setState({ isLogin: true, userInfo: res, accessToken });
   };
 
   handleIsLogoutChange = () => {
     axios
-      .post(`http://localhost:5000/user/signout`)
+      .post(`http://localhost:5000/user/signout`, {
+        accessToken: this.state.accessToken,
+      })
       .then((res) => {
-        this.setState({ isLogin: false, userInfo: {} });
-        this.props.history.push(`/`);
+        this.setState({ isLogin: false, userInfo: {}, accessToken: '' }, () => {
+          console.log(this.state);
+        });
+        this.props.history.push('/');
       })
       .catch((err) => console.log(err));
   };

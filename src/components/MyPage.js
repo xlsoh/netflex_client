@@ -1,8 +1,8 @@
-import React from "react";
-import { withRouter, Link } from "react-router-dom";
-import MyReviewList from "./MyReviewList";
-import axios from "axios";
-import PropTypes from "prop-types";
+import React from 'react';
+import { withRouter, Link } from 'react-router-dom';
+import MyReviewList from './MyReviewList';
+import axios from 'axios';
+import PropTypes from 'prop-types';
 
 class MyPage extends React.Component {
   constructor(props) {
@@ -10,9 +10,9 @@ class MyPage extends React.Component {
     this.state = {
       myReview: [],
     };
-    this.handleReviewData = this.handleReviewData.bind(this);
   }
-  handleReviewData = () => {
+
+  componentDidMount() {
     const { userInfo } = this.props;
     axios
       .get(`http://localhost:5000/movie/reviews/${userInfo.userId}`)
@@ -20,12 +20,11 @@ class MyPage extends React.Component {
   };
 
   render() {
-    this.handleReviewData();
     const { myReview } = this.state;
     const { isLogin, userInfo, hadleReviewChange } = this.props;
     if (isLogin) {
       return (
-        <div className="myInfoZone">
+        <div className='myInfoZone'>
           <div>
             <h1>내 정보</h1>
             <div>
@@ -39,8 +38,8 @@ class MyPage extends React.Component {
               <span>{`${userInfo.nickName}`}</span>
             </div>
           </div>
-          <hr color="black" size="10px"></hr>
-          <div className="myReviewZone">
+          <hr color='black' size='10px'></hr>
+          <div className='myReviewZone'>
             <h2>내가 쓴 리뷰</h2>
             <MyReviewList
               myReview={myReview}
