@@ -1,9 +1,7 @@
 import React from "react";
-import { Switch, Link, Route, withRouter } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import axios from "axios";
 import PropTypes from "prop-types";
-
-axios.defaults.withCredentials = true;
 
 class WriteReview extends React.Component {
   constructor(props) {
@@ -17,26 +15,12 @@ class WriteReview extends React.Component {
   handleInputValue = (key) => (e) => {
     this.setState({ [key]: e.target.value });
   };
-  handlePreviewReviewTitle = () => {
-    const { review } = this.props;
-    document.getElementById("title").value = `${review.title}`;
-  };
-  handlePreviewReviewText = () => {
-    const { review } = this.props;
-    document.getElementById("text").value = `${review.text}`;
-  };
 
   render() {
     const { title, text } = this.state;
-    const {
-      isLogin,
-      userinfo,
-      review,
-      movie,
-      hadleReviewChangeByNew,
-    } = this.props;
+    const { isLogin, userInfo, review, movie, hadleReviewChange } = this.props;
     if (isLogin) {
-      if (!review) {
+      if (!review.id) {
         return (
           <div>
             <h1>영화 {`${movie.movieName}`} 리뷰 작성</h1>
@@ -47,12 +31,12 @@ class WriteReview extends React.Component {
                   .post(`http://localhost:5000/movie/writereview`, {
                     title: title,
                     text: text,
-                    userId: userinfo.userId,
+                    userId: userInfo.id,
                     movieId: movie.movieId,
                     movieName: movie.movieName,
                   })
                   .then((res) => {
-                    hadleReviewChangeByNew(res.id);
+                    hadleReviewChange(res.reviewId);
                     this.props.history.push(`/movie/movieId/review/reviewId`);
                   })
                   .catch((err) => {
@@ -64,7 +48,7 @@ class WriteReview extends React.Component {
               <div>
                 {" "}
                 <span>작성자</span>
-                <span>{`${userinfo /*.nickName 주석을제거해주세요*/}`}</span>
+                <span>{`${userInfo.nickName}`}</span>
               </div>
               <div>
                 {" "}
@@ -118,16 +102,16 @@ class WriteReview extends React.Component {
               onSubmit={(e) => {
                 e.preventDefault();
                 return axios
-                  .post(`http://localhost:5000/movie/write_review`, {
-                    id: review.id,
+                  .post(`http://localhost:5000/movie/writereview`, {
+                    id: review.reviewId,
                     title: title,
                     text: text,
-                    userId: userinfo.userId,
+                    userId: userInfo.id,
                     movieId: movie.movieId,
                     movieName: movie.movieName,
                   })
-                  .then(() => {
-                    hadleReviewChangeByNew(review.id);
+                  .then((res) => {
+                    hadleReviewChange(res.reviewId);
                     this.props.history.push(`/movie/movieId/review/reviewId`);
                   })
                   .catch((err) => {
@@ -139,7 +123,7 @@ class WriteReview extends React.Component {
               <div>
                 {" "}
                 <span>작성자</span>
-                <span>{`${userinfo /*.nickName 주석을제거해주세요*/}`}</span>
+                <span>{`${userInfo.nickName}`}</span>
               </div>
               <div>
                 {" "}
@@ -153,6 +137,7 @@ class WriteReview extends React.Component {
                     borderRadius: "5px",
                   }}
                   type="title"
+                  value={`${review.title}`}
                   onChange={this.handleInputValue("title")}
                 ></input>
               </div>
@@ -168,6 +153,7 @@ class WriteReview extends React.Component {
                     borderRadius: "5px",
                   }}
                   type="text"
+                  value={`${review.text}`}
                   onChange={this.handleInputValue("text")}
                 ></textarea>
               </div>
@@ -190,7 +176,7 @@ class WriteReview extends React.Component {
       return (
         <div>
           <h2>로그인 후 이용해주세요.</h2>
-          <Link to="/user/signin">로그인 하시겠습니까?</Link>
+          <Link to={`/user/signin`}>로그인 하시겠습니까?</Link>
         </div>
       );
     }
@@ -199,9 +185,9 @@ class WriteReview extends React.Component {
 WriteReview.propTypes = {
   history: PropTypes.object,
   isLogin: PropTypes.bool,
-  userinfo: PropTypes.object,
+  userInfo: PropTypes.object,
   review: PropTypes.object,
   movie: PropTypes.object,
-  hadleReviewChangeByNew: PropTypes.func,
+  hadleReviewChange: PropTypes.func,
 };
 export default withRouter(WriteReview);

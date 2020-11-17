@@ -1,5 +1,5 @@
 import React from "react";
-import { withRouter, Link } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import MyReviewListEntry from "./MyReviewListEntry";
 import PropTypes from "prop-types";
 
@@ -10,8 +10,6 @@ class MyReviewList extends React.Component {
   }
 
   render() {
-    //myReview는 mypage에서 GET("/mypage/reviews")로 서버에서 받은 내가 쓴 리뷰리스트
-    //myReview:[{reviewId: 1, title:""},{reviewId: 2, title:""}]
     const { myReview, hadleReviewChange } = this.props;
     return (
       <div>

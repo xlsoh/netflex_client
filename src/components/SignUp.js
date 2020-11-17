@@ -1,5 +1,5 @@
 import React from "react";
-import { withRouter, Link, useHistory } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import axios from "axios";
 import PropTypes from "prop-types";
 
@@ -33,8 +33,8 @@ class SignUp extends React.Component {
                     password: password,
                     nickname: nickname,
                   })
-                  .then((res) => {
-                    this.props.history.push("/");
+                  .then(() => {
+                    this.props.history.push(`/`);
                   })
                   .catch((err) => console.log(err));
               }}
@@ -83,7 +83,7 @@ class SignUp extends React.Component {
                 ></input>
               </div>
               <div>
-                <Link to="/login">이미 아이디가 있으신가요?</Link>
+                <Link to={`/`}>이미 아이디가 있으신가요?</Link>
               </div>
               <button
                 style={{
@@ -104,9 +104,9 @@ class SignUp extends React.Component {
     } else {
       return (
         <div>
-          <h1>{`${userInfo /*.nickName 주석을제거해주세요*/}`}님!</h1>
+          <h1>{`${userInfo.nickName}`}님!</h1>
           <h2>로그아웃 후 이용해주세요.</h2>
-          <Link to="/user/mypage">로그아웃 하시겠습니까?</Link>
+          <Link to={`/user/mypage`}>로그아웃 하시겠습니까?</Link>
         </div>
       );
     }

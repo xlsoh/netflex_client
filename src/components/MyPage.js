@@ -9,31 +9,17 @@ class MyPage extends React.Component {
     super(props);
     this.state = {
       myReview: [],
-      // myReview:[{reviewId: 1, title:""},{reviewId: 2, title:""}] 배열이다!
     };
   }
 
   componentDidMount() {
     const { userInfo } = this.props;
     axios
-      .get(`http://localhost:5000/movie/reviews/${userInfo.id}`)
+      .get(`http://localhost:5000/movie/reviews/${userInfo.userId}`)
       .then((res) => this.setState({ myReview: res.results }));
-  }
-  //res 형식
-  //   {
-  //     "results": [
-  //         {
-  //             "reviewId": PK,
-  //             "title": "title"
-  //         },
-  //         {
-  //             "reviewId": PK,
-  //             "title": "title"
-  //         },
-  //     ]
-  // }
+  };
+
   render() {
-    // this.handleReviewData(); // 무한 요청
     const { myReview } = this.state;
     const { isLogin, userInfo, hadleReviewChange } = this.props;
     if (isLogin) {
@@ -42,13 +28,13 @@ class MyPage extends React.Component {
           <div>
             <h1>내 정보</h1>
             <div>
-              {' '}
-              <span>Email </span>
+              {" "}
+              <span>Email</span>
               <span>{`${userInfo.email}`}</span>
             </div>
             <div>
-              {' '}
-              <span>닉네임 </span>
+              {" "}
+              <span>닉네임</span>
               <span>{`${userInfo.nickName}`}</span>
             </div>
           </div>
@@ -66,7 +52,7 @@ class MyPage extends React.Component {
       return (
         <div>
           <h1>로그인이 되지 않았습니다</h1>
-          <Link to='/user/signin'>로그인 하시겠습니까?</Link>
+          <Link to={`/user/signin`}>로그인 하시겠습니까?</Link>
         </div>
       );
     }

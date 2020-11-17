@@ -1,10 +1,8 @@
 import React from 'react';
-import { Link, Route, withRouter } from 'react-router-dom';
+import { Link,withRouter } from 'react-router-dom';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import GoogleBtn from './GoogleBtn';
-
-axios.defaults.withCredentials = true;
 
 class SignIn extends React.Component {
   constructor(props) {
@@ -37,7 +35,7 @@ class SignIn extends React.Component {
                   })
                   .then((res) => {
                     handleIsLoginChange(res.data);
-                    this.props.history.push('/');
+                    this.props.history.push(`/`);
                   })
                   .catch((err) => {
                     alert('Login failed');
@@ -99,7 +97,7 @@ class SignIn extends React.Component {
             <div>
               {' '}
               Netflex 회원이 아니신가요?
-              <Link to='/user/signup'>지금 가입하세요.</Link>
+              <Link to={`/user/signup`}>지금 가입하세요.</Link>
             </div>
           </center>
         </div>
@@ -109,7 +107,7 @@ class SignIn extends React.Component {
         <div>
           <h1>{`${userInfo.nickName}`}님!</h1>
           <h2>로그아웃 후 이용해주세요.</h2>
-          <Link to='/user/mypage'>로그아웃 하시겠습니까?</Link>
+          <Link to={`/user/mypage`}>로그아웃 하시겠습니까?</Link>
         </div>
       );
     }
