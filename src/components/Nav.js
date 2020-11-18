@@ -131,6 +131,7 @@ class Nav extends React.Component {
             render={() => {
               return (
                 <div>
+                  <img src="https://ifh.cc/g/lkvEpk.jpg"></img>
                   <Link to={`/movie/popular`}>
                     <button
                       style={{
@@ -169,6 +170,7 @@ class Nav extends React.Component {
             render={() => {
               return (
                 <div>
+                  <img src="https://ifh.cc/g/lkvEpk.jpg"></img>
                   <Link to={`/movie/popular`}>
                     <button
                       style={{

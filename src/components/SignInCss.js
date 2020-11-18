@@ -1,8 +1,7 @@
+import { createGlobalStyle } from "styled-components";
+import styled from "styled-components";
 
-import {createGlobalStyle} from 'styled-components';
-import styled from 'styled-components'
-
-import reset from 'styled-reset'; // css reset
+import reset from "styled-reset";
 
 const GlobalStyle = createGlobalStyle`
     ${reset};
@@ -25,38 +24,34 @@ const GlobalStyle = createGlobalStyle`
         background: url(https://ifh.cc/g/lTFnf7.jpg);
         background-size:cover;
     }
-`
+`;
 const Wrapper = styled.section`
   padding: 4em;
-  background: black; 
+  background: black;
   border-radius: 40px;
   opacity: 0.8;
-
-`
+`;
 const Input = styled.input`
   padding: 0.5em;
   margin: 0.5em;
   background: white;
   border: none;
   border-radius: 3px;
-  width:400px ;
-  height:50px ;
-  opacity: 1; 
+  width: 400px;
+  height: 50px;
+  opacity: 1;
 `;
 const Button = styled.button`
-padding: 0.5em;
-margin: 0.5em;
-background: gray;
-border: none;
-border-radius: 3px;
-width:150px ;
-height:40px ;
-opacity: 1; 
-font-weight: bold;
-font-size: 15px
+  padding: 0.5em;
+  margin: 0.5em;
+  background: gray;
+  border: none;
+  border-radius: 3px;
+  width: 150px;
+  height: 40px;
+  opacity: 1;
+  font-weight: bold;
+  font-size: 15px;
+`;
 
-`
-
-
-
-export { GlobalStyle, Wrapper, Input, Button}
+export { GlobalStyle, Wrapper, Input, Button };
