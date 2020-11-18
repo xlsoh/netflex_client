@@ -20,7 +20,6 @@ class MovieReviewListEntry extends React.Component {
   };
   likeClick = () => {
     const { reviewId, userInfo } = this.props;
-    console.log(typeof userInfo.id);
     axios.post(`http://54.180.63.153:5000/movie/reviewinfo/${reviewId}`, {
       userId: userInfo.id,
     });
@@ -28,13 +27,13 @@ class MovieReviewListEntry extends React.Component {
 
   render() {
     const { title } = this.props;
-    
-    return (
-     <div>
-       {<a onClick={this.hadleTitleClick}>{title}</a>}
-       <button onClick={this.likeClick}>좋아요</button>
 
-    </div>
+    return (
+      <div>
+        {<a onClick={this.handleTitleClick}>{title}</a>}
+        <button onClick={this.likeClick}>좋아요</button>
+      </div>
+
     );
   }
 }
@@ -44,7 +43,9 @@ MovieReviewListEntry.propTypes = {
   title: PropTypes.string,
   userInfo: PropTypes.object,
   movieId: PropTypes.number,
-  hadleReviewChangeByTitle: PropTypes.func
+
+  hadleReviewChangeByTitle: PropTypes.func,
+
 };
 
 export default withRouter(MovieReviewListEntry);
