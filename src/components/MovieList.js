@@ -7,7 +7,12 @@ import Grid from "@material-ui/core/Grid";
 import PropTypes from "prop-types";
 import MovieInfo from "./MovieInfo";
 
-function MovieList({ isLogin, userInfo, handleWriteReview, hadleReviewChangeByTitle}) {
+function MovieList({
+  isLogin,
+  userInfo,
+  handleWriteReview,
+  hadleReviewChangeByTitle,
+}) {
   const [Movies, setMovies] = useState();
   const [ModalData, setModalData] = useState({});
   const [modal, setModal] = useState(false);
@@ -32,8 +37,8 @@ function MovieList({ isLogin, userInfo, handleWriteReview, hadleReviewChangeByTi
       onClick={() => closeModal()}
       adult={ModalData.adult}
       handleWriteReview={handleWriteReview}
-      userInfo={userInfo}
       hadleReviewChangeByTitle={hadleReviewChangeByTitle}
+      userInfo={userInfo}
     />
   );
 

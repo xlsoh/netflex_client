@@ -2,6 +2,7 @@ import React from "react";
 import { Link, Switch, Route, withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 
+
 class Nav extends React.Component {
   constructor(props) {
     super(props);
@@ -212,16 +213,7 @@ class Nav extends React.Component {
               return (
                 <div>
                   <Link to={`/user/signin`}>
-                    <button
-                      style={{
-                        width: "150px",
-                        height: "50px",
-                        margin: "5px",
-                        borderRadius: "5px",
-                        backgroundColor: "ivory",
-                      }}
-                      type="submit"
-                    >
+                    <button>
                       Netflex
                     </button>
                   </Link>

@@ -15,8 +15,8 @@ function MovieInfo({
   onClick,
   release,
   handleWriteReview,
-  handleReviewChangeByTitle,
-  userInfo
+  hadleReviewChangeByTitle,
+  userInfo,
 }) {
   const movie = { movieId: movieId, movieName: movieName };
   return show ? (
@@ -31,7 +31,11 @@ function MovieInfo({
           <p>{overview}</p>
         </div>
       </div>
-      <MovieReviewList movieId={movieId} userInfo={userInfo} handleReviewChangeByTitle={handleReviewChangeByTitle}/>
+      <MovieReviewList
+        movieId={movieId}
+        userInfo={userInfo}
+        hadleReviewChangeByTitle={hadleReviewChangeByTitle}
+      />
       <button onClick={() => handleWriteReview(movie)}>내 리뷰 쓰기</button>
     </div>
   ) : null;
@@ -49,6 +53,7 @@ MovieInfo.propTypes = {
   adult: PropTypes.bool,
   props: PropTypes.object,
   handleWriteReview: PropTypes.func,
+  hadleReviewChangeByTitle: PropTypes.func,
   userInfo: PropTypes.object,
   handleReviewChangeByTitle: PropTypes.func
 };
