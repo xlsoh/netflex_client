@@ -41,7 +41,9 @@ MovieReviewListEntry.propTypes = {
   title: PropTypes.string,
   userInfo: PropTypes.object,
   movieId: PropTypes.number,
+
   hadleReviewChangeByTitle: PropTypes.func,
+
 };
 
 export default withRouter(MovieReviewListEntry);
