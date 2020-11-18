@@ -2,6 +2,8 @@ import React from "react";
 import { withRouter, Link } from "react-router-dom";
 import axios from "axios";
 import PropTypes from "prop-types";
+import GlobalStyle from "./SignUpCss"
+
 
 class SignUp extends React.Component {
   constructor(props) {
@@ -21,6 +23,8 @@ class SignUp extends React.Component {
     const { isLogin, userInfo } = this.props;
     if (!isLogin) {
       return (
+        <>
+        <GlobalStyle/>
         <div>
           <center>
             <h1>회원가입</h1>
@@ -100,6 +104,7 @@ class SignUp extends React.Component {
             </form>
           </center>
         </div>
+        </>
       );
     } else {
       return (

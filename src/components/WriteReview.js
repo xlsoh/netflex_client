@@ -18,6 +18,8 @@ class WriteReview extends React.Component {
 
   render() {
     const { title, text } = this.state;
+
+
     const {
       isLogin,
       userInfo,
@@ -25,6 +27,7 @@ class WriteReview extends React.Component {
       movie,
       hadleNewReviewChange,
     } = this.props;
+
     if (isLogin) {
       if (!review.reviewId) {
         return (

@@ -10,7 +10,7 @@ class MovieReviewList extends React.Component {
     this.state = { reviews: [] };
   }
   componentDidMount() {
-    const { movieId } = this.props;
+    const { userInfo, movieId, hadleReviewChangeByTitle } = this.props;
     axios.get(`http://54.180.63.153:5000/movie/${movieId}`).then(
       (res) => this.setState({ reviews: res.data.results }),
       () => {
@@ -22,6 +22,8 @@ class MovieReviewList extends React.Component {
   render() {
     const { reviews } = this.state;
     const { userInfo, movieId, hadleReviewChangeByTitle } = this.props;
+
+
     return !reviews ? (
       <div></div>
     ) : (
@@ -46,6 +48,8 @@ class MovieReviewList extends React.Component {
 MovieReviewList.propTypes = {
   movieId: PropTypes.number,
   userInfo: PropTypes.object,
+
   hadleReviewChangeByTitle: PropTypes.func,
+
 };
 export default withRouter(MovieReviewList);

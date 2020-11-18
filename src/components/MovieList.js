@@ -7,12 +7,14 @@ import Grid from "@material-ui/core/Grid";
 import PropTypes from "prop-types";
 import MovieInfo from "./MovieInfo";
 
+
 function MovieList({
   isLogin,
   userInfo,
   handleWriteReview,
   hadleReviewChangeByTitle,
 }) {
+
   const [Movies, setMovies] = useState();
   const [ModalData, setModalData] = useState({});
   const [modal, setModal] = useState(false);
@@ -39,6 +41,7 @@ function MovieList({
       handleWriteReview={handleWriteReview}
       hadleReviewChangeByTitle={hadleReviewChangeByTitle}
       userInfo={userInfo}
+      hadleReviewChangeByTitle={hadleReviewChangeByTitle}
     />
   );
 
