@@ -27,6 +27,7 @@ class WriteReview extends React.Component {
       movie,
       hadleNewReviewChange,
     } = this.props;
+
     if (isLogin) {
       if (!review.reviewId) {
         return (
