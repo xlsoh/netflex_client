@@ -3,6 +3,7 @@ import { withRouter } from "react-router-dom";
 import MovieReviewList from "./MovieReviewList";
 import { imageBaseUrl } from "./config";
 import PropTypes from "prop-types";
+import "./MovieInfo.css";
 
 function MovieInfo({
   adult,
@@ -21,24 +22,32 @@ function MovieInfo({
   const movie = { movieId: movieId, movieName: movieName };
   return show ? (
     <div className={containerName} onClick={onClick}>
-      <div className="modal">
-        <img src={`${imageBaseUrl}w500${img}`} alt="bg" />
-        <div className="bg"></div>
-        <div className="modal-content">
-          <h1>{movieName}</h1>
-          <div>{release}</div>
-          <div>{adult ? `청소년 관람불가` : `청소년 관람가능`}</div>
-          <p>{overview}</p>
+      <div className="Column">
+        <div className="modal">
+          <div className="modal-content">
+            <div className="h1">{movieName}</div>
+            <br />
+            <div className="date">개봉일 : {release}</div>
+            <div className="adult">
+              {adult ? `청소년 관람불가` : `청소년 관람가능`}
+            </div>
+            <br />
+            <div className="overview">{overview}</div>
+            <br />
+            <div className="reviewlistTitle">REVIEW</div>
+            <MovieReviewList
+              movieId={movieId}
+              userInfo={userInfo}
+              hadleReviewChangeByTitle={hadleReviewChangeByTitle}
+            />
+            <div
+              className="reviewbtn"
+              onClick={() => handleWriteReview(movie)}
+            />
+          </div>
+          <img src={`${imageBaseUrl}w500${img}`} alt="bg" />
         </div>
       </div>
-
-      <MovieReviewList
-        movieId={movieId}
-        userInfo={userInfo}
-        hadleReviewChangeByTitle={hadleReviewChangeByTitle}
-      />
-
-      <button onClick={() => handleWriteReview(movie)}>내 리뷰 쓰기</button>
     </div>
   ) : null;
 }

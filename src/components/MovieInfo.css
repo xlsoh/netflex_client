@@ -1,0 +1,68 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap");
+
+.modal {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.h1 {
+  font-family: "Noto Sans KR";
+  font-size: 65px;
+  margin-bottom: 15px;
+}
+
+.date {
+  font-family: "Noto Sans KR";
+  font-size: 35px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.adult {
+  font-family: "Noto Sans KR";
+  color: orange;
+  font-size: 20px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.overview {
+  font-family: "Noto Sans KR";
+  font-size: 18px;
+  width: 1000px;
+}
+
+.reviewlistTitle {
+  font-family: "Noto Sans KR";
+  color: blue;
+  font-size: 25px;
+  font-weight: bolder;
+}
+
+.review {
+  font-family: "Noto Sans KR";
+  font-size: 20px;
+}
+
+.reviewContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.likebtn {
+  width: 20px;
+  height: 20px;
+  background-image: url(https://ifh.cc/g/HoQs7f.png);
+}
+
+.likebtn:active {
+  background-image: url(https://ifh.cc/g/F9ZscL.png);
+}
+
+.reviewbtn {
+  float: right;
+  width: 30px;
+  height: 30px;
+  background-image: url(https://ifh.cc/g/5JHcfE.png);
+}
