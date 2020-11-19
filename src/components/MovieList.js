@@ -3,10 +3,9 @@ import { Link, withRouter } from "react-router-dom";
 import MovieListEntry from "./MovieListEntry";
 import { apiUrl, apiKey, imageBaseUrl } from "./config";
 import axios from "axios";
-import Grid from "@material-ui/core/Grid";
 import PropTypes from "prop-types";
 import MovieInfo from "./MovieInfo";
-
+import "./MovieList.css";
 
 function MovieList({
   isLogin,
@@ -14,7 +13,6 @@ function MovieList({
   handleWriteReview,
   hadleReviewChangeByTitle,
 }) {
-
   const [Movies, setMovies] = useState();
   const [ModalData, setModalData] = useState({});
   const [modal, setModal] = useState(false);
@@ -41,8 +39,6 @@ function MovieList({
       handleWriteReview={handleWriteReview}
       hadleReviewChangeByTitle={hadleReviewChangeByTitle}
       userInfo={userInfo}
-  
-    
     />
   );
 
@@ -59,27 +55,25 @@ function MovieList({
     return (
       <Fragment>
         <>
-          <Grid container spacing={0}>
-            <div className="movie">
-              {modalCont}
-              {Movies &&
-                Movies.map((movie, index) => (
-                  <React.Fragment key={index}>
-                    <div onClick={() => showModal(movie)}>
-                      <MovieListEntry
-                        image={
-                          movie.poster_path
-                            ? `${imageBaseUrl}w500${movie.poster_path}`
-                            : null
-                        }
-                        movieId={movie.id}
-                        movieName={movie.original_title}
-                      />
-                    </div>
-                  </React.Fragment>
-                ))}
-            </div>
-          </Grid>
+          <div className="movielist">
+            {modalCont}
+            {Movies &&
+              Movies.map((movie, index) => (
+                <React.Fragment key={index}>
+                  <div onClick={() => showModal(movie)}>
+                    <MovieListEntry
+                      image={
+                        movie.poster_path
+                          ? `${imageBaseUrl}w500${movie.poster_path}`
+                          : null
+                      }
+                      movieId={movie.id}
+                      movieName={movie.original_title}
+                    />
+                  </div>
+                </React.Fragment>
+              ))}
+          </div>
         </>
       </Fragment>
     );

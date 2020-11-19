@@ -1,0 +1,40 @@
+body {
+  background-color: black;
+  color: white;
+}
+
+.homeButtonContainer {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.mypageButtonContainer {
+  background: url(https://ifh.cc/g/mlI2rN.jpg);
+  width: 100%;
+  height: 150px;
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.netflexButton {
+  background: url(https://fontmeme.com/permalink/201118/92d70114149d73adda9075f76f137762.png);
+  margin-left: 50px;
+  width: 242px;
+  height: 85px;
+}
+
+.mypageButton {
+  margin-right: 50px;
+  background: url(https://ifh.cc/g/hy2pAp.png);
+  width: 45px;
+  height: 45px;
+}
+
+.logoutButton {
+  margin-right: 50px;
+  background: url(https://ifh.cc/g/ay2SQR.png);
+  width: 45px;
+  height: 45px;
+}
