@@ -27,6 +27,7 @@ class MyReviewList extends React.Component {
                   hadleReviewChangeByEdit={hadleReviewChangeByEdit}
                   hadleReviewChangeByTitle={hadleReviewChangeByTitle}
                 />
+                <hr/>
               </React.Fragment>
             );
           })}
@@ -42,3 +43,5 @@ MyReviewList.propTypes = {
   hadleReviewChangeByTitle: PropTypes.func,
 };
 export default withRouter(MyReviewList);
+//
+

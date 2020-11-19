@@ -13,6 +13,7 @@ import Nav from "./components/Nav";
 import axios from "axios";
 import PropTypes from "prop-types";
 
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -42,7 +43,7 @@ class App extends React.Component {
       })
       .catch((err) => console.log(err));
   };
-
+  //
   handleWriteReview = (data) => {
     this.setState({ movie: data });
     this.setState({ review: {} });
@@ -99,6 +100,7 @@ class App extends React.Component {
           movie={movie}
           handleIsLogoutChange={this.handleIsLogoutChange.bind(this)}
         />
+        <MovieList/>
         <Switch>
           <Route
             path={`/user/signin`}
@@ -149,7 +151,7 @@ class App extends React.Component {
           />
           <Route
             exact
-            path={`/movie/${movie.movieId}/review/${review.reviewId}`}
+            path={`/movie/reviewinfo/${review.reviewId}`}
             render={() => (
               <Review isLogin={isLogin} userInfo={userInfo} review={review} />
             )}
@@ -176,6 +178,7 @@ class App extends React.Component {
               return <Redirect to={`/user/signin`} />;
             }}
           />
+         
         </Switch>
       </div>
     );
@@ -186,3 +189,5 @@ App.propTypes = {
 };
 
 export default withRouter(App);
+
+//

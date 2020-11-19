@@ -39,7 +39,6 @@ function MovieList({
       handleWriteReview={handleWriteReview}
       hadleReviewChangeByTitle={hadleReviewChangeByTitle}
       userInfo={userInfo}
-
     />
   );
 
@@ -93,3 +92,4 @@ MovieList.propTypes = {
   handleWriteReview: PropTypes.func,
 };
 export default withRouter(MovieList);
+

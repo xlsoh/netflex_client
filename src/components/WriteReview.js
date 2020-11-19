@@ -6,6 +6,8 @@ import "./WriteReview.css";
 import { Input, Textarea, Wrapper } from "./WriteReviewCss";
 import { Col } from "antd";
 
+
+
 class WriteReview extends React.Component {
   constructor(props) {
     super(props);
@@ -195,3 +197,4 @@ WriteReview.propTypes = {
   hadleNewReviewChange: PropTypes.func,
 };
 export default withRouter(WriteReview);
+
