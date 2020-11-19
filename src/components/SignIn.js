@@ -3,7 +3,7 @@ import { Link, withRouter, Redirect } from "react-router-dom";
 import axios from "axios";
 import PropTypes from "prop-types";
 import GoogleBtn from "./GoogleBtn";
-const IP_ADDRESS = "127.0.0.1";
+const IP_ADDRESS = "54.180.63.153";
 const axiosInstance = axios.create({
   withCredentials: true,
 });

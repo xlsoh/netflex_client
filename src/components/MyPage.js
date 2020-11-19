@@ -4,7 +4,7 @@ import MyReviewList from "./MyReviewList";
 import axios from "axios";
 import PropTypes from "prop-types";
 
-const IP_ADDRESS = "127.0.0.1";
+const IP_ADDRESS = "54.180.63.153";
 const axiosInstance = axios.create({
   withCredentials: true,
 });

@@ -2,7 +2,7 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import axios from "axios";
-const IP_ADDRESS = "127.0.0.1";
+const IP_ADDRESS = "54.180.63.153";
 
 class MovieReviewListEntry extends React.Component {
   constructor(props) {
