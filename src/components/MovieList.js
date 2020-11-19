@@ -55,8 +55,8 @@ function MovieList({
     return (
       <Fragment>
         <>
+          {modalCont}
           <div className="movielist">
-            {modalCont}
             {Movies &&
               Movies.map((movie, index) => (
                 <React.Fragment key={index}>

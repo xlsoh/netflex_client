@@ -3,6 +3,7 @@ import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import axios from "axios";
 import "./MovieInfo.css";
+
 class MovieReviewListEntry extends React.Component {
   constructor(props) {
     super(props);
@@ -25,12 +26,15 @@ class MovieReviewListEntry extends React.Component {
   };
   render() {
     const { title, reviewId } = this.props;
+
+
     return (
-      <div className='reviewContainer'>
-        <a className='review' onClick={this.handleTitleClick}>
+      <div className="reviewContainer">
+        <a className="review" onClick={this.handleTitleClick}>
           ID : {reviewId} 제목 : {title}
         </a>
-        <div className='likebtn' onClick={this.likeClick} />
+        <div className="likebtn" onClick={this.likeClick} />
+
       </div>
     );
   }
