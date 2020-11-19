@@ -23,7 +23,6 @@ class MovieReviewList extends React.Component {
     const { reviews } = this.state;
     const { userInfo, movieId, hadleReviewChangeByTitle } = this.props;
 
-
     return !reviews ? (
       <div></div>
     ) : (
@@ -50,6 +49,5 @@ MovieReviewList.propTypes = {
   userInfo: PropTypes.object,
 
   hadleReviewChangeByTitle: PropTypes.func,
-
 };
 export default withRouter(MovieReviewList);
