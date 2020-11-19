@@ -2,6 +2,8 @@ import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import axios from "axios";
 import PropTypes from "prop-types";
+import "./WriteReview.css";
+import { Input, Textarea, Button } from "./WriteReviewCss";
 
 class WriteReview extends React.Component {
   constructor(props) {
@@ -19,7 +21,6 @@ class WriteReview extends React.Component {
   render() {
     const { title, text } = this.state;
 
-
     const {
       isLogin,
       userInfo,
@@ -32,152 +33,124 @@ class WriteReview extends React.Component {
       if (!review.reviewId) {
         return (
           <div>
-            <h1>영화 {`${movie.movieName}`} 리뷰 작성</h1>
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                return axios
-                  .post(`http://54.180.63.153:5000/movie/writereview`, {
-                    title: title,
-                    text: text,
-                    userId: userInfo.id,
-                    movieId: movie.movieId,
-                    movieName: movie.movieName,
-                  })
-                  .then((res) => {
-                    console.log(res);
-                    hadleNewReviewChange(res.data.reviewId);
-                  })
-                  .catch((err) => {
-                    alert("Failed to submit your review");
-                    console.log(err);
-                  });
-              }}
-            >
-              <div>
-                {" "}
-                <span>작성자</span>
-                <span>{`${userInfo.nickName}`}</span>
-              </div>
-              <div>
-                {" "}
-                제목
-                <input
-                  style={{
-                    width: "300px",
-                    height: "30px",
-                    margin: "10px",
-                    borderRadius: "5px",
-                  }}
-                  type="title"
-                  placeholder="제목"
-                  onChange={this.handleInputValue("title")}
-                ></input>
-              </div>
-              <div>
-                {" "}
-                내용
-                <textarea
-                  style={{
-                    width: "300px",
-                    height: "30px",
-                    margin: "10px",
-                    borderRadius: "5px",
-                  }}
-                  type="text"
-                  placeholder="내용"
-                  onChange={this.handleInputValue("text")}
-                ></textarea>
-              </div>
-              <button
-                style={{
-                  width: "200px",
-                  height: "30px",
-                  margin: "5px",
-                  backgroundColor: "ivory",
+            <div id="header-push"></div>
+            <div className="global-content">
+              <h1 className="title">영화 {`${movie.movieName}`} 리뷰 작성</h1>
+
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  return axios
+                    .post(`http://54.180.63.153:5000/movie/writereview`, {
+                      title: title,
+                      text: text,
+                      userId: userInfo.id,
+                      movieId: movie.movieId,
+                      movieName: movie.movieName,
+                    })
+                    .then((res) => {
+                      console.log(res);
+                      hadleNewReviewChange(res.data.reviewId);
+                    })
+                    .catch((err) => {
+                      alert("Failed to submit your review");
+                      console.log(err);
+                    });
                 }}
-                type="submit"
               >
-                작성
-              </button>
-            </form>
+                <div>
+                  {" "}
+                  <span className="text">작성자</span>
+                  <span className="text1">{`${userInfo.nickName}`}</span>
+                </div>
+                <div className="text">
+                  {" "}
+                  제목
+                  <Input
+                    type="title"
+                    placeholder="제목"
+                    onChange={this.handleInputValue("title")}
+                  ></Input>
+                </div>
+
+                <div className="text">
+                  {" "}
+                  내용
+                  <Textarea
+                    type="text"
+                    placeholder="내용"
+                    onChange={this.handleInputValue("text")}
+                  ></Textarea>
+                </div>
+                <button className="btn hover1" type="submit">
+                  작성
+                </button>
+              </form>
+            </div>
+            <div id="footer-push"></div>
+            <div id="dark-area"></div>
           </div>
         );
       } else {
         return (
           <div>
-            <h1>영화 {`${review.movieName}`} 리뷰 작성</h1>
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                console.log(review.reviewId);
-                return axios
-                  .post(`http://54.180.63.153:5000/movie/writereview`, {
-                    reviewId: review.reviewId,
-                    title: title,
-                    text: text,
-                    userId: userInfo.id,
-                    movieId: movie.movieId,
-                    movieName: movie.movieName,
-                  })
-                  .then(() => {
-                    hadleNewReviewChange(review.reviewId);
-                  })
-                  .catch((err) => {
-                    alert("WriteReview failed");
-                    console.log(err);
-                  });
-              }}
-            >
-              <div>
-                {" "}
-                <span>작성자</span>
-                <span>{`${userInfo.nickName}`}</span>
-              </div>
-              <div>
-                {" "}
-                제목
-                <input
-                  id="title"
-                  style={{
-                    width: "300px",
-                    height: "30px",
-                    margin: "10px",
-                    borderRadius: "5px",
-                  }}
-                  type="title"
-                  value={`${this.state.title}`}
-                  onChange={this.handleInputValue("title")}
-                ></input>
-              </div>
-              <div>
-                {" "}
-                내용
-                <textarea
-                  id="text"
-                  style={{
-                    width: "300px",
-                    height: "30px",
-                    margin: "10px",
-                    borderRadius: "5px",
-                  }}
-                  type="text"
-                  value={`${this.state.text}`}
-                  onChange={this.handleInputValue("text")}
-                ></textarea>
-              </div>
-              <button
-                style={{
-                  width: "200px",
-                  height: "30px",
-                  margin: "5px",
-                  backgroundColor: "ivory",
+            <div id="header-push"></div>
+            <div className="global-content">
+              <h1 className="title">영화 {`${review.movieName}`} 리뷰 작성</h1>
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  console.log(review.reviewId);
+                  return axios
+                    .post(`http://54.180.63.153:5000/movie/writereview`, {
+                      reviewId: review.reviewId,
+                      title: title,
+                      text: text,
+                      userId: userInfo.id,
+                      movieId: movie.movieId,
+                      movieName: movie.movieName,
+                    })
+                    .then(() => {
+                      hadleNewReviewChange(review.reviewId);
+                    })
+                    .catch((err) => {
+                      alert("WriteReview failed");
+                      console.log(err);
+                    });
                 }}
-                type="submit"
               >
-                작성
-              </button>
-            </form>
+                <div>
+                  {" "}
+                  <span className="text">작성자</span>
+                  <span className="text1">{`${userInfo.nickName}`}</span>
+                </div>
+                <div className="text">
+                  {" "}
+                  제목
+                  <Input
+                    id="title"
+                    type="title"
+                    value={`${this.state.title}`}
+                    onChange={this.handleInputValue("title")}
+                  ></Input>
+                </div>
+                <div className="text">
+                  {" "}
+                  내용
+                  <Textarea
+                    id="text"
+                    type="text"
+                    value={`${this.state.text}`}
+                    onChange={this.handleInputValue("text")}
+                  ></Textarea>
+                </div>
+                <button className="btn hover1" type="submit">
+                  작성
+                </button>
+              </form>
+            </div>
+            <div id="footer-push"></div>
+            <div id="dark-area"></div>
           </div>
         );
       }
