@@ -67,6 +67,7 @@ return (
 }
 }
 MyPage.propTypes = {
+
 history: PropTypes.object,
 userInfo: PropTypes.object,
 isLogin: PropTypes.bool,
