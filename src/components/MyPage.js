@@ -6,7 +6,6 @@ import PropTypes from "prop-types";
 import './MyPage.css'
 
 
-
 class MyPage extends React.Component {
   constructor(props) {
     super(props);

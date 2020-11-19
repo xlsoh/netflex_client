@@ -15,10 +15,8 @@ function MovieInfo({
   onClick,
   release,
   handleWriteReview,
-
   hadleReviewChangeByTitle,
   userInfo,
-
 }) {
   const movie = { movieId: movieId, movieName: movieName };
   return show ? (
@@ -59,7 +57,7 @@ MovieInfo.propTypes = {
   handleWriteReview: PropTypes.func,
   hadleReviewChangeByTitle: PropTypes.func,
   userInfo: PropTypes.object,
-  handleReviewChangeByTitle: PropTypes.func
+  handleReviewChangeByTitle: PropTypes.func,
 };
 
 export default withRouter(MovieInfo);

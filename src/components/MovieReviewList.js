@@ -1,13 +1,16 @@
 import React from "react";
-import { withRouter } from "react-router-dom";
+import { Route ,withRouter, Link, Router } from "react-router-dom";
 import MovieReviewListEntry from "./MovieReviewListEntry";
 import PropTypes from "prop-types";
 import axios from "axios";
+import Review from "./Review";
+import WriteReview from "./WriteReview"
 
 class MovieReviewList extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { reviews: [] };
+    this.state = { reviews: [] , reviewId: 0};
+    this.handleGo = this.handleGo.bind(this)
   }
   componentDidMount() {
     const { userInfo, movieId, hadleReviewChangeByTitle } = this.props;
@@ -19,10 +22,14 @@ class MovieReviewList extends React.Component {
     );
   }
 
+
+  handleGo = () =>{
+    this.props.history.push(`/movie/reviewinfo/${this.state.reviewId}`)
+  } 
+
   render() {
     const { reviews } = this.state;
     const { userInfo, movieId, hadleReviewChangeByTitle } = this.props;
-
 
     return !reviews ? (
       <div></div>
@@ -50,7 +57,6 @@ MovieReviewList.propTypes = {
   userInfo: PropTypes.object,
 
   hadleReviewChangeByTitle: PropTypes.func,
-
 };
 export default withRouter(MovieReviewList);
 

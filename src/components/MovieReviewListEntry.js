@@ -33,7 +33,6 @@ class MovieReviewListEntry extends React.Component {
         {<a onClick={this.handleTitleClick}>{title}</a>}
         <button onClick={this.likeClick}>좋아요</button>
       </div>
-
     );
   }
 }
@@ -45,7 +44,6 @@ MovieReviewListEntry.propTypes = {
   movieId: PropTypes.number,
 
   hadleReviewChangeByTitle: PropTypes.func,
-
 };
 
 export default withRouter(MovieReviewListEntry);
