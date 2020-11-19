@@ -10,6 +10,11 @@ import Nav from "./components/Nav";
 import axios from "axios";
 import PropTypes from "prop-types";
 
+const IP_ADDRESS = "127.0.0.1"; //127.0.0.1 // AWS
+const axiosInstance = axios.create({
+  withCredentials: true,
+});
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -18,26 +23,52 @@ class App extends React.Component {
       userInfo: {},
       review: {},
       movie: {},
-      accessToken: "",
     };
+    this.handleIsRefresh = this.handleIsRefresh.bind(this);
   }
 
-  handleIsLoginChange = (res, accessToken) => {
-    this.setState({ isLogin: true, userInfo: res, accessToken });
+  componentDidMount() {
+    console.log(this.state.isLogin);
+    let isAccess = localStorage.getItem("accessToken");
+    console.log(isAccess);
+    if (isAccess) {
+      console.log("IN >>>>");
+      this.handleIsRefresh();
+    }
+  }
+
+  handleIsRefresh() {
+    if (localStorage.getItem("accessToken")) {
+      return axiosInstance
+        .get(`http://${IP_ADDRESS}:5000/user/auth`, {
+          headers: {
+            Authorization: JSON.parse(localStorage.getItem("accessToken")),
+          },
+        })
+        .then((res) => {
+          console.log(res);
+          this.handleIsLoginChange(res.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }
+
+  handleIsLoginChange = (res) => {
+    localStorage.setItem("accessToken", JSON.stringify(res.accessToken));
+    this.setState({ isLogin: true, userInfo: res }, () => {
+      console.log(this.state);
+    });
   };
 
   handleIsLogoutChange = () => {
-    axios
-      .post(`http://54.180.63.153:5000/user/signout`, {
-        accessToken: this.state.accessToken,
-      })
-      .then((res) => {
-        this.setState({ isLogin: false, userInfo: {}, accessToken: "" }, () => {
-          console.log(this.state);
-        });
-        this.props.history.push(`/`);
-      })
-      .catch((err) => console.log(err));
+    console.log(this.state.userInfo);
+    localStorage.clear();
+    this.setState({ isLogin: false, userInfo: {} }, () => {
+      console.log(this.state);
+    });
+    this.props.history.push(`/`);
   };
 
   handleWriteReview = (data) => {
@@ -68,7 +99,7 @@ class App extends React.Component {
 
   hadleNewReviewChange = (reviewId) => {
     axios
-      .get(`http://54.180.63.153:5000/movie/reviewinfo/${reviewId}`)
+      .get(`http://${IP_ADDRESS}:5000/movie/reviewinfo/${reviewId}`)
       .then((res) => {
         this.setState({ review: res.data });
         this.props.history.push(
@@ -80,14 +111,7 @@ class App extends React.Component {
 
   render() {
     const { isLogin, userInfo, review, movie } = this.state;
-    console.log("--isLogin--");
-    console.log(isLogin);
-    console.log("--userInfo--");
-    console.log(userInfo);
-    console.log("--review--");
-    console.log(review);
-    console.log("--movie--");
-    console.log(movie);
+    console.log(this.state);
     return (
       <div>
         <Nav
@@ -120,6 +144,7 @@ class App extends React.Component {
                 isLogin={isLogin}
                 userInfo={userInfo}
                 review={review}
+                handleIsRefresh={this.handleIsRefresh}
                 hadleReviewChangeByTitle={this.hadleReviewChangeByTitle.bind(
                   this
                 )}
@@ -148,7 +173,13 @@ class App extends React.Component {
             exact
             path={`/movie/${movie.movieId}/review/${review.reviewId}`}
             render={() => (
-              <Review isLogin={isLogin} userInfo={userInfo} review={review} />
+              <Review
+                isLogin={isLogin}
+                userInfo={userInfo}
+                review={review}
+                handleIsRefresh={this.handleIsRefresh}
+                movie={movie}
+              />
             )}
           />
           <Route
