@@ -1,0 +1,80 @@
+#header-push {
+  display: block;
+  background: #fafafa;
+  border-bottom: 1px solid #dedede;
+  padding-top: 32px;
+  height: 150px;
+}
+
+#footer-push {
+  display: block;
+  background: #fafafa;
+  border-top: 1px solid #dedede;
+  padding-top: 32px;
+  height: 150px;
+}
+
+#dark-area {
+  background: #221f1f;
+  color: #fff;
+  height: 200px;
+}
+
+.global-content {
+  background: #fff;
+  color: #221f1f;
+  font-family: Netflix Sans, Helvetica, Arial, sans-serif;
+  -webkit-text-size-adjust: 100%;
+  font-size: 17px;
+  font-weight: 300;
+  line-height: 28px;
+  margin: 70px 70px 70px;
+}
+
+.title {
+  color: #221f1f;
+  font-size: 36px;
+  font-weight: bold;
+  margin: 10px 10px 20px;
+}
+
+.text {
+  font-size: 20px;
+  font-weight: bolder;
+  margin: 20px 20px 20px;
+}
+
+.text1 {
+  font-size: 17px;
+}
+
+.text_ {
+  font-size: 20px;
+  font-weight: bolder;
+  margin: 20px 20px 20px;
+  text-align: right;
+}
+
+.text1_ {
+  font-size: 17px;
+  text-align: right;
+}
+
+.c {
+  /* border: 2pt ridge #d5d4d1; */
+  border-radius: 5px;
+  margin: 40px 0px 0px;
+  box-shadow: 5px 5px 5px #d5d4d1;
+  padding: 3em;
+  background: #fafafa;
+  opacity: 0.9;
+}
+
+.btn1 {
+  width: 50px;
+  height: 50px;
+  background: url("https://www.pinclipart.com/picdir/middle/371-3711445_left-png-icon-free-download-onlinewebfonts-com-android.png")
+    no-repeat;
+  background-size: contain;
+  padding: 0;
+}

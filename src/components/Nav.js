@@ -67,7 +67,9 @@ class Nav extends React.Component {
             path={`/movie/${movie.movieId}/review/${review.reviewId}`}
             render={() => {
               return (
+
                 <div className="mypageButtonContainer">
+
                   <Link to={`/movie/popular`}>
                     <div className="netflexButton" />
                   </Link>
@@ -83,7 +85,9 @@ class Nav extends React.Component {
             path={`/movie/${movie.movieId}/writeReview`}
             render={() => {
               return (
+
                 <div className="mypageButtonContainer">
+
                   <Link to={`/movie/popular`}>
                     <div className="netflexButton" />
                   </Link>

@@ -33,6 +33,7 @@ class SignIn extends React.Component {
             <img src={`https://fontmeme.com/permalink/201118/92d70114149d73adda9075f76f137762.png`}/>
             <br/>
             <br/>
+            <br/>
   
             <form
               onSubmit={(e) => {
@@ -92,7 +93,7 @@ class SignIn extends React.Component {
             <div>
               {" "}<br/>
               Netflex 회원이 아니신가요?<br/><br/>
-              <Link to={`/user/signup`}>지금 가입하세요.</Link>
+              <Link to={`/user/signup`}>지금 가입하세요!</Link>
             </div>
           </center>
         </div>
