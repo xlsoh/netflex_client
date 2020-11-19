@@ -5,7 +5,7 @@ import axios from "axios";
 import PropTypes from "prop-types";
 import './MyPage.css'
 
-//수정하기
+
 
 class MyPage extends React.Component {
   constructor(props) {
