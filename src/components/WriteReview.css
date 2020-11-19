@@ -1,57 +1,9 @@
-#header-push {
-  display: block;
-  background: #fafafa;
-  border-bottom: 1px solid #dedede;
-  padding-top: 32px;
-  height: 150px;
-}
-
-#footer-push {
-  display: block;
-  background: #fafafa;
-  border-top: 1px solid #dedede;
-  padding-top: 32px;
-  height: 150px;
-}
-
-#dark-area {
-  background: #221f1f;
-  color: #fff;
-  height: 200px;
-}
-
-.global-content {
-  background: #fff;
-  color: #221f1f;
-  font-family: Netflix Sans, Helvetica, Arial, sans-serif;
-  -webkit-text-size-adjust: 100%;
-  font-size: 17px;
-  font-weight: 300;
-  line-height: 28px;
-  margin: 70px 70px 70px;
-}
-
-.title {
-  font-size: 36px;
-  font-weight: bold;
-  color: #221f1f;
-}
-
-.text {
-  font-size: 20px;
-  font-weight: bolder;
-  margin: 0px 0px 10px;
-}
-
-.text1 {
-  font-size: 17px;
-  margin-left: 10px;
-}
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap");
 
 .btn {
   display: block;
-  width: 200px;
-  height: 40px;
+  width: 250px;
+  height: 50px;
   line-height: 40px;
   border: 1px #221f1f solid;
   margin: 15px auto;
@@ -66,6 +18,31 @@
 }
 
 .hover1:hover {
-  box-shadow: 200px 0 0 0 rgba(0, 0, 0, 0.25) inset,
-    -200px 0 0 0 rgba(0, 0, 0, 0.25) inset;
+  box-shadow: 400px 0 0 0 rgba(0, 0, 0, 0.25) inset,
+    -400px 0 0 0 rgba(0, 0, 0, 0.25) inset;
+}
+
+.font-style {
+  font-family: "Noto Sans KR";
+  text-shadow: aliceblue;
+}
+
+.movie-title1 {
+  padding-bottom: 1.5em;
+  font-size: xx-large;
+  font-weight: bold;
+}
+
+.title1 {
+  padding-right: 0.5em;
+  font-size: large;
+  font-weight: bolder;
+  margin-bottom: 1em;
+}
+
+.text2 {
+}
+
+.movieName {
+  color: #d3d3d3;
 }
