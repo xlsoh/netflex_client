@@ -80,7 +80,7 @@ class App extends React.Component {
       })
       .catch((err) => console.log(err));
   };
-
+  ///
   render() {
     const { isLogin, userInfo, review, movie } = this.state;
     console.log("--isLogin--");
