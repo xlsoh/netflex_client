@@ -3,7 +3,7 @@ import { withRouter, Link, Route } from "react-router-dom";
 import axios from "axios";
 import PropTypes from "prop-types";
 
-const IP_ADDRESS = "54.180.63.153";
+const IP_ADDRESS = "127.0.0.1";
 
 class MyReviewListEntry extends React.Component {
   constructor(props) {
@@ -60,5 +60,3 @@ MyReviewListEntry.propTypes = {
   hadleReviewChangeByTitle: PropTypes.func,
 };
 export default withRouter(MyReviewListEntry);
-
-

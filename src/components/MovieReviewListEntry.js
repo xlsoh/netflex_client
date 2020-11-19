@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import axios from "axios";
 import "./MovieInfo.css";
 
-const IP_ADDRESS = "54.180.63.153";
+const IP_ADDRESS = "127.0.0.1";
 
 class MovieReviewListEntry extends React.Component {
   constructor(props) {
@@ -29,14 +29,12 @@ class MovieReviewListEntry extends React.Component {
   render() {
     const { title, reviewId } = this.props;
 
-
     return (
-      <div className="reviewContainer">
-        <a className="review" onClick={this.handleTitleClick}>
+      <div className='reviewContainer'>
+        <a className='review' onClick={this.handleTitleClick}>
           ID : {reviewId} 제목 : {title}
         </a>
-        <div className="likebtn" onClick={this.likeClick} />
-
+        <div className='likebtn' onClick={this.likeClick} />
       </div>
     );
   }

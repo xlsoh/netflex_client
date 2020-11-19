@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import GoogleBtn from "./GoogleBtn";
 import { GlobalStyle, Wrapper, Input, Button } from "./SignInCss";
 
-const IP_ADDRESS = "54.180.63.153";
+const IP_ADDRESS = "127.0.0.1";
 const axiosInstance = axios.create({
   withCredentials: true,
 });
@@ -40,43 +40,42 @@ class SignIn extends React.Component {
                 <br />
                 <br />
                 <br />
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                return axiosInstance
-                  .post(`http://${IP_ADDRESS}:5000/user/signin`, {
-                    email: email,
-                    password: password,
-                  })
-                  .then((res) => {
-                    console.log(res.data);
-                    handleIsLoginChange(res.data);
-                    this.props.history.push(`/`);
-                  })
-                  .catch((err) => {
-                    alert("Login failed");
-                    console.log(err);
-                  });
-              }}
-            >
-              >
+                <form
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    return axiosInstance
+                      .post(`http://${IP_ADDRESS}:5000/user/signin`, {
+                        email: email,
+                        password: password,
+                      })
+                      .then((res) => {
+                        console.log(res.data);
+                        handleIsLoginChange(res.data);
+                        this.props.history.push(`/`);
+                      })
+                      .catch((err) => {
+                        alert("Login failed");
+                        console.log(err);
+                      });
+                  }}
+                >
                   <div>
                     <Input
-                      type="email"
-                      placeholder="이메일 주소"
+                      type='email'
+                      placeholder='이메일 주소'
                       onChange={this.handleInputValue("email")}
                     ></Input>
                   </div>
                   <div>
                     <Input
-                      type="password"
-                      placeholder="비밀번호"
+                      type='password'
+                      placeholder='비밀번호'
                       onChange={this.handleInputValue("password")}
                     ></Input>
                   </div>
                   <br />
                   <div>
-                    <Button type="submit">로그인</Button>
+                    <Button type='submit'>로그인</Button>
                   </div>
                   <br />
                 </form>
@@ -101,11 +100,7 @@ class SignIn extends React.Component {
         </>
       );
     } else {
-
-      return (
-              <Redirect to={`/movie/popular`} />
-      );
-
+      return <Redirect to={`/movie/popular`} />;
     }
   }
 }
@@ -118,4 +113,3 @@ SignIn.propTypes = {
   accessToken: PropTypes.string,
 };
 export default withRouter(SignIn);
-

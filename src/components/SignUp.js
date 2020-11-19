@@ -3,7 +3,7 @@ import { withRouter, Link } from "react-router-dom";
 import axios from "axios";
 import PropTypes from "prop-types";
 
-const IP_ADDRESS = "54.180.63.153";
+const IP_ADDRESS = "127.0.0.1";
 
 import {
   GlobalStyleSignUp,
@@ -11,7 +11,6 @@ import {
   InputSignUp,
   ButtonSignUp,
 } from "./SignUpCss";
-
 
 class SignUp extends React.Component {
   constructor(props) {
@@ -42,26 +41,26 @@ class SignUp extends React.Component {
                 <br />
                 <br />
                 <br />
-               <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                axios
-                  .post(`http://${IP_ADDRESS}:5000/user/signup`, {
-                    email: email,
-                    password: password,
-                    nickName: nickName,
-                  })
-                  .then(() => {
-                    this.props.history.push(`/`);
-                  })
-                  .catch((err) => console.log(err));
-              }}
-            >
+                <form
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    axios
+                      .post(`http://${IP_ADDRESS}:5000/user/signup`, {
+                        email: email,
+                        password: password,
+                        nickName: nickName,
+                      })
+                      .then(() => {
+                        this.props.history.push(`/`);
+                      })
+                      .catch((err) => console.log(err));
+                  }}
+                >
                   <div>
                     {" "}
                     <InputSignUp
-                      type="email"
-                      placeholder="이메일 주소"
+                      type='email'
+                      placeholder='이메일 주소'
                       onChange={this.handleInputValue("email")}
                     ></InputSignUp>
                   </div>
@@ -69,14 +68,14 @@ class SignUp extends React.Component {
                     {" "}
                     <InputSignUp
                       onChange={this.handleInputValue("password")}
-                      type="password"
-                      placeholder="비밀번호"
+                      type='password'
+                      placeholder='비밀번호'
                     ></InputSignUp>
                   </div>
                   <div>
                     <InputSignUp
                       onChange={this.handleInputValue("nickName")}
-                      placeholder="닉네임"
+                      placeholder='닉네임'
                     ></InputSignUp>
                   </div>
                   <br />
@@ -86,7 +85,7 @@ class SignUp extends React.Component {
                   </div>
                   <br />
                   <br />
-                  <ButtonSignUp type="submit">시작하기</ButtonSignUp>
+                  <ButtonSignUp type='submit'>시작하기</ButtonSignUp>
                 </form>
               </center>
             </div>
