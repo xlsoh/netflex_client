@@ -3,6 +3,9 @@ import { withRouter, Link } from "react-router-dom";
 import MyReviewList from "./MyReviewList";
 import axios from "axios";
 import PropTypes from "prop-types";
+import './MyPage.css'
+
+
 
 class MyPage extends React.Component {
   constructor(props) {
@@ -32,23 +35,24 @@ class MyPage extends React.Component {
     } = this.props;
     if (isLogin) {
       return (
+        <>
         <div className="myInfoZone">
-          <div>
-            <h1>내 정보</h1>
+          <div className="myInfoCont">
+            <h1>Info</h1>
+            <br/>
             <div>
-              {" "}
-              <span>Email</span>
+              <span className='InfoCont'>{`이메일 `}</span>
               <span>{`${userInfo.email}`}</span>
             </div>
             <div>
-              {" "}
-              <span>닉네임</span>
+              <span className='InfoCont'>{`이름   `}</span>
               <span>{`${userInfo.nickName}`}</span>s
             </div>
           </div>
-          <hr color="black" size="10px"></hr>
+          
           <div className="myReviewZone">
-            <h2>내가 쓴 리뷰</h2>
+            <h1>Review</h1>
+            <br/>
             <MyReviewList
               myReview={myReview}
               hadleReviewChangeByTitle={hadleReviewChangeByTitle}
@@ -56,6 +60,7 @@ class MyPage extends React.Component {
             />
           </div>
         </div>
+        </>
       );
     } else {
       return (
