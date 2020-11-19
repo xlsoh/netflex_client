@@ -1,6 +1,3 @@
-//////
-////
-
 import React from "react";
 import { Switch, Route, Redirect, withRouter } from "react-router-dom";
 import MyPage from "./components/MyPage";
