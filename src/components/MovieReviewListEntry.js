@@ -27,11 +27,13 @@ class MovieReviewListEntry extends React.Component {
 
   render() {
     const { title } = this.props;
+
     return (
       <div>
         {<a onClick={this.handleTitleClick}>{title}</a>}
         <button onClick={this.likeClick}>좋아요</button>
       </div>
+
     );
   }
 }
