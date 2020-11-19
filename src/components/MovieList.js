@@ -94,4 +94,3 @@ MovieList.propTypes = {
 };
 export default withRouter(MovieList);
 
-//

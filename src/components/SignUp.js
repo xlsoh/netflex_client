@@ -111,4 +111,3 @@ SignUp.propTypes = {
   isLogin: PropTypes.bool,
 };
 export default withRouter(SignUp);
-//

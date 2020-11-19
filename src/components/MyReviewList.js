@@ -44,4 +44,3 @@ MyReviewList.propTypes = {
 };
 export default withRouter(MyReviewList);
 
-//

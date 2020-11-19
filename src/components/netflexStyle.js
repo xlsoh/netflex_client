@@ -28,4 +28,4 @@ const MovieListEntry = styled.header``;
 
 export { homeButtonContainer, netflexButton, mypageButton, MovieListEntry };
 
-//
+
