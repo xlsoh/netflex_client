@@ -2,13 +2,11 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 import MyReviewListEntry from "./MyReviewListEntry";
 import PropTypes from "prop-types";
-
 class MyReviewList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
-
   render() {
     const {
       myReview,
@@ -42,3 +40,5 @@ MyReviewList.propTypes = {
   hadleReviewChangeByTitle: PropTypes.func,
 };
 export default withRouter(MyReviewList);
+//
+

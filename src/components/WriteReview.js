@@ -4,7 +4,6 @@ import axios from "axios";
 import PropTypes from "prop-types";
 import "./WriteReview.css";
 import { Input, Textarea, Button } from "./WriteReviewCss";
-
 class WriteReview extends React.Component {
   constructor(props) {
     super(props);
@@ -17,10 +16,8 @@ class WriteReview extends React.Component {
   handleInputValue = (key) => (e) => {
     this.setState({ [key]: e.target.value });
   };
-
   render() {
     const { title, text } = this.state;
-
     const {
       isLogin,
       userInfo,
@@ -28,15 +25,13 @@ class WriteReview extends React.Component {
       movie,
       hadleNewReviewChange,
     } = this.props;
-
     if (isLogin) {
       if (!review.reviewId) {
         return (
           <div>
-            <div id="header-push"></div>
-            <div className="global-content">
-              <h1 className="title">영화 {`${movie.movieName}`} 리뷰 작성</h1>
-
+            <div id='header-push'></div>
+            <div className='global-content'>
+              <h1 className='title'>영화 {`${movie.movieName}`} 리뷰 작성</h1>
               <form
                 onSubmit={(e) => {
                   e.preventDefault();
@@ -60,43 +55,42 @@ class WriteReview extends React.Component {
               >
                 <div>
                   {" "}
-                  <span className="text">작성자</span>
-                  <span className="text1">{`${userInfo.nickName}`}</span>
+                  <span className='text'>작성자</span>
+                  <span className='text1'>{`${userInfo.nickName}`}</span>
                 </div>
-                <div className="text">
+                <div className='text'>
                   {" "}
                   제목
                   <Input
-                    type="title"
-                    placeholder="제목"
+                    type='title'
+                    placeholder='제목'
                     onChange={this.handleInputValue("title")}
                   ></Input>
                 </div>
-
-                <div className="text">
+                <div className='text'>
                   {" "}
                   내용
                   <Textarea
-                    type="text"
-                    placeholder="내용"
+                    type='text'
+                    placeholder='내용'
                     onChange={this.handleInputValue("text")}
                   ></Textarea>
                 </div>
-                <button className="btn hover1" type="submit">
+                <button className='btn hover1' type='submit'>
                   작성
                 </button>
               </form>
             </div>
-            <div id="footer-push"></div>
-            <div id="dark-area"></div>
+            <div id='footer-push'></div>
+            <div id='dark-area'></div>
           </div>
         );
       } else {
         return (
           <div>
-            <div id="header-push"></div>
-            <div className="global-content">
-              <h1 className="title">영화 {`${review.movieName}`} 리뷰 작성</h1>
+            <div id='header-push'></div>
+            <div className='global-content'>
+              <h1 className='title'>영화 {`${review.movieName}`} 리뷰 작성</h1>
               <form
                 onSubmit={(e) => {
                   e.preventDefault();
@@ -121,36 +115,36 @@ class WriteReview extends React.Component {
               >
                 <div>
                   {" "}
-                  <span className="text">작성자</span>
-                  <span className="text1">{`${userInfo.nickName}`}</span>
+                  <span className='text'>작성자</span>
+                  <span className='text1'>{`${userInfo.nickName}`}</span>
                 </div>
-                <div className="text">
+                <div className='text'>
                   {" "}
                   제목
                   <Input
-                    id="title"
-                    type="title"
+                    id='title'
+                    type='title'
                     value={`${this.state.title}`}
                     onChange={this.handleInputValue("title")}
                   ></Input>
                 </div>
-                <div className="text">
+                <div className='text'>
                   {" "}
                   내용
                   <Textarea
-                    id="text"
-                    type="text"
+                    id='text'
+                    type='text'
                     value={`${this.state.text}`}
                     onChange={this.handleInputValue("text")}
                   ></Textarea>
                 </div>
-                <button className="btn hover1" type="submit">
+                <button className='btn hover1' type='submit'>
                   작성
                 </button>
               </form>
             </div>
-            <div id="footer-push"></div>
-            <div id="dark-area"></div>
+            <div id='footer-push'></div>
+            <div id='dark-area'></div>
           </div>
         );
       }

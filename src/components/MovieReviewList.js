@@ -3,7 +3,6 @@ import { withRouter } from "react-router-dom";
 import MovieReviewListEntry from "./MovieReviewListEntry";
 import PropTypes from "prop-types";
 import axios from "axios";
-
 class MovieReviewList extends React.Component {
   constructor(props) {
     super(props);
@@ -18,15 +17,13 @@ class MovieReviewList extends React.Component {
       }
     );
   }
-
   render() {
     const { reviews } = this.state;
     const { userInfo, movieId, hadleReviewChangeByTitle } = this.props;
-
     return !reviews ? (
       <div></div>
     ) : (
-      <ul className="movieReview">
+      <ul className='movieReview'>
         {reviews &&
           reviews.map((review, index) => (
             <React.Fragment key={index}>
@@ -43,11 +40,9 @@ class MovieReviewList extends React.Component {
     );
   }
 }
-
 MovieReviewList.propTypes = {
   movieId: PropTypes.number,
   userInfo: PropTypes.object,
-
   hadleReviewChangeByTitle: PropTypes.func,
 };
 export default withRouter(MovieReviewList);

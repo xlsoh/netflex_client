@@ -3,7 +3,6 @@ import { withRouter, Link } from "react-router-dom";
 import MyReviewList from "./MyReviewList";
 import axios from "axios";
 import PropTypes from "prop-types";
-
 class MyPage extends React.Component {
   constructor(props) {
     super(props);
@@ -11,7 +10,6 @@ class MyPage extends React.Component {
       myReview: [],
     };
   }
-
   componentDidMount() {
     const { userInfo, handleCleanReview } = this.props;
     axios
@@ -21,7 +19,6 @@ class MyPage extends React.Component {
         handleCleanReview();
       });
   }
-
   render() {
     const { myReview } = this.state;
     const {
@@ -76,3 +73,5 @@ MyPage.propTypes = {
   hadleReviewChangeByTitle: PropTypes.func,
 };
 export default withRouter(MyPage);
+
+//

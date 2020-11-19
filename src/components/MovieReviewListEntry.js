@@ -9,7 +9,6 @@ class MovieReviewListEntry extends React.Component {
     super(props);
     this.likeClick = this.likeClick.bind(this);
   }
-
   handleTitleClick = () => {
     const { movieId, reviewId, hadleReviewChangeByTitle } = this.props;
     axios
@@ -25,9 +24,9 @@ class MovieReviewListEntry extends React.Component {
       userId: userInfo.id,
     });
   };
-
   render() {
     const { title, reviewId } = this.props;
+
 
     return (
       <div className="reviewContainer">
@@ -35,6 +34,7 @@ class MovieReviewListEntry extends React.Component {
           ID : {reviewId} 제목 : {title}
         </a>
         <div className="likebtn" onClick={this.likeClick} />
+
       </div>
     );
   }
@@ -45,8 +45,6 @@ MovieReviewListEntry.propTypes = {
   title: PropTypes.string,
   userInfo: PropTypes.object,
   movieId: PropTypes.number,
-
   hadleReviewChangeByTitle: PropTypes.func,
 };
-
 export default withRouter(MovieReviewListEntry);
