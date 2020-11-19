@@ -27,6 +27,7 @@ class MyReviewList extends React.Component {
                   hadleReviewChangeByEdit={hadleReviewChangeByEdit}
                   hadleReviewChangeByTitle={hadleReviewChangeByTitle}
                 />
+                <hr/>
               </React.Fragment>
             );
           })}
