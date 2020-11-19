@@ -2,13 +2,11 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import axios from "axios";
-
 class MovieReviewListEntry extends React.Component {
   constructor(props) {
     super(props);
     this.likeClick = this.likeClick.bind(this);
   }
-
   handleTitleClick = () => {
     const { movieId, reviewId, hadleReviewChangeByTitle } = this.props;
     axios
@@ -24,10 +22,8 @@ class MovieReviewListEntry extends React.Component {
       userId: userInfo.id,
     });
   };
-
   render() {
     const { title } = this.props;
-
     return (
       <div>
         {<a onClick={this.handleTitleClick}>{title}</a>}
@@ -42,8 +38,6 @@ MovieReviewListEntry.propTypes = {
   title: PropTypes.string,
   userInfo: PropTypes.object,
   movieId: PropTypes.number,
-
   hadleReviewChangeByTitle: PropTypes.func,
 };
-
 export default withRouter(MovieReviewListEntry);
