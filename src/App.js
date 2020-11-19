@@ -10,7 +10,7 @@ import Nav from "./components/Nav";
 import axios from "axios";
 import PropTypes from "prop-types";
 
-const IP_ADDRESS = "54.180.63.153"; //54.180.63.153 // AWS
+const IP_ADDRESS = "127.0.0.1"; //127.0.0.1 // AWS
 const axiosInstance = axios.create({
   withCredentials: true,
 });
@@ -60,7 +60,6 @@ class App extends React.Component {
     this.setState({ isLogin: true, userInfo: res }, () => {
       console.log(this.state);
     });
-
   };
   handleIsLogoutChange = () => {
     console.log(this.state.userInfo);

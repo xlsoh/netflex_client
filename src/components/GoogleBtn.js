@@ -3,7 +3,7 @@ import { GoogleLogin } from "react-google-login";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import axios from "axios";
-const IP_ADDRESS = "54.180.63.153";
+const IP_ADDRESS = "127.0.0.1";
 
 const CLIENT_ID =
   "248265094060-p88m5kivgu0vkevoss3aihhbidegqp2q.apps.googleusercontent.com";

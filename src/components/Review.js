@@ -5,7 +5,7 @@ import axios from "axios";
 import "./Review.css";
 import { Wrapper } from "./ReviewCss";
 
-const IP_ADDRESS = "54.180.63.153";
+const IP_ADDRESS = "127.0.0.1";
 const axiosInstance = axios.create({
   withCredentials: true,
 });
@@ -45,39 +45,39 @@ class Review extends React.Component {
           <br />
           <br />
           <br />
-          <div className="font-style">
+          <div className='font-style'>
             <div>
-              <div className="movie-title">
+              <div className='movie-title'>
                 영화{" "}
-                <span className="movieName"> {`${review.movieName}`} </span>의
+                <span className='movieName'> {`${review.movieName}`} </span>의
                 리뷰
               </div>
               <Wrapper>
                 <div>
                   <div>
                     {" "}
-                    <span className="title">제목</span>
-                    <span className="text">{`${review.title}`}</span>
+                    <span className='title'>제목</span>
+                    <span className='text'>{`${review.title}`}</span>
                     <br />
                     <br />
                   </div>
                   <div>
                     {" "}
-                    <span className="title">작성자</span>
-                    <span className="text">{`${review.nickName}`}</span>
-                    <span className="title">&emsp;&emsp;작성날짜</span>
-                    <span className="text">{`${review.createdAt}`}</span>
-                    <span className="title">&emsp;&emsp; 조회수</span>
-                    <span className="text">{`${review.views}`}</span>
-                    <span className="title">&emsp;&emsp;좋아요수</span>
-                    <span className="text">{`${review.totalLikes}`}</span>
+                    <span className='title'>작성자</span>
+                    <span className='text'>{`${review.nickName}`}</span>
+                    <span className='title'>&emsp;&emsp;작성날짜</span>
+                    <span className='text'>{`${review.createdAt}`}</span>
+                    <span className='title'>&emsp;&emsp; 조회수</span>
+                    <span className='text'>{`${review.views}`}</span>
+                    <span className='title'>&emsp;&emsp;좋아요수</span>
+                    <span className='text'>{`${review.totalLikes}`}</span>
                     <span>
                       <form
                         onSubmit={(e) => {
                           e.preventDefault();
                           axios
                             .post(
-                              `http://54.180.63.153:5000/movie/reviewinfo/${review.reviewId}`,
+                              `http://127.0.0.1:5000/movie/reviewinfo/${review.reviewId}`,
                               {
                                 userId: userInfo.id,
                               }
@@ -85,7 +85,7 @@ class Review extends React.Component {
                             .catch((err) => console.log(err));
                         }}
                       >
-                        <button className="btn-like" type="submit">
+                        <button className='btn-like' type='submit'>
                           좋아요버튼
                         </button>
                       </form>
@@ -95,9 +95,9 @@ class Review extends React.Component {
                   </div>
                   <div>
                     {" "}
-                    <div className="title">내용</div>
+                    <div className='title'>내용</div>
                     <br />
-                    <div className="text1">{`${review.text}`}</div>
+                    <div className='text1'>{`${review.text}`}</div>
                   </div>
                 </div>
               </Wrapper>
@@ -125,6 +125,3 @@ Review.propTypes = {
   handleIsRefresh: PropTypes.func,
 };
 export default withRouter(Review);
-
-
-
