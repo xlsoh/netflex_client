@@ -39,7 +39,6 @@ function MovieList({
       handleWriteReview={handleWriteReview}
       hadleReviewChangeByTitle={hadleReviewChangeByTitle}
       userInfo={userInfo}
-
     />
   );
 
@@ -79,12 +78,7 @@ function MovieList({
       </Fragment>
     );
   } else {
-    return (
-      <div>
-        <h2>로그인 후 이용해주세요.</h2>
-        <Link to="/user/signin">로그인 하시겠습니까?</Link>
-      </div>
-    );
+    return <div></div>;
   }
 }
 MovieList.propTypes = {

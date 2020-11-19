@@ -3,8 +3,6 @@ import { withRouter, Link } from "react-router-dom";
 import MyReviewList from "./MyReviewList";
 import axios from "axios";
 import PropTypes from "prop-types";
-import './MyPage.css'
-
 
 class MyPage extends React.Component {
   constructor(props) {
@@ -35,39 +33,34 @@ class MyPage extends React.Component {
     if (isLogin) {
       return (
         <>
-        <div className="myInfoZone">
-          <div className="myInfoCont">
-            <h1>Info</h1>
-            <br/>
+          <div>
             <div>
-              <span className='InfoCont'>{`이메일 `}</span>
-              <span>{`${userInfo.email}`}</span>
+              <h1>Info</h1>
+              <br />
+              <div>
+                <span>{`이메일 `}</span>
+                <span>{`${userInfo.email}`}</span>
+              </div>
+              <div>
+                <span>{`이름   `}</span>
+                <span>{`${userInfo.nickName}`}</span>s
+              </div>
             </div>
+
             <div>
-              <span className='InfoCont'>{`이름   `}</span>
-              <span>{`${userInfo.nickName}`}</span>s
+              <h1>Review</h1>
+              <br />
+              <MyReviewList
+                myReview={myReview}
+                hadleReviewChangeByTitle={hadleReviewChangeByTitle}
+                hadleReviewChangeByEdit={hadleReviewChangeByEdit}
+              />
             </div>
           </div>
-          
-          <div className="myReviewZone">
-            <h1>Review</h1>
-            <br/>
-            <MyReviewList
-              myReview={myReview}
-              hadleReviewChangeByTitle={hadleReviewChangeByTitle}
-              hadleReviewChangeByEdit={hadleReviewChangeByEdit}
-            />
-          </div>
-        </div>
         </>
       );
     } else {
-      return (
-        <div>
-          <h1>로그인이 되지 않았습니다</h1>
-          <Link to={`/user/signin`}>로그인 하시겠습니까?</Link>
-        </div>
-      );
+      return <div></div>;
     }
   }
 }
