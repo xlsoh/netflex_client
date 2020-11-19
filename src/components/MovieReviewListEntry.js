@@ -49,3 +49,6 @@ MovieReviewListEntry.propTypes = {
 };
 
 export default withRouter(MovieReviewListEntry);
+
+
+//

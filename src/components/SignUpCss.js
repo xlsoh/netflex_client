@@ -59,3 +59,5 @@ font-size: 15px
 
 
 export { GlobalStyleSignUp, WrapperSignUp, InputSignUp, ButtonSignUp}
+
+//

@@ -27,3 +27,5 @@ const mypageButton = styled.div`
 const MovieListEntry = styled.header``;
 
 export { homeButtonContainer, netflexButton, mypageButton, MovieListEntry };
+
+//

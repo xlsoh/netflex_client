@@ -173,3 +173,4 @@ WriteReview.propTypes = {
   hadleNewReviewChange: PropTypes.func,
 };
 export default withRouter(WriteReview);
+//
