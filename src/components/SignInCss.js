@@ -39,8 +39,8 @@ const Input = styled.input`
   background: white;
   border: none;
   border-radius: 3px;
-  width:400px ;
-  height:50px ;
+  width:350px ;
+  height:45px ;
   opacity: 1; 
 `;
 const Button = styled.button`
