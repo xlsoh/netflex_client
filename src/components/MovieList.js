@@ -39,7 +39,6 @@ function MovieList({
       handleWriteReview={handleWriteReview}
       hadleReviewChangeByTitle={hadleReviewChangeByTitle}
       userInfo={userInfo}
-
     />
   );
 

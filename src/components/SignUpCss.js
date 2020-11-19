@@ -1,7 +1,7 @@
-import {createGlobalStyle} from 'styled-components';
-import styled from 'styled-components'
+import { createGlobalStyle } from "styled-components";
+import styled from "styled-components";
 
-import reset from 'styled-reset'; // css reset
+import reset from "styled-reset"; // css reset
 
 const GlobalStyleSignUp = createGlobalStyle`
     ${reset};
@@ -24,38 +24,34 @@ const GlobalStyleSignUp = createGlobalStyle`
         background: url(https://ifh.cc/g/lTFnf7.jpg);
         background-size:cover;
     }
-`
+`;
 const WrapperSignUp = styled.section`
   padding: 4em;
-  background: black; 
+  background: black;
   border-radius: 40px;
   opacity: 0.8;
-
-`
+`;
 const InputSignUp = styled.input`
   padding: 0.5em;
   margin: 0.5em;
   background: white;
   border: none;
   border-radius: 3px;
-  width:350px ;
-  height:45px ;
-  opacity: 1; 
+  width: 350px;
+  height: 45px;
+  opacity: 1;
 `;
 const ButtonSignUp = styled.button`
-padding: 0.5em;
-margin: 0.5em;
-background: gray;
-border: none;
-border-radius: 3px;
-width:150px ;
-height:40px ;
-opacity: 1; 
-font-weight: bold;
-font-size: 15px
+  padding: 0.5em;
+  margin: 0.5em;
+  background: gray;
+  border: none;
+  border-radius: 3px;
+  width: 150px;
+  height: 40px;
+  opacity: 1;
+  font-weight: bold;
+  font-size: 15px;
+`;
 
-`
-
-
-
-export { GlobalStyleSignUp, WrapperSignUp, InputSignUp, ButtonSignUp}
+export { GlobalStyleSignUp, WrapperSignUp, InputSignUp, ButtonSignUp };
