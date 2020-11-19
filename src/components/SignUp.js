@@ -2,6 +2,7 @@ import React from "react";
 import { withRouter, Link } from "react-router-dom";
 import axios from "axios";
 import PropTypes from "prop-types";
+const IP_ADDRESS = "127.0.0.1";
 
 class SignUp extends React.Component {
   constructor(props) {
@@ -28,7 +29,7 @@ class SignUp extends React.Component {
               onSubmit={(e) => {
                 e.preventDefault();
                 axios
-                  .post(`http://54.180.63.153:5000/user/signup`, {
+                  .post(`http://${IP_ADDRESS}:5000/user/signup`, {
                     email: email,
                     password: password,
                     nickName: nickName,
@@ -49,8 +50,8 @@ class SignUp extends React.Component {
                     margin: "10px",
                     borderRadius: "5px",
                   }}
-                  type="email"
-                  placeholder="이메일 주소"
+                  type='email'
+                  placeholder='이메일 주소'
                   onChange={this.handleInputValue("email")}
                 ></input>
               </div>
@@ -65,8 +66,8 @@ class SignUp extends React.Component {
                     borderRadius: "5px",
                   }}
                   onChange={this.handleInputValue("password")}
-                  type="password"
-                  placeholder="비밀번호"
+                  type='password'
+                  placeholder='비밀번호'
                 ></input>
               </div>
               <div>
@@ -79,7 +80,7 @@ class SignUp extends React.Component {
                     borderRadius: "5px",
                   }}
                   onChange={this.handleInputValue("nickName")}
-                  placeholder="닉네임"
+                  placeholder='닉네임'
                 ></input>
               </div>
               <div>
@@ -93,7 +94,7 @@ class SignUp extends React.Component {
                   borderRadius: "5px",
                   backgroundColor: "gray",
                 }}
-                type="submit"
+                type='submit'
               >
                 시작하기
               </button>

@@ -1,8 +1,13 @@
 import React from "react";
-import { withRouter, Link } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import MyReviewList from "./MyReviewList";
 import axios from "axios";
 import PropTypes from "prop-types";
+
+const IP_ADDRESS = "127.0.0.1";
+const axiosInstance = axios.create({
+  withCredentials: true,
+});
 
 class MyPage extends React.Component {
   constructor(props) {
@@ -13,13 +18,16 @@ class MyPage extends React.Component {
   }
 
   componentDidMount() {
-    const { userInfo, handleCleanReview } = this.props;
-    axios
-      .get(`http://54.180.63.153:5000/movie/reviews/${userInfo.id}`)
-      .then((res) => this.setState({ myReview: res.data.results }))
-      .then(() => {
-        handleCleanReview();
-      });
+    this.props.handleIsRefresh().then(() => {
+      const { userInfo, handleCleanReview } = this.props;
+
+      axiosInstance
+        .get(`http://${IP_ADDRESS}:5000/movie/reviews/${userInfo.id}`)
+        .then((res) => this.setState({ myReview: res.data.results }))
+        .then(() => {
+          handleCleanReview();
+        });
+    });
   }
 
   render() {
@@ -32,7 +40,7 @@ class MyPage extends React.Component {
     } = this.props;
     if (isLogin) {
       return (
-        <div className="myInfoZone">
+        <div className='myInfoZone'>
           <div>
             <h1>내 정보</h1>
             <div>
@@ -46,8 +54,8 @@ class MyPage extends React.Component {
               <span>{`${userInfo.nickName}`}</span>s
             </div>
           </div>
-          <hr color="black" size="10px"></hr>
-          <div className="myReviewZone">
+          <hr color='black' size='10px'></hr>
+          <div className='myReviewZone'>
             <h2>내가 쓴 리뷰</h2>
             <MyReviewList
               myReview={myReview}
@@ -58,12 +66,7 @@ class MyPage extends React.Component {
         </div>
       );
     } else {
-      return (
-        <div>
-          <h1>로그인이 되지 않았습니다</h1>
-          <Link to={`/user/signin`}>로그인 하시겠습니까?</Link>
-        </div>
-      );
+      return <div></div>;
     }
   }
 }
@@ -74,5 +77,6 @@ MyPage.propTypes = {
   handleCleanReview: PropTypes.func,
   hadleReviewChangeByEdit: PropTypes.func,
   hadleReviewChangeByTitle: PropTypes.func,
+  handleIsRefresh: PropTypes.func,
 };
 export default withRouter(MyPage);

@@ -2,6 +2,7 @@ import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import axios from "axios";
 import PropTypes from "prop-types";
+const IP_ADDRESS = "127.0.0.1";
 
 class WriteReview extends React.Component {
   constructor(props) {
@@ -34,7 +35,7 @@ class WriteReview extends React.Component {
               onSubmit={(e) => {
                 e.preventDefault();
                 return axios
-                  .post(`http://54.180.63.153:5000/movie/writereview`, {
+                  .post(`http://${IP_ADDRESS}:5000/movie/writereview`, {
                     title: title,
                     text: text,
                     userId: userInfo.id,
@@ -66,8 +67,8 @@ class WriteReview extends React.Component {
                     margin: "10px",
                     borderRadius: "5px",
                   }}
-                  type="title"
-                  placeholder="제목"
+                  type='title'
+                  placeholder='제목'
                   onChange={this.handleInputValue("title")}
                 ></input>
               </div>
@@ -81,8 +82,8 @@ class WriteReview extends React.Component {
                     margin: "10px",
                     borderRadius: "5px",
                   }}
-                  type="text"
-                  placeholder="내용"
+                  type='text'
+                  placeholder='내용'
                   onChange={this.handleInputValue("text")}
                 ></textarea>
               </div>
@@ -93,7 +94,7 @@ class WriteReview extends React.Component {
                   margin: "5px",
                   backgroundColor: "ivory",
                 }}
-                type="submit"
+                type='submit'
               >
                 작성
               </button>
@@ -109,7 +110,7 @@ class WriteReview extends React.Component {
                 e.preventDefault();
                 console.log(review.reviewId);
                 return axios
-                  .post(`http://54.180.63.153:5000/movie/writereview`, {
+                  .post(`http://${IP_ADDRESS}:5000/movie/writereview`, {
                     reviewId: review.reviewId,
                     title: title,
                     text: text,
@@ -135,14 +136,14 @@ class WriteReview extends React.Component {
                 {" "}
                 제목
                 <input
-                  id="title"
+                  id='title'
                   style={{
                     width: "300px",
                     height: "30px",
                     margin: "10px",
                     borderRadius: "5px",
                   }}
-                  type="title"
+                  type='title'
                   value={`${this.state.title}`}
                   onChange={this.handleInputValue("title")}
                 ></input>
@@ -151,14 +152,14 @@ class WriteReview extends React.Component {
                 {" "}
                 내용
                 <textarea
-                  id="text"
+                  id='text'
                   style={{
                     width: "300px",
                     height: "30px",
                     margin: "10px",
                     borderRadius: "5px",
                   }}
-                  type="text"
+                  type='text'
                   value={`${this.state.text}`}
                   onChange={this.handleInputValue("text")}
                 ></textarea>
@@ -170,7 +171,7 @@ class WriteReview extends React.Component {
                   margin: "5px",
                   backgroundColor: "ivory",
                 }}
-                type="submit"
+                type='submit'
               >
                 작성
               </button>
@@ -181,8 +182,8 @@ class WriteReview extends React.Component {
     } else {
       return (
         <div>
-          <h2>로그인 후 이용해주세요.</h2>
-          <Link to={`/user/signin`}>로그인 하시겠습니까?</Link>
+          {/* <h2>로그인 후 이용해주세요.</h2>
+          <Link to={`/user/signin`}>로그인 하시겠습니까?</Link> */}
         </div>
       );
     }

@@ -1,19 +1,38 @@
 import React from "react";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import axios from "axios";
+
+const IP_ADDRESS = "127.0.0.1";
+const axiosInstance = axios.create({
+  withCredentials: true,
+});
 
 class Review extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = { test: [] };
   }
   go() {
     this.props.history.go(-1);
   }
 
+  componentDidMount() {
+    this.props.handleIsRefresh().then(() => {
+      const { userInfo, review, movie } = this.props;
+
+      axiosInstance
+        .post(`http://${IP_ADDRESS}:5000/movie/reviewinfo/${review.reviewId}`, {
+          userId: userInfo.id,
+        })
+        .then((res) => {
+          console.log(res);
+        });
+    });
+  }
+
   render() {
-    const { isLogin, userInfo, review } = this.props;
+    const { isLogin, userInfo, review, movie } = this.props;
     if (isLogin) {
       return (
         <div>
@@ -25,7 +44,7 @@ class Review extends React.Component {
               borderRadius: "5px",
               backgroundColor: "ivory_gray",
             }}
-            type="submit"
+            type='submit'
             onClick={this.go.bind(this)}
           >
             뒤로가기
@@ -52,7 +71,7 @@ class Review extends React.Component {
                   e.preventDefault();
                   axios
                     .post(
-                      `http://54.180.63.153:5000/movie/reviewinfo/${review.reviewId}`,
+                      `http://${IP_ADDRESS}:5000/movie/reviewinfo/${review.reviewId}`,
                       {
                         userId: userInfo.id,
                       }
@@ -67,7 +86,7 @@ class Review extends React.Component {
                     margin: "5px",
                     backgroundColor: "ivorygray",
                   }}
-                  type="submit"
+                  type='submit'
                 >
                   좋아요
                 </button>
@@ -82,12 +101,7 @@ class Review extends React.Component {
         </div>
       );
     } else {
-      return (
-        <div>
-          <h2>로그인 후 이용해주세요.</h2>
-          <Link to={`/user/signin`}>로그인 하시겠습니까?</Link>
-        </div>
-      );
+      return <div></div>;
     }
   }
 }
@@ -96,5 +110,7 @@ Review.propTypes = {
   isLogin: PropTypes.bool,
   userInfo: PropTypes.object,
   review: PropTypes.object,
+  movie: PropTypes.object,
+  handleIsRefresh: PropTypes.func,
 };
 export default withRouter(Review);

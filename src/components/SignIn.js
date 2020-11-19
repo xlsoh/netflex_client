@@ -1,9 +1,12 @@
 import React from "react";
-import { Link, withRouter } from "react-router-dom";
+import { Link, withRouter, Redirect } from "react-router-dom";
 import axios from "axios";
 import PropTypes from "prop-types";
 import GoogleBtn from "./GoogleBtn";
-
+const IP_ADDRESS = "127.0.0.1";
+const axiosInstance = axios.create({
+  withCredentials: true,
+});
 class SignIn extends React.Component {
   constructor(props) {
     super(props);
@@ -28,12 +31,13 @@ class SignIn extends React.Component {
             <form
               onSubmit={(e) => {
                 e.preventDefault();
-                return axios
-                  .post(`http://54.180.63.153:5000/user/signin`, {
+                return axiosInstance
+                  .post(`http://${IP_ADDRESS}:5000/user/signin`, {
                     email: email,
                     password: password,
                   })
                   .then((res) => {
+                    console.log(res.data);
                     handleIsLoginChange(res.data);
                     this.props.history.push(`/`);
                   })
@@ -53,8 +57,8 @@ class SignIn extends React.Component {
                     margin: "10px",
                     borderRadius: "5px",
                   }}
-                  type="email"
-                  placeholder="이메일 주소"
+                  type='email'
+                  placeholder='이메일 주소'
                   onChange={this.handleInputValue("email")}
                 ></input>
               </div>
@@ -68,8 +72,8 @@ class SignIn extends React.Component {
                     margin: "10px",
                     borderRadius: "5px",
                   }}
-                  type="password"
-                  placeholder="비밀번호"
+                  type='password'
+                  placeholder='비밀번호'
                   onChange={this.handleInputValue("password")}
                 ></input>
               </div>
@@ -82,7 +86,7 @@ class SignIn extends React.Component {
                     borderRadius: "5px",
                     backgroundColor: "gray",
                   }}
-                  type="submit"
+                  type='submit'
                 >
                   로그인
                 </button>
@@ -104,11 +108,12 @@ class SignIn extends React.Component {
       );
     } else {
       return (
-        <div>
-          <h1>{`${userInfo.nickName}`}님!</h1>
-          <h2>로그아웃 후 이용해주세요.</h2>
-          <Link to={`/user/mypage`}>로그아웃 하시겠습니까?</Link>
-        </div>
+        // <div>
+        //   <h1>{`${userInfo.nickName}`}님!</h1>
+        //   <h2>로그아웃 후 이용해주세요.</h2>
+        //   <Link to={`/user/mypage`}>로그아웃 하시겠습니까?</Link>
+        // </div>
+        <Redirect to={`/movie/popular`} />
       );
     }
   }

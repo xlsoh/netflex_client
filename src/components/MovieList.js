@@ -56,7 +56,7 @@ function MovieList({
       <Fragment>
         <>
           <Grid container spacing={0}>
-            <div className="movie">
+            <div className='movie'>
               {modalCont}
               {Movies &&
                 Movies.map((movie, index) => (
@@ -82,8 +82,8 @@ function MovieList({
   } else {
     return (
       <div>
-        <h2>로그인 후 이용해주세요.</h2>
-        <Link to="/user/signin">로그인 하시겠습니까?</Link>
+        {/* <h2>로그인 후 이용해주세요.</h2>
+        <Link to="/user/signin">로그인 하시겠습니까?</Link> */}
       </div>
     );
   }
