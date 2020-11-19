@@ -2,7 +2,6 @@ import React from "react";
 import { withRouter, Link, Route } from "react-router-dom";
 import axios from "axios";
 import PropTypes from "prop-types";
-
 class MyReviewListEntry extends React.Component {
   constructor(props) {
     super(props);
@@ -10,7 +9,6 @@ class MyReviewListEntry extends React.Component {
     this.handleDelClick = this.handleDelClick.bind(this);
     this.handleEditClick = this.handleEditClick.bind(this);
   }
-
   handleTitleClick = () => {
     const { review, hadleReviewChangeByTitle } = this.props;
     axios
@@ -20,7 +18,6 @@ class MyReviewListEntry extends React.Component {
       })
       .catch((err) => console.log(err));
   };
-
   handleDelClick = () => {
     const { review } = this.props;
     axios
@@ -59,5 +56,6 @@ MyReviewListEntry.propTypes = {
   hadleReviewChangeByEdit: PropTypes.func,
   hadleReviewChangeByTitle: PropTypes.func,
 };
-
 export default withRouter(MyReviewListEntry);
+
+
