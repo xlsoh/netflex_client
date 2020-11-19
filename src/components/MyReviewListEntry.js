@@ -2,6 +2,8 @@ import React from "react";
 import { withRouter, Link, Route } from "react-router-dom";
 import axios from "axios";
 import PropTypes from "prop-types";
+import "./MovieReviewListEntry.css"
+
 
 class MyReviewListEntry extends React.Component {
   constructor(props) {
@@ -45,9 +47,11 @@ class MyReviewListEntry extends React.Component {
     const { title } = this.props;
     return (
       <div>
-        <a onClick={this.handleTitleClick}>{title}</a>
-        <button onClick={this.handleEditClick}>수정</button>
-        <button onClick={this.handleDelClick}>삭제</button>
+        <a className="title" onClick={this.handleTitleClick}>{title}</a>
+        <span className="btn_group" >
+        <button className="edit" style={{float: "right", padding: "0 20px", border: "1px solid skyblue",margin:"0  0 -1px", background:"white",color:"skyblue", borderRadius:"5px" }} onClick={this.handleEditClick}>수정</button>
+        <button className="delete" style={{float: "right", padding: "0 20px", border: "1px solid skyblue", background:"white", color:"skyblue", borderRadius:"5px"}} onClick={this.handleDelClick}>삭제</button>
+        </span>
       </div>
     );
   }
