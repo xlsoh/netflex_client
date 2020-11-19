@@ -3,9 +3,9 @@ import { Link, withRouter } from "react-router-dom";
 import MovieListEntry from "./MovieListEntry";
 import { apiUrl, apiKey, imageBaseUrl } from "./config";
 import axios from "axios";
-import Grid from "@material-ui/core/Grid";
 import PropTypes from "prop-types";
 import MovieInfo from "./MovieInfo";
+import "./MovieList.css";
 
 function MovieList({
   isLogin,
@@ -49,43 +49,35 @@ function MovieList({
     });
   }, []);
 
-  // console.log(Movies);
 
   if (isLogin) {
     return (
       <Fragment>
         <>
-          <Grid container spacing={0}>
-            <div className='movie'>
-              {modalCont}
-              {Movies &&
-                Movies.map((movie, index) => (
-                  <React.Fragment key={index}>
-                    <div onClick={() => showModal(movie)}>
-                      <MovieListEntry
-                        image={
-                          movie.poster_path
-                            ? `${imageBaseUrl}w500${movie.poster_path}`
-                            : null
-                        }
-                        movieId={movie.id}
-                        movieName={movie.original_title}
-                      />
-                    </div>
-                  </React.Fragment>
-                ))}
-            </div>
-          </Grid>
+          {modalCont}
+          <div className="movielist">
+            {Movies &&
+              Movies.map((movie, index) => (
+                <React.Fragment key={index}>
+                  <div onClick={() => showModal(movie)}>
+                    <MovieListEntry
+                      image={
+                        movie.poster_path
+                          ? `${imageBaseUrl}w500${movie.poster_path}`
+                          : null
+                      }
+                      movieId={movie.id}
+                      movieName={movie.original_title}
+                    />
+                  </div>
+                </React.Fragment>
+              ))}
+          </div>
         </>
       </Fragment>
     );
   } else {
-    return (
-      <div>
-        {/* <h2>로그인 후 이용해주세요.</h2>
-        <Link to="/user/signin">로그인 하시겠습니까?</Link> */}
-      </div>
-    );
+    return <div></div>;
   }
 }
 MovieList.propTypes = {
@@ -94,3 +86,4 @@ MovieList.propTypes = {
   handleWriteReview: PropTypes.func,
 };
 export default withRouter(MovieList);
+

@@ -60,8 +60,8 @@ class App extends React.Component {
     this.setState({ isLogin: true, userInfo: res }, () => {
       console.log(this.state);
     });
-  };
 
+  };
   handleIsLogoutChange = () => {
     console.log(this.state.userInfo);
     localStorage.clear();
@@ -70,7 +70,6 @@ class App extends React.Component {
     });
     this.props.history.push(`/`);
   };
-
   handleWriteReview = (data) => {
     this.setState({ movie: data });
     this.setState({ review: {} });
@@ -96,7 +95,6 @@ class App extends React.Component {
     });
     this.props.history.push(`/movie/${review.movieId}/writeReview`);
   };
-
   hadleNewReviewChange = (reviewId) => {
     axios
       .get(`http://${IP_ADDRESS}:5000/movie/reviewinfo/${reviewId}`)
@@ -108,7 +106,6 @@ class App extends React.Component {
       })
       .catch((err) => console.log(err));
   };
-
   render() {
     const { isLogin, userInfo, review, movie } = this.state;
     console.log(this.state);
@@ -212,5 +209,4 @@ class App extends React.Component {
 App.propTypes = {
   history: PropTypes.object,
 };
-
 export default withRouter(App);

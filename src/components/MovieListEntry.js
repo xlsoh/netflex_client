@@ -1,20 +1,14 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
-import Grid from "@material-ui/core/Grid";
 import PropTypes from "prop-types";
+import "./MovieList.css";
 
 function MovieListEntry(props) {
   return (
     <>
-      <Grid item lg={2} md={4} xs={12}>
-        <div style={{ position: "relative" }} onClick={props.onClick}>
-          <img
-            style={{ height: "320px" }}
-            src={props.image}
-            alt={props.movieName}
-          />
-        </div>
-      </Grid>
+      <div className="movies" onClick={props.onClick}>
+        <img className="movie" src={props.image} alt={props.movieName} />
+      </div>
     </>
   );
 }
@@ -27,3 +21,5 @@ MovieListEntry.propTypes = {
 };
 
 export default withRouter(MovieListEntry);
+
+

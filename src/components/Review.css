@@ -1,0 +1,37 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap");
+
+.font-style {
+  font-family: "Noto Sans KR";
+  text-shadow: aliceblue;
+}
+
+.movie-title {
+  padding: 0.5em;
+  margin: 10px 40px 10px;
+  font-size: xx-large;
+  font-weight: bold;
+}
+
+.title {
+  padding-right: 0.5em;
+  padding-left: 0.6em;
+  font-size: large;
+  font-weight: bolder;
+}
+
+.text {
+  padding-left: 0.1em;
+  font-size: medium;
+  font-weight: lighter;
+  opacity: 0.9;
+}
+
+.text1 {
+  padding-left: 1em;
+  font-size: medium;
+  font-weight: lighter;
+  opacity: 0.9;
+}
+
+.btn-like {
+}

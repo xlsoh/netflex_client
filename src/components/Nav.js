@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, Switch, Route, withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
+import "./Nav.css";
 
 class Nav extends React.Component {
   constructor(props) {
@@ -17,34 +18,14 @@ class Nav extends React.Component {
             path={`/user/mypage`}
             render={() => {
               return (
-                <div>
+                <div className="mypageButtonContainer">
                   <Link to={`/movie/popular`}>
-                    <button
-                      style={{
-                        width: "150px",
-                        height: "50px",
-                        margin: "5px",
-                        borderRadius: "5px",
-                        backgroundColor: "ivory",
-                      }}
-                      type="submit"
-                    >
-                      Netflex
-                    </button>
+                    <div className="netflexButton" />
                   </Link>
-                  <button
-                    style={{
-                      width: "150px",
-                      height: "50px",
-                      margin: "5px",
-                      borderRadius: "5px",
-                      backgroundColor: "ivory",
-                    }}
-                    type="submit"
+                  <div
+                    className="logoutButton"
                     onClick={handleIsLogoutChange}
-                  >
-                    로그아웃
-                  </button>
+                  />
                 </div>
               );
             }}
@@ -54,36 +35,14 @@ class Nav extends React.Component {
             path={`/movie/popular`}
             render={() => {
               return (
-                <div>
-                  <Link to={`/movie/popular`}>
-                    <button
-                      style={{
-                        width: "150px",
-                        height: "50px",
-                        margin: "5px",
-                        borderRadius: "5px",
-                        backgroundColor: "ivory",
-                      }}
-                      type="submit"
-                    >
-                      Netflex
-                    </button>
-                  </Link>
-                  <Link to={`/user/mypage`}>
-                    <button
-                      style={{
-                        width: "150px",
-                        height: "50px",
-                        margin: "5px",
-                        borderRadius: "5px",
-                        backgroundColor: "ivory",
-                      }}
-                      type="submit"
-                    >
-                      마이페이지
-                    </button>
-                  </Link>
-                </div>
+                <header className="banner">
+                  <div className="homeButtonContainer">
+                    <div className="netflexButton" />
+                    <Link to={`/user/mypage`}>
+                      <div className="mypageButton" />
+                    </Link>
+                  </div>
+                </header>
               );
             }}
           />
@@ -94,32 +53,10 @@ class Nav extends React.Component {
               return (
                 <div>
                   <Link to={`/movie/popular`}>
-                    <button
-                      style={{
-                        width: "150px",
-                        height: "50px",
-                        margin: "5px",
-                        borderRadius: "5px",
-                        backgroundColor: "ivory",
-                      }}
-                      type="submit"
-                    >
-                      Netflex
-                    </button>
+                    <div className="netflexButton" />
                   </Link>
                   <Link to={`/user/mypage`}>
-                    <button
-                      style={{
-                        width: "150px",
-                        height: "50px",
-                        margin: "5px",
-                        borderRadius: "5px",
-                        backgroundColor: "ivory",
-                      }}
-                      type="submit"
-                    >
-                      마이페이지
-                    </button>
+                    <div className="mypageButton" />
                   </Link>
                 </div>
               );
@@ -130,34 +67,12 @@ class Nav extends React.Component {
             path={`/movie/${movie.movieId}/review/${review.reviewId}`}
             render={() => {
               return (
-                <div>
+                <div className="mypageButtonContainer">
                   <Link to={`/movie/popular`}>
-                    <button
-                      style={{
-                        width: "150px",
-                        height: "50px",
-                        margin: "5px",
-                        borderRadius: "5px",
-                        backgroundColor: "ivory",
-                      }}
-                      type="submit"
-                    >
-                      Netflex
-                    </button>
+                    <div className="netflexButton" />
                   </Link>
                   <Link to={`/user/mypage`}>
-                    <button
-                      style={{
-                        width: "150px",
-                        height: "50px",
-                        margin: "5px",
-                        borderRadius: "5px",
-                        backgroundColor: "ivory",
-                      }}
-                      type="submit"
-                    >
-                      마이페이지
-                    </button>
+                    <div className="mypageButton" />
                   </Link>
                 </div>
               );
@@ -168,34 +83,12 @@ class Nav extends React.Component {
             path={`/movie/${movie.movieId}/writeReview`}
             render={() => {
               return (
-                <div>
+                <div className="mypageButtonContainer">
                   <Link to={`/movie/popular`}>
-                    <button
-                      style={{
-                        width: "150px",
-                        height: "50px",
-                        margin: "5px",
-                        borderRadius: "5px",
-                        backgroundColor: "ivory",
-                      }}
-                      type="submit"
-                    >
-                      Netflex
-                    </button>
+                    <div className="netflexButton" />
                   </Link>
                   <Link to={`/user/mypage`}>
-                    <button
-                      style={{
-                        width: "150px",
-                        height: "50px",
-                        margin: "5px",
-                        borderRadius: "5px",
-                        backgroundColor: "ivory",
-                      }}
-                      type="submit"
-                    >
-                      마이페이지
-                    </button>
+                    <div className="mypageButton" />
                   </Link>
                 </div>
               );
@@ -211,20 +104,7 @@ class Nav extends React.Component {
             render={() => {
               return (
                 <div>
-                  <Link to={`/user/signin`}>
-                    <button
-                      style={{
-                        width: "150px",
-                        height: "50px",
-                        margin: "5px",
-                        borderRadius: "5px",
-                        backgroundColor: "ivory",
-                      }}
-                      type="submit"
-                    >
-                      Netflex
-                    </button>
-                  </Link>
+                  <Link to={`/user/signin`}></Link>
                 </div>
               );
             }}
@@ -234,20 +114,7 @@ class Nav extends React.Component {
             render={() => {
               return (
                 <div>
-                  <Link to={`/user/signin`}>
-                    <button
-                      style={{
-                        width: "150px",
-                        height: "50px",
-                        margin: "5px",
-                        borderRadius: "5px",
-                        backgroundColor: "ivory",
-                      }}
-                      type="submit"
-                    >
-                      Netflex
-                    </button>
-                  </Link>
+                  <Link to={`/user/signin`}></Link>
                 </div>
               );
             }}
@@ -265,3 +132,4 @@ Nav.propTypes = {
   handleIsLogoutChange: PropTypes.func,
 };
 export default withRouter(Nav);
+

@@ -1,0 +1,25 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap");
+
+.myInfoCont {
+  border: 0;
+  font-family: "Noto Sans KR";
+  font-size: 100%;
+  color: black;
+  padding: 0;
+  display: block;
+  background: #fafafa;
+  padding: 30px 50px 70px 50px;
+  font-family: "Noto Sans KR";
+  border-bottom: 1px solid #dedede;
+}
+
+.myInfoCont.InfoCont {
+  padding: 40px 0px;
+  font-size: large;
+  color: white;
+}
+
+.myReviewZone {
+  padding: 50px 0 24px 50px;
+  font-family: "Noto Sans KR";
+}

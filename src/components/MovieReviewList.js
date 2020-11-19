@@ -3,6 +3,7 @@ import { withRouter } from "react-router-dom";
 import MovieReviewListEntry from "./MovieReviewListEntry";
 import PropTypes from "prop-types";
 import axios from "axios";
+
 const IP_ADDRESS = "54.180.63.153";
 
 class MovieReviewList extends React.Component {
@@ -19,7 +20,6 @@ class MovieReviewList extends React.Component {
       }
     );
   }
-
   render() {
     const { reviews } = this.state;
     const { userInfo, movieId, hadleReviewChangeByTitle } = this.props;
@@ -43,7 +43,6 @@ class MovieReviewList extends React.Component {
     );
   }
 }
-
 MovieReviewList.propTypes = {
   movieId: PropTypes.number,
   userInfo: PropTypes.object,
