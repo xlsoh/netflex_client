@@ -39,7 +39,7 @@ class App extends React.Component {
       })
       .catch((err) => console.log(err));
   };
-
+  //
   handleWriteReview = (data) => {
     this.setState({ movie: data });
     this.setState({ review: {} });
