@@ -43,20 +43,24 @@ class SignIn extends React.Component {
                 <form
                   onSubmit={(e) => {
                     e.preventDefault();
-                    return axiosInstance
-                      .post(`http://${IP_ADDRESS}:5000/user/signin`, {
-                        email: email,
-                        password: password,
-                      })
-                      .then((res) => {
-                        console.log(res.data);
-                        handleIsLoginChange(res.data);
-                        this.props.history.push(`/`);
-                      })
-                      .catch((err) => {
-                        alert("Login failed");
-                        console.log(err);
-                      });
+                    if (email && password) {
+                      return axiosInstance
+                        .post(`http://${IP_ADDRESS}:5000/user/signin`, {
+                          email: email,
+                          password: password,
+                        })
+                        .then((res) => {
+                          console.log(res.data);
+                          handleIsLoginChange(res.data);
+                          this.props.history.push(`/`);
+                        })
+                        .catch((err) => {
+                          alert("Login failed");
+                          console.log(err);
+                        });
+                    } else {
+                      alert("아이디와 비밀번호를 입력해주세요");
+                    }
                   }}
                 >
                   <div>
