@@ -45,7 +45,7 @@ function MovieInfo({
               onClick={() => handleWriteReview(movie)}
             />
           </div>
-          <img src={`${imageBaseUrl}w500${img}`} alt="bg" />
+          <img className="poster" src={`${imageBaseUrl}w500${img}`} />
         </div>
       </div>
     </div>

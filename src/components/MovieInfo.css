@@ -66,3 +66,7 @@
   height: 30px;
   background-image: url(https://ifh.cc/g/5JHcfE.png);
 }
+
+.poster {
+  border-radius: 20px;
+}
