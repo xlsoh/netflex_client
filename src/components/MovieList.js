@@ -87,3 +87,4 @@ MovieList.propTypes = {
   handleWriteReview: PropTypes.func,
 };
 export default withRouter(MovieList);
+

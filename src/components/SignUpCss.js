@@ -54,4 +54,8 @@ const ButtonSignUp = styled.button`
   font-size: 15px;
 `;
 
-export { GlobalStyleSignUp, WrapperSignUp, InputSignUp, ButtonSignUp };
+
+export { GlobalStyleSignUp, WrapperSignUp, InputSignUp, ButtonSignUp}
+
+
+

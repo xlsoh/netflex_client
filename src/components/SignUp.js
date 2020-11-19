@@ -90,13 +90,7 @@ class SignUp extends React.Component {
         </>
       );
     } else {
-      return (
-        <div>
-          <h1>{`${userInfo.nickName}`}님!</h1>
-          <h2>로그아웃 후 이용해주세요.</h2>
-          <Link to={`/user/mypage`}>로그아웃 하시겠습니까?</Link>
-        </div>
-      );
+      return <div></div>;
     }
   }
 }

@@ -5,10 +5,15 @@ const Input = styled.input`
   margin: 0.5em;
   background: #fafafa;
   border: none;
-  width: 1500px;
+  width: 1450px;
   height: 100px;
   opacity: 1;
-  box-shadow: 5px 5px 5px #d5d4d1;
+  box-shadow: 2px 2px 2px 2px #fafafa;
+  align-items: center;
+  font-size: 18px;
+  @media only screen and (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 const Textarea = styled.input`
@@ -16,24 +21,36 @@ const Textarea = styled.input`
   margin: 0.5em;
   background: #fafafa;
   border: none;
-  width: 1500px;
+  width: 1450px;
   height: 300px;
   opacity: 1;
-  box-shadow: 5px 5px 5px #d5d4d1;
+  box-shadow: 2px 2px 2px 2px #fafafa;
+  align-items: center;
+  font-size: 18px;
+  @media only screen and (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
-const Button = styled.button`
-  padding: 0.5em;
-  margin: 0.5em;
-  background: black;
-  border: none;
-  border-radius: 3px;
-  width: 150px;
-  height: 40px;
-  opacity: 1;
-  color: white;
-  font-weight: bold;
-  font-size: 15px;
+const Wrapper = styled.section`
+  padding: 3.5em;
+  background: #221f1f;
+  border-radius: 15px;
+  opacity: 0.9;
+  align: middle;
+  margin: 10px 40px 10px;
+  &:hover {
+    padding-top: 10rem;
+    padding-bottom: 10rem;
+    > div.sub-introduce {
+      display: flex;
+      flex-direction: column;
+    }
+    > div.like-button {
+      display: flex;
+      justify-content: center;
+    }
+  }
 `;
 
-export { Input, Textarea, Button };
+export { Input, Wrapper, Textarea };
