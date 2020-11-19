@@ -1,6 +1,3 @@
-//////
-////
-
 import React from "react";
 import { Switch, Route, Redirect, withRouter } from "react-router-dom";
 import MyPage from "./components/MyPage";
@@ -24,11 +21,9 @@ class App extends React.Component {
       accessToken: "",
     };
   }
-
   handleIsLoginChange = (res, accessToken) => {
     this.setState({ isLogin: true, userInfo: res, accessToken });
   };
-
   handleIsLogoutChange = () => {
     axios
       .post(`http://54.180.63.153:5000/user/signout`, {
@@ -42,7 +37,6 @@ class App extends React.Component {
       })
       .catch((err) => console.log(err));
   };
-  //
   handleWriteReview = (data) => {
     this.setState({ movie: data });
     this.setState({ review: {} });
@@ -68,7 +62,6 @@ class App extends React.Component {
     });
     this.props.history.push(`/movie/${review.movieId}/writeReview`);
   };
-
   hadleNewReviewChange = (reviewId) => {
     axios
       .get(`http://54.180.63.153:5000/movie/reviewinfo/${reviewId}`)
@@ -80,7 +73,6 @@ class App extends React.Component {
       })
       .catch((err) => console.log(err));
   };
-  ///
   render() {
     const { isLogin, userInfo, review, movie } = this.state;
     console.log("--isLogin--");
@@ -99,7 +91,6 @@ class App extends React.Component {
           movie={movie}
           handleIsLogoutChange={this.handleIsLogoutChange.bind(this)}
         />
-        {/* <MovieList/> */}
         <Switch>
           <Route
             path={`/user/signin`}
@@ -150,7 +141,7 @@ class App extends React.Component {
           />
           <Route
             exact
-            path={`/movie/reviewinfo/${review.reviewId}`}
+            path={`/movie/${movie.movieId}/review/${review.reviewId}`}
             render={() => (
               <Review isLogin={isLogin} userInfo={userInfo} review={review} />
             )}
@@ -185,7 +176,4 @@ class App extends React.Component {
 App.propTypes = {
   history: PropTypes.object,
 };
-
 export default withRouter(App);
-
-//

@@ -23,7 +23,7 @@ class MovieReviewList extends React.Component {
     return !reviews ? (
       <div></div>
     ) : (
-      <ul className="movieReview">
+      <ul className='movieReview'>
         {reviews &&
           reviews.map((review, index) => (
             <React.Fragment key={index}>
@@ -46,6 +46,3 @@ MovieReviewList.propTypes = {
   hadleReviewChangeByTitle: PropTypes.func,
 };
 export default withRouter(MovieReviewList);
-
-//
-
