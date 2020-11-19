@@ -2,7 +2,7 @@ import React from "react";
 import { withRouter, Link } from "react-router-dom";
 import axios from "axios";
 import PropTypes from "prop-types";
-import GlobalStyle from "./SignUpCss"
+import {GlobalStyleSignUp, WrapperSignUp, InputSignUp, ButtonSignUp} from "./SignUpCss"
 
 
 class SignUp extends React.Component {
@@ -24,10 +24,14 @@ class SignUp extends React.Component {
     if (!isLogin) {
       return (
         <>
-        <GlobalStyle/>
+        <GlobalStyleSignUp/>
+        <WrapperSignUp>
         <div>
           <center>
-            <h1>회원가입</h1>
+          <img src={`https://fontmeme.com/permalink/201118/88710b88617466e8a7ba4c7844f9623a.png`}/>
+          <br/>
+            <br/>
+            <br/>
             <form
               onSubmit={(e) => {
                 e.preventDefault();
@@ -45,65 +49,49 @@ class SignUp extends React.Component {
             >
               <div>
                 {" "}
-                이메일
-                <input
-                  style={{
-                    width: "400px",
-                    height: "50px",
-                    margin: "10px",
-                    borderRadius: "5px",
-                  }}
+              
+                <InputSignUp
+               
                   type="email"
                   placeholder="이메일 주소"
                   onChange={this.handleInputValue("email")}
-                ></input>
+                ></InputSignUp>
               </div>
               <div>
                 {" "}
-                비밀번호
-                <input
-                  style={{
-                    width: "400px",
-                    height: "50px",
-                    margin: "10px",
-                    borderRadius: "5px",
-                  }}
+               
+                <InputSignUp
+             
                   onChange={this.handleInputValue("password")}
                   type="password"
                   placeholder="비밀번호"
-                ></input>
+                ></InputSignUp>
               </div>
               <div>
-                닉네임
-                <input
-                  style={{
-                    width: "400px",
-                    height: "50px",
-                    margin: "10px",
-                    borderRadius: "5px",
-                  }}
+             
+                <InputSignUp
+           
                   onChange={this.handleInputValue("nickName")}
                   placeholder="닉네임"
-                ></input>
+                ></InputSignUp>
               </div>
+              <br/>
+              <br/>
               <div>
                 <Link to={`/`}>이미 아이디가 있으신가요?</Link>
               </div>
-              <button
-                style={{
-                  width: "200px",
-                  height: "40px",
-                  margin: "5px",
-                  borderRadius: "5px",
-                  backgroundColor: "gray",
-                }}
+              <br/>
+              <br/>
+              <ButtonSignUp
+          
                 type="submit"
               >
                 시작하기
-              </button>
+              </ButtonSignUp>
             </form>
           </center>
         </div>
+        </WrapperSignUp>
         </>
       );
     } else {
