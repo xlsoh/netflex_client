@@ -1,9 +1,14 @@
 import React from "react";
-import { withRouter, Link } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import MyReviewList from "./MyReviewList";
 import axios from "axios";
 import PropTypes from "prop-types";
 import './MyPage.css'
+
+const IP_ADDRESS = "54.180.63.153";
+const axiosInstance = axios.create({
+  withCredentials: true,
+});
 
 class MyPage extends React.Component {
 constructor(props) {
@@ -13,15 +18,19 @@ myReview: [],
 };
 }
 
+
 componentDidMount() {
-const { userInfo, handleCleanReview } = this.props;
-axios
-.get(`http://54.180.63.153:5000/movie/reviews/${userInfo.id}`)
-.then((res) => this.setState({ myReview: res.data.results }))
-.then(() => {
-handleCleanReview();
-});
-}
+    this.props.handleIsRefresh().then(() => {
+      const { userInfo, handleCleanReview } = this.props;
+
+      axiosInstance
+        .get(`http://${IP_ADDRESS}:5000/movie/reviews/${userInfo.id}`)
+        .then((res) => this.setState({ myReview: res.data.results }))
+        .then(() => {
+          handleCleanReview();
+        });
+    });
+  }
 
 render() {
 const { myReview } = this.state;
@@ -67,7 +76,6 @@ return (
 }
 }
 MyPage.propTypes = {
-
 history: PropTypes.object,
 userInfo: PropTypes.object,
 isLogin: PropTypes.bool,

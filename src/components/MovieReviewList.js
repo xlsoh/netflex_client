@@ -3,14 +3,17 @@ import { withRouter } from "react-router-dom";
 import MovieReviewListEntry from "./MovieReviewListEntry";
 import PropTypes from "prop-types";
 import axios from "axios";
+
+const IP_ADDRESS = "54.180.63.153";
+
 class MovieReviewList extends React.Component {
   constructor(props) {
     super(props);
     this.state = { reviews: [] };
   }
   componentDidMount() {
-    const { userInfo, movieId, hadleReviewChangeByTitle } = this.props;
-    axios.get(`http://54.180.63.153:5000/movie/${movieId}`).then(
+    const { movieId } = this.props;
+    axios.get(`http://${IP_ADDRESS}:5000/movie/${movieId}`).then(
       (res) => this.setState({ reviews: res.data.results }),
       () => {
         console.log(this.state.reviews);

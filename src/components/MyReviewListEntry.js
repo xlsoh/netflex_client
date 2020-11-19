@@ -2,6 +2,9 @@ import React from "react";
 import { withRouter, Link, Route } from "react-router-dom";
 import axios from "axios";
 import PropTypes from "prop-types";
+
+const IP_ADDRESS = "54.180.63.153";
+
 class MyReviewListEntry extends React.Component {
   constructor(props) {
     super(props);
@@ -12,7 +15,7 @@ class MyReviewListEntry extends React.Component {
   handleTitleClick = () => {
     const { review, hadleReviewChangeByTitle } = this.props;
     axios
-      .get(`http://54.180.63.153:5000/movie/reviewinfo/${review.reviewId}`)
+      .get(`http://${IP_ADDRESS}:5000/movie/reviewinfo/${review.reviewId}`)
       .then((res) => {
         hadleReviewChangeByTitle(res.data);
       })
@@ -21,7 +24,7 @@ class MyReviewListEntry extends React.Component {
   handleDelClick = () => {
     const { review } = this.props;
     axios
-      .post(`http://54.180.63.153:5000/movie/deletereview`, {
+      .post(`http://${IP_ADDRESS}:5000/movie/deletereview`, {
         reviewId: review.reviewId,
       })
       .then(() => {
@@ -32,7 +35,7 @@ class MyReviewListEntry extends React.Component {
   handleEditClick = () => {
     const { review, hadleReviewChangeByEdit } = this.props;
     axios
-      .get(`http://54.180.63.153:5000/movie/reviewinfo/${review.reviewId}`)
+      .get(`http://${IP_ADDRESS}:5000/movie/reviewinfo/${review.reviewId}`)
       .then((res) => {
         hadleReviewChangeByEdit(res.data);
       })

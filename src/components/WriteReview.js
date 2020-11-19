@@ -2,8 +2,13 @@ import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import axios from "axios";
 import PropTypes from "prop-types";
+
+const IP_ADDRESS = "54.180.63.153";
+
+
 import "./WriteReview.css";
 import { Input, Textarea, Button } from "./WriteReviewCss";
+
 class WriteReview extends React.Component {
   constructor(props) {
     super(props);
@@ -29,29 +34,31 @@ class WriteReview extends React.Component {
       if (!review.reviewId) {
         return (
           <div>
+
             <div id='header-push'></div>
             <div className='global-content'>
               <h1 className='title'>영화 {`${movie.movieName}`} 리뷰 작성</h1>
               <form
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  return axios
-                    .post(`http://54.180.63.153:5000/movie/writereview`, {
-                      title: title,
-                      text: text,
-                      userId: userInfo.id,
-                      movieId: movie.movieId,
-                      movieName: movie.movieName,
-                    })
-                    .then((res) => {
-                      console.log(res);
-                      hadleNewReviewChange(res.data.reviewId);
-                    })
-                    .catch((err) => {
-                      alert("Failed to submit your review");
-                      console.log(err);
-                    });
-                }}
+              onSubmit={(e) => {
+                e.preventDefault();
+                return axios
+                  .post(`http://${IP_ADDRESS}:5000/movie/writereview`, {
+                    title: title,
+                    text: text,
+                    userId: userInfo.id,
+                    movieId: movie.movieId,
+                    movieName: movie.movieName,
+                  })
+                  .then((res) => {
+                    console.log(res);
+                    hadleNewReviewChange(res.data.reviewId);
+                  })
+                  .catch((err) => {
+                    alert("Failed to submit your review");
+                    console.log(err);
+                  });
+              }}
+            
               >
                 <div>
                   {" "}
@@ -96,7 +103,7 @@ class WriteReview extends React.Component {
                   e.preventDefault();
                   console.log(review.reviewId);
                   return axios
-                    .post(`http://54.180.63.153:5000/movie/writereview`, {
+                     .post(`http://${IP_ADDRESS}:5000/movie/writereview`, {
                       reviewId: review.reviewId,
                       title: title,
                       text: text,
@@ -151,8 +158,7 @@ class WriteReview extends React.Component {
     } else {
       return (
         <div>
-          <h2>로그인 후 이용해주세요.</h2>
-          <Link to={`/user/signin`}>로그인 하시겠습니까?</Link>
+    
         </div>
       );
     }

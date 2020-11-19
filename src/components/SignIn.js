@@ -1,9 +1,14 @@
 import React from "react";
-import { Link, withRouter } from "react-router-dom";
+import { Link, withRouter, Redirect } from "react-router-dom";
 import axios from "axios";
 import PropTypes from "prop-types";
 import GoogleBtn from "./GoogleBtn";
 import { GlobalStyle, Wrapper, Input, Button } from "./SignInCss";
+
+const IP_ADDRESS = "54.180.63.153";
+const axiosInstance = axios.create({
+  withCredentials: true,
+});
 
 class SignIn extends React.Component {
   constructor(props) {
@@ -35,25 +40,26 @@ class SignIn extends React.Component {
                 <br />
                 <br />
                 <br />
-
-                <form
-                  onSubmit={(e) => {
-                    e.preventDefault();
-                    return axios
-                      .post(`http://54.180.63.153:5000/user/signin`, {
-                        email: email,
-                        password: password,
-                      })
-                      .then((res) => {
-                        handleIsLoginChange(res.data);
-                        this.props.history.push(`/`);
-                      })
-                      .catch((err) => {
-                        alert("Login failed");
-                        console.log(err);
-                      });
-                  }}
-                >
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                return axiosInstance
+                  .post(`http://${IP_ADDRESS}:5000/user/signin`, {
+                    email: email,
+                    password: password,
+                  })
+                  .then((res) => {
+                    console.log(res.data);
+                    handleIsLoginChange(res.data);
+                    this.props.history.push(`/`);
+                  })
+                  .catch((err) => {
+                    alert("Login failed");
+                    console.log(err);
+                  });
+              }}
+            >
+              >
                   <div>
                     <Input
                       type="email"
@@ -95,7 +101,11 @@ class SignIn extends React.Component {
         </>
       );
     } else {
-      return <div></div>;
+
+      return (
+              <Redirect to={`/movie/popular`} />
+      );
+
     }
   }
 }

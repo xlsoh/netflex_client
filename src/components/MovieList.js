@@ -49,7 +49,6 @@ function MovieList({
     });
   }, []);
 
-  // console.log(Movies);
 
   if (isLogin) {
     return (

@@ -2,12 +2,16 @@ import React from "react";
 import { withRouter, Link } from "react-router-dom";
 import axios from "axios";
 import PropTypes from "prop-types";
+
+const IP_ADDRESS = "54.180.63.153";
+
 import {
   GlobalStyleSignUp,
   WrapperSignUp,
   InputSignUp,
   ButtonSignUp,
 } from "./SignUpCss";
+
 
 class SignUp extends React.Component {
   constructor(props) {
@@ -38,21 +42,21 @@ class SignUp extends React.Component {
                 <br />
                 <br />
                 <br />
-                <form
-                  onSubmit={(e) => {
-                    e.preventDefault();
-                    axios
-                      .post(`http://54.180.63.153:5000/user/signup`, {
-                        email: email,
-                        password: password,
-                        nickName: nickName,
-                      })
-                      .then(() => {
-                        this.props.history.push(`/`);
-                      })
-                      .catch((err) => console.log(err));
-                  }}
-                >
+               <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                axios
+                  .post(`http://${IP_ADDRESS}:5000/user/signup`, {
+                    email: email,
+                    password: password,
+                    nickName: nickName,
+                  })
+                  .then(() => {
+                    this.props.history.push(`/`);
+                  })
+                  .catch((err) => console.log(err));
+              }}
+            >
                   <div>
                     {" "}
                     <InputSignUp

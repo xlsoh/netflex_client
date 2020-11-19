@@ -5,17 +5,36 @@ import axios from "axios";
 import "./Review.css";
 import { Wrapper } from "./ReviewCss";
 
+const IP_ADDRESS = "54.180.63.153";
+const axiosInstance = axios.create({
+  withCredentials: true,
+});
+
 class Review extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = { test: [] };
   }
   go() {
     this.props.history.go(-1);
   }
 
+  componentDidMount() {
+    this.props.handleIsRefresh().then(() => {
+      const { userInfo, review, movie } = this.props;
+
+      axiosInstance
+        .post(`http://${IP_ADDRESS}:5000/movie/reviewinfo/${review.reviewId}`, {
+          userId: userInfo.id,
+        })
+        .then((res) => {
+          console.log(res);
+        });
+    });
+  }
+
   render() {
-    const { isLogin, userInfo, review } = this.props;
+    const { isLogin, userInfo, review, movie } = this.props;
     if (isLogin) {
       return (
         <div>
@@ -102,6 +121,8 @@ Review.propTypes = {
   isLogin: PropTypes.bool,
   userInfo: PropTypes.object,
   review: PropTypes.object,
+  movie: PropTypes.object,
+  handleIsRefresh: PropTypes.func,
 };
 export default withRouter(Review);
 

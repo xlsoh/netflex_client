@@ -4,6 +4,8 @@ import PropTypes from "prop-types";
 import axios from "axios";
 import "./MovieInfo.css";
 
+const IP_ADDRESS = "54.180.63.153";
+
 class MovieReviewListEntry extends React.Component {
   constructor(props) {
     super(props);
@@ -12,7 +14,7 @@ class MovieReviewListEntry extends React.Component {
   handleTitleClick = () => {
     const { movieId, reviewId, hadleReviewChangeByTitle } = this.props;
     axios
-      .get(`http://54.180.63.153:5000/movie/reviewinfo/${reviewId}`)
+      .get(`http://${IP_ADDRESS}:5000/movie/reviewinfo/${reviewId}`)
       .then((res) => {
         hadleReviewChangeByTitle(res.data);
       })
@@ -20,7 +22,7 @@ class MovieReviewListEntry extends React.Component {
   };
   likeClick = () => {
     const { reviewId, userInfo } = this.props;
-    axios.post(`http://54.180.63.153:5000/movie/reviewinfo/${reviewId}`, {
+    axios.post(`http://${IP_ADDRESS}:5000/movie/reviewinfo/${reviewId}`, {
       userId: userInfo.id,
     });
   };
