@@ -25,6 +25,17 @@ body {
   height: 85px;
 }
 
+.sortButton {
+  display: inline-flex;
+  list-style: none;
+}
+
+.backstepButton {
+  background: url(https://ifh.cc/g/aKVcMn.png);
+  width: 45px;
+  height: 45px;
+}
+
 .mypageButton {
   margin-right: 50px;
   background: url(https://ifh.cc/g/hy2pAp.png);
@@ -33,6 +44,7 @@ body {
 }
 
 .logoutButton {
+  margin-left: 10px;
   margin-right: 50px;
   background: url(https://ifh.cc/g/ay2SQR.png);
   width: 45px;

@@ -1,37 +1,64 @@
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap");
-
-.font-style {
-  font-family: "Noto Sans KR";
-  text-shadow: aliceblue;
+.reviewContainer {
 }
 
-.movie-title {
-  padding: 0.5em;
-  margin: 10px 40px 10px;
-  font-size: xx-large;
-  font-weight: bold;
-}
-
-.title {
-  padding-right: 0.5em;
-  padding-left: 0.6em;
-  font-size: large;
+.reviewTitle {
+  margin-top: 100px;
+  margin-bottom: 80px;
+  text-align: center;
+  font-size: 60px;
   font-weight: bolder;
 }
 
-.text {
-  padding-left: 0.1em;
-  font-size: medium;
-  font-weight: lighter;
-  opacity: 0.9;
+.reviewWrapper {
+  width: 1000px;
+  margin: auto;
+  padding: 5em;
+  background: #221f1f;
+  border-radius: 30px;
+  opacity: 0.8;
 }
 
-.text1 {
-  padding-left: 1em;
-  font-size: medium;
-  font-weight: lighter;
-  opacity: 0.9;
+.countContainer {
+  display: flex;
+  justify-content: flex-end;
 }
 
-.btn-like {
+.viewCount {
+  display: flex;
+  margin-right: 10px;
+}
+
+.likeCount {
+  display: flex;
+}
+
+.titleContainer {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.reviewSubTitle {
+  font-size: 40px;
+}
+
+.reviewLikebtn {
+  width: 20px;
+  height: 20px;
+  background-image: url(https://ifh.cc/g/HoQs7f.png);
+}
+
+.reviewLikebtn:hover {
+  background-image: url(https://ifh.cc/g/F9ZscL.png);
+}
+
+.reviewText {
+  margin-top: 15px;
+  font-size: 20px;
+  margin-top: 15px;
+}
+
+.reviewCreatedAt {
+  float: right;
+  margin-top: 50px;
 }

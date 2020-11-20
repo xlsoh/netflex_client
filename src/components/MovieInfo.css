@@ -35,8 +35,7 @@
 
 .reviewlistTitle {
   font-family: "Noto Sans KR";
-  color: blue;
-  font-size: 25px;
+  font-size: 30px;
   font-weight: bolder;
 }
 
@@ -45,7 +44,7 @@
   font-size: 20px;
 }
 
-.reviewContainer {
+.reviewPopupContainer {
   display: flex;
   justify-content: space-between;
 }
@@ -56,7 +55,7 @@
   background-image: url(https://ifh.cc/g/HoQs7f.png);
 }
 
-.likebtn:active {
+.likebtn:hover {
   background-image: url(https://ifh.cc/g/F9ZscL.png);
 }
 
@@ -69,4 +68,12 @@
 
 .poster {
   border-radius: 20px;
+}
+
+.modal {
+  margin-top: 2em;
+  padding: 3em;
+  background: #221f1f;
+  border-radius: 30px;
+  opacity: 0.8;
 }

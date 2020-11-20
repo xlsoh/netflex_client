@@ -30,11 +30,11 @@ class MovieReviewListEntry extends React.Component {
     const { title, reviewId } = this.props;
 
     return (
-      <div className='reviewContainer'>
-        <a className='review' onClick={this.handleTitleClick}>
+      <div className="reviewPopupContainer">
+        <a className="review" onClick={this.handleTitleClick}>
           ID : {reviewId} 제목 : {title}
         </a>
-        <div className='likebtn' onClick={this.likeClick} />
+        <div className="likebtn" onClick={this.likeClick} />
       </div>
     );
   }
