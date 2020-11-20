@@ -3,7 +3,6 @@ import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import axios from "axios";
 import "./Review.css";
-import { Wrapper } from "./ReviewCss";
 
 const IP_ADDRESS = "127.0.0.1";
 const axiosInstance = axios.create({
@@ -37,77 +36,42 @@ class Review extends React.Component {
     const { isLogin, userInfo, review, movie } = this.props;
     if (isLogin) {
       return (
-        <div>
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <div className='font-style'>
-            <div>
-              <div className='movie-title'>
-                영화{" "}
-                <span className='movieName'> {`${review.movieName}`} </span>의
-                리뷰
+        <div className="reviewContainer">
+          <div className="reviewTitle">
+            {`${review.nickName}`}님의 Review of {`${review.movieName}`}
+          </div>
+          <div className="reviewWrapper">
+            <div className="countContainer">
+              <div className="viewCount">조회수 : {`${review.views}`}</div>
+              <div className="likeCount">
+                좋아요수 : {`${review.totalLikes}`}
               </div>
-              <Wrapper>
-                <div>
-                  <div>
-                    {" "}
-                    <span className='title'>제목</span>
-                    <span className='text'>{`${review.title}`}</span>
-                    <br />
-                    <br />
-                  </div>
-                  <div>
-                    {" "}
-                    <span className='title'>작성자</span>
-                    <span className='text'>{`${review.nickName}`}</span>
-                    <span className='title'>&emsp;&emsp;작성날짜</span>
-                    <span className='text'>{`${review.createdAt}`}</span>
-                    <span className='title'>&emsp;&emsp; 조회수</span>
-                    <span className='text'>{`${review.views}`}</span>
-                    <span className='title'>&emsp;&emsp;좋아요수</span>
-                    <span className='text'>{`${review.totalLikes}`}</span>
-                    <span>
-                      <form
-                        onSubmit={(e) => {
-                          e.preventDefault();
-                          axios
-                            .post(
-                              `http://127.0.0.1:5000/movie/reviewinfo/${review.reviewId}`,
-                              {
-                                userId: userInfo.id,
-                              }
-                            )
-                            .catch((err) => console.log(err));
-                        }}
-                      >
-                        <button className='btn-like' type='submit'>
-                          좋아요버튼
-                        </button>
-                      </form>
-                    </span>
-                    <br />
-                    <br />
-                  </div>
-                  <div>
-                    {" "}
-                    <div className='title'>내용</div>
-                    <br />
-                    <div className='text1'>{`${review.text}`}</div>
-                  </div>
-                </div>
-              </Wrapper>
-              <br />
-              <br />
-              <br />
-              <br />
-              <br />
-              <br />
             </div>
+            <div className="titleContainer">
+              <div className="reviewSubTitle">제목 : {`${review.title}`}</div>
+              <div className="reviewLikebtn" onClick={this.likeClick} />
+            </div>
+            <div className="reviewText">내용 : {`${review.text}`}</div>
+            <div className="reviewCreatedAt">{`${review.createdAt}`}</div>
+          </div>
+          <div>
+            <span>
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  axios
+                    .post(
+                      `http://127.0.0.1:5000/movie/reviewinfo/${review.reviewId}`,
+                      {
+                        userId: userInfo.id,
+                      }
+                    )
+                    .catch((err) => console.log(err));
+                }}
+              ></form>
+            </span>
+            <br />
+            <br />
           </div>
         </div>
       );

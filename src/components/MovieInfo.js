@@ -4,6 +4,7 @@ import MovieReviewList from "./MovieReviewList";
 import { imageBaseUrl } from "./config";
 import PropTypes from "prop-types";
 import "./MovieInfo.css";
+import { useSpring, animated } from "react-spring";
 
 function MovieInfo({
   adult,
@@ -19,35 +20,45 @@ function MovieInfo({
   hadleReviewChangeByTitle,
   userInfo,
 }) {
+  const animation = useSpring({
+    config: {
+      duration: 250,
+    },
+    opacity: show ? 1 : 0,
+    transform: show ? `translateY(0%)` : `translateY(-100%)`,
+  });
   const movie = { movieId: movieId, movieName: movieName };
   return show ? (
     <div className={containerName} onClick={onClick}>
-      <div className="Column">
-        <div className="modal">
-          <div className="modal-content">
-            <div className="h1">{movieName}</div>
-            <br />
-            <div className="date">개봉일 : {release}</div>
-            <div className="adult">
-              {adult ? `청소년 관람불가` : `청소년 관람가능`}
+      <animated.div style={animation}>
+        <div className="Column">
+          <div className="modal">
+            <div className="modal-content">
+              <div className="h1">{movieName}</div>
+              <br />
+              <div className="date">개봉일 : {release}</div>
+              <div className="adult">
+                {adult ? `청소년 관람불가` : `청소년 관람가능`}
+              </div>
+              <br />
+              <div className="overview">{overview}</div>
+              <br />
+              <br />
+              <div className="reviewlistTitle">REVIEW</div>
+              <MovieReviewList
+                movieId={movieId}
+                userInfo={userInfo}
+                hadleReviewChangeByTitle={hadleReviewChangeByTitle}
+              />
+              <div
+                className="reviewbtn"
+                onClick={() => handleWriteReview(movie)}
+              />
             </div>
-            <br />
-            <div className="overview">{overview}</div>
-            <br />
-            <div className="reviewlistTitle">REVIEW</div>
-            <MovieReviewList
-              movieId={movieId}
-              userInfo={userInfo}
-              hadleReviewChangeByTitle={hadleReviewChangeByTitle}
-            />
-            <div
-              className="reviewbtn"
-              onClick={() => handleWriteReview(movie)}
-            />
+            <img className="poster" src={`${imageBaseUrl}w500${img}`} />
           </div>
-          <img className="poster" src={`${imageBaseUrl}w500${img}`} />
         </div>
-      </div>
+      </animated.div>
     </div>
   ) : null;
 }
@@ -70,4 +81,3 @@ MovieInfo.propTypes = {
 };
 
 export default withRouter(MovieInfo);
-

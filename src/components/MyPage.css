@@ -1,25 +1,68 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap");
 
-.myInfoCont {
-  border: 0;
-  font-family: "Noto Sans KR";
-  font-size: 100%;
-  color: black;
-  padding: 0;
-  display: block;
-  background: #fafafa;
-  padding: 30px 50px 70px 50px;
-  font-family: "Noto Sans KR";
-  border-bottom: 1px solid #dedede;
+.mypageContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.myInfoCont.InfoCont {
-  padding: 40px 0px;
-  font-size: large;
-  color: white;
+.Title {
+  margin-top: 100px;
+  font-size: 70px;
+  font-weight: bolder;
 }
 
-.myReviewZone {
-  padding: 50px 0 24px 50px;
-  font-family: "Noto Sans KR";
+.mypageWrapper {
+  width: 1000px;
+  margin-top: 50px;
+  padding: 5em;
+  background: #221f1f;
+  border-radius: 30px;
+  opacity: 0.8;
+}
+
+.subTitle {
+  font-size: 50px;
+  margin-bottom: 0.5em;
+}
+
+.Description {
+  font-size: 30px;
+}
+
+.reviewListWrapper {
+  width: 1000px;
+  margin-top: 50px;
+  padding: 5em;
+  background: #221f1f;
+  border-radius: 30px;
+  opacity: 0.8;
+}
+.myReviewWrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.myReview {
+  margin-bottom: 15px;
+  font-size: 30px;
+}
+
+.sortBtn {
+  display: inline-flex;
+  list-style: none;
+  margin-bottom: 10px;
+}
+
+.editBtn {
+  background: url(https://ifh.cc/g/E9aPZY.png);
+  width: 40px;
+  height: 40px;
+}
+
+.deleteBtn {
+  background: url(https://ifh.cc/g/rYkyZL.png);
+  margin-left: 15px;
+  width: 40px;
+  height: 40px;
 }

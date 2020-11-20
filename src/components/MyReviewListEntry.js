@@ -2,6 +2,7 @@ import React from "react";
 import { withRouter, Link, Route } from "react-router-dom";
 import axios from "axios";
 import PropTypes from "prop-types";
+import "./MyPage.css";
 
 const IP_ADDRESS = "127.0.0.1";
 
@@ -44,10 +45,14 @@ class MyReviewListEntry extends React.Component {
   render() {
     const { title } = this.props;
     return (
-      <div>
-        <a onClick={this.handleTitleClick}>{title}</a>
-        <button onClick={this.handleEditClick}>수정</button>
-        <button onClick={this.handleDelClick}>삭제</button>
+      <div className="myReviewWrapper">
+        <div className="myReview" onClick={this.handleTitleClick}>
+          {title}
+        </div>
+        <ul className="sortBtn">
+          <li className="editBtn" onClick={this.handleEditClick} />
+          <li className="deleteBtn" onClick={this.handleDelClick} />
+        </ul>
       </div>
     );
   }

@@ -3,6 +3,7 @@ import { withRouter } from "react-router-dom";
 import MyReviewList from "./MyReviewList";
 import axios from "axios";
 import PropTypes from "prop-types";
+import "./MyPage.css";
 
 const IP_ADDRESS = "127.0.0.1";
 const axiosInstance = axios.create({
@@ -41,22 +42,17 @@ class MyPage extends React.Component {
     if (isLogin) {
       return (
         <>
-          <div className='myInfoZone'>
-            <div className='myInfoCont'>
-              <h1>Info</h1>
-              <br />
-              <div>
-                <span className='InfoCont'>{`이메일 `}</span>
-                <span>{`${userInfo.email}`}</span>
-              </div>
-              <div>
-                <span className='InfoCont'>{`이름 `}</span>
-                <span>{`${userInfo.nickName}`}</span>
-              </div>
+
+          <div className="mypageContainer">
+            <div className="Title">{`${userInfo.nickName}`} 님의 Info.</div>
+            <div className="mypageWrapper">
+              <div className="Description">이메일 : {`${userInfo.email}`}</div>
             </div>
-            <div className='myReviewZone'>
-              <h1>Review</h1>
-              <br />
+
+            <div className="Title">
+              {`${userInfo.nickName}`} 님이 작성한 Review List
+            </div>
+            <div className="reviewListWrapper">
               <MyReviewList
                 myReview={myReview}
                 hadleReviewChangeByTitle={hadleReviewChangeByTitle}

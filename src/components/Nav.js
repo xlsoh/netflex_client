@@ -22,10 +22,16 @@ class Nav extends React.Component {
                   <Link to={`/movie/popular`}>
                     <div className="netflexButton" />
                   </Link>
-                  <div
-                    className="logoutButton"
-                    onClick={handleIsLogoutChange}
-                  />
+                  <div className="sortButton">
+                    <div
+                      className="backstepButton"
+                      // onClick={this.props.history.goBack()}
+                    />
+                    <div
+                      className="logoutButton"
+                      onClick={handleIsLogoutChange}
+                    />
+                  </div>
                 </div>
               );
             }}
@@ -71,9 +77,16 @@ class Nav extends React.Component {
                   <Link to={`/movie/popular`}>
                     <div className="netflexButton" />
                   </Link>
-                  <Link to={`/user/mypage`}>
-                    <div className="mypageButton" />
-                  </Link>
+                  <ul className="sortButton">
+                    <li
+                      className="backstepButton"
+                      // onClick={this.props.history.goBack()}
+                    />
+                    <li
+                      className="logoutButton"
+                      onClick={handleIsLogoutChange}
+                    />
+                  </ul>
                 </div>
               );
             }}
@@ -132,4 +145,3 @@ Nav.propTypes = {
   handleIsLogoutChange: PropTypes.func,
 };
 export default withRouter(Nav);
-
