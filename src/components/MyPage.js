@@ -51,7 +51,7 @@ class MyPage extends React.Component {
               </div>
               <div>
                 <span className='InfoCont'>{`이름 `}</span>
-                <span>{`${userInfo.nickName}`}</span>s
+                <span>{`${userInfo.nickName}`}</span>
               </div>
             </div>
             <div className='myReviewZone'>
