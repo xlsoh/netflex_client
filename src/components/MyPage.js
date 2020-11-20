@@ -42,11 +42,13 @@ class MyPage extends React.Component {
     if (isLogin) {
       return (
         <>
+
           <div className="mypageContainer">
             <div className="Title">{`${userInfo.nickName}`} 님의 Info.</div>
             <div className="mypageWrapper">
               <div className="Description">이메일 : {`${userInfo.email}`}</div>
             </div>
+
             <div className="Title">
               {`${userInfo.nickName}`} 님이 작성한 Review List
             </div>

@@ -44,16 +44,20 @@ class SignUp extends React.Component {
                 <form
                   onSubmit={(e) => {
                     e.preventDefault();
-                    axios
-                      .post(`http://${IP_ADDRESS}:5000/user/signup`, {
-                        email: email,
-                        password: password,
-                        nickName: nickName,
-                      })
-                      .then(() => {
-                        this.props.history.push(`/`);
-                      })
-                      .catch((err) => console.log(err));
+                    if (email && password && nickName) {
+                      axios
+                        .post(`http://${IP_ADDRESS}:5000/user/signup`, {
+                          email: email,
+                          password: password,
+                          nickName: nickName,
+                        })
+                        .then(() => {
+                          this.props.history.push(`/`);
+                        })
+                        .catch((err) => console.log(err));
+                    } else {
+                      alert("가입이 완료되지 않았습니다.");
+                    }
                   }}
                 >
                   <div>
