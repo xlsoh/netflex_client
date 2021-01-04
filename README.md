@@ -9,7 +9,7 @@ Netflex에서 최근 인기있는 영화의 리뷰를 확인하고 공유 하실
 
 지금 당장 인기 영화의 리뷰를 확인해 보세요!
 
-# 🕵🏼어떤 기술이 사용되었나요? 
+# 🕵🏼 어떤 기술이 사용되었나요? 
 ## FRONT
 ![](https://img.shields.io/badge/FRONT-JAVASCRIPT-yellow?style=for-the-badge&logo=javascript) 
 
@@ -19,7 +19,7 @@ Netflex에서 최근 인기있는 영화의 리뷰를 확인하고 공유 하실
 ![](https://img.shields.io/badge/BACK-NODE-green?style=for-the-badge&logo=node.js) 
 
 
-# 🗣️우리를 소개합니다.
+# 🗣️ 우리를 소개합니다.
 <table>
   <tr>
     <td style="cursor:pointer;" onClick = "location.href='http://ihouse.so.vc'">강승택</td>
